@@ -6,6 +6,7 @@
 !/.github/**
 !/README.md
 !/.gitignore
+!/deploy-website.sh
 
 .DS_Store
 node_modules/
