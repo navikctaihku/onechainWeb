@@ -16,15 +16,10 @@ cd "$ROOT"
 
 # ── 1. GitHub login ──────────────────────────────────────────────────────────
 if ! "$GH" auth status >/dev/null 2>&1; then
-  echo ""
-  echo "Sign in to GitHub:"
-  echo "  1. Copy the code below"
-  echo "  2. Open https://github.com/login/device"
-  echo "  3. Paste the code and click Authorize"
-  echo ""
-  printf 'y\n' | "$GH" auth login --hostname github.com --git-protocol https --web --skip-ssh-key
-  echo ""
+  "$ROOT/login-github.sh"
 fi
+
+"$GH" auth setup-git >/dev/null 2>&1 || true
 
 if ! "$GH" auth status >/dev/null 2>&1; then
   echo "GitHub login failed. Run: $GH auth login"
@@ -34,10 +29,13 @@ fi
 echo "✓ Signed in to GitHub"
 echo ""
 
-# ── 2. Push source to onechainWeb ─────────────────────────────────────────────
+# ── 2. Push source to onechainWeb (optional) ─────────────────────────────────
 echo "Pushing source to onechainWeb..."
-git push -u origin main 2>/dev/null || git push origin main
-echo "✓ Source pushed"
+if git push -u origin main 2>/dev/null || git push origin main 2>/dev/null; then
+  echo "✓ Source pushed"
+else
+  echo "⚠ Source push skipped (continuing with live site deploy)"
+fi
 echo ""
 
 # ── 3. Deploy mockup to navikctaihku.github.io ───────────────────────────────
