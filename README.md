@@ -4,34 +4,40 @@ Enterprise blockchain infrastructure marketing site.
 
 ## Pages
 
-- **Home** — `index.html`
-- **About** — `about.html`
-- **Infrastructure** — `infrastructure.html`
-- **ESGLedger** — `esgledger.html`
-- **CertLedger** — `certledger.html`
+| Page | File |
+|------|------|
+| Home | `index.html` |
+| About | `about.html` |
+| Infrastructure | `infrastructure.html` |
+| ESGLedger | `esgledger.html` |
+| CertLedger | `certledger.html` |
 
 ## Run locally
 
 ```bash
-cd onechainwebsitMockup
+cd onechain_website
 npm install
 npm run dev
 ```
 
-Open **http://localhost:3000**
+Open **http://localhost:5173**
 
-## Deploy
+## Live site
 
-### GitHub Pages (recommended)
+**https://navikctaihku.github.io/onechainWeb/**
 
-1. Push to `main`
-2. In GitHub repo **Settings → Pages**, set source to **GitHub Actions**
-3. The site will be live at `https://navikctaihku.github.io/onechainWeb/`
+Pushing to `main` automatically rebuilds and deploys via GitHub Actions.
 
-### Vercel
+### First-time GitHub Pages setup
+
+1. Open **https://github.com/navikctaihku/onechainWeb/settings/pages**
+2. Under **Build and deployment**, set **Source** to **GitHub Actions**
+3. Push to `main` (or run the workflow manually under **Actions**)
+
+## Build for production
 
 ```bash
-cd onechainwebsitMockup
-npx vercel login
-npm run deploy
+cd onechain_website
+npm run build          # local / Vercel
+npm run build:ghpages  # GitHub Pages (uses /onechainWeb/ base path)
 ```

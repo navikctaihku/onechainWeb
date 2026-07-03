@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
     paths:
-      - 'onechainwebsitMockup/**'
+      - 'onechain_website/**'
       - '.github/workflows/deploy.yml'
   workflow_dispatch:
 
@@ -26,13 +26,27 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: onechain_website/package-lock.json
+
+      - name: Install dependencies
+        working-directory: onechain_website
+        run: npm ci
+
+      - name: Build site
+        working-directory: onechain_website
+        run: npm run build:ghpages
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
       - name: Upload site
         uses: actions/upload-pages-artifact@v3
         with:
-          path: onechainwebsitMockup
+          path: onechain_website/dist
 
       - name: Deploy to GitHub Pages
         id: deployment
