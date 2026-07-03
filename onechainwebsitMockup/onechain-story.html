@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OneChain — Scroll Story (Hubtown-style demo)</title>
+
+<!--
+  ============================================================================
+  WHAT THIS IS
+  A "scrollytelling" hero in the style of hubtown.co.in, rebuilt for OneChain.
+  Dependency-free (no GSAP/Lenis) so it runs offline. Four moving parts:
+
+    1) PIN + SCRUB  -> a tall wrapper (.story, 600vh) holds a sticky 100vh stage.
+                       Scroll progress 0..1 across the wrapper drives everything.
+    2) CHAPTER RAIL -> left-side words; the active one lights up by progress.
+    3) HEADLINES    -> stacked, cross-fade as the active chapter changes.
+    4) CANVAS SCENE -> glowing blockchain blocks + flowing light trails, drawn
+                       in real time and parallaxed by scroll progress.
+
+  THE PROMPT THAT BUILDS THIS (paste into Claude/Cursor to regenerate/extend):
+  "Build a dependency-free scroll-storytelling hero. A tall wrapper holds a
+   sticky 100vh stage. Compute scroll progress 0..1 from the wrapper's
+   bounding rect. Use it to (a) highlight the active item in a left chapter
+   rail, (b) cross-fade between stacked headlines, and (c) drive a <canvas>
+   scene of glowing isometric blocks with flowing light-trail particles that
+   parallax horizontally with progress. Smooth the canvas with a lerp. Respect
+   prefers-reduced-motion: no pinning, static canvas, instant headline swaps."
+  ============================================================================
+-->
+
+<style>
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+  :root{
+    --cyan:#00B4D8; --primary:#016282; --purple:#7F77DD;
+    --bg:#05080f; --ink:#eaf2f7; --muted:rgba(234,242,247,.45);
+    --font:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+    --mono:'JetBrains Mono',ui-monospace,monospace;
+  }
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--ink);font-family:var(--font);-webkit-font-smoothing:antialiased;}
+
+  /* simple intro bar so the demo has context above the story */
+  .topbar{
+    position:fixed;top:0;left:0;right:0;height:60px;z-index:50;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:0 32px;color:#fff;
+    background:linear-gradient(180deg,rgba(5,8,15,.85),transparent);
+  }
+  .topbar .brand{font-family:var(--mono);font-weight:700;letter-spacing:3px;font-size:15px;}
+  .topbar nav{display:flex;gap:26px;font-size:12px;letter-spacing:1.5px;color:var(--muted);text-transform:uppercase;}
+  @media(max-width:720px){.topbar nav{display:none;}}
+
+  /* ---- 1. PIN + SCRUB ---- */
+  .story{
+    position:relative;
+    height:600vh;               /* 6 chapters * 100vh of scroll travel */
+    background:var(--bg);
+  }
+  .story-stage{
+    position:sticky;top:0;
+    height:100vh;
+    overflow:hidden;
+  }
+  #scene{position:absolute;inset:0;width:100%;height:100%;display:block;}
+
+  /* vignette + grain to make the canvas feel cinematic */
+  .stage-vignette{
+    position:absolute;inset:0;pointer-events:none;z-index:2;
+    background:
+      radial-gradient(ellipse at 50% 38%, transparent 40%, rgba(5,8,15,.55) 100%),
+      linear-gradient(180deg, rgba(5,8,15,.5) 0%, transparent 22%, transparent 60%, rgba(5,8,15,.9) 100%);
+  }
+
+  /* ---- 2. CHAPTER RAIL ---- */
+  .rail{
+    position:absolute;left:48px;top:50%;transform:translateY(-50%);
+    z-index:3;list-style:none;display:flex;flex-direction:column;gap:18px;
+  }
+  .rail li{
+    font-family:var(--mono);font-size:13px;letter-spacing:3px;text-transform:uppercase;
+    color:rgba(234,242,247,.30);display:flex;align-items:center;gap:12px;
+    transition:color .4s ease;
+  }
+  .rail li::before{
+    content:'';width:6px;height:6px;border-radius:1px;background:currentColor;
+    transform:scale(.6);transition:transform .4s ease,box-shadow .4s ease;
+  }
+  .rail li.active{color:#fff;}
+  .rail li.active::before{transform:scale(1);box-shadow:0 0 12px var(--cyan);background:var(--cyan);}
+  @media(max-width:720px){.rail{left:20px;gap:12px;}.rail li{font-size:11px;letter-spacing:2px;}}
+
+  /* ---- 3. HEADLINES ---- */
+  .headlines{
+    position:absolute;left:50%;bottom:16%;transform:translateX(-50%);
+    width:min(900px,86vw);text-align:center;z-index:3;
+    min-height:160px;pointer-events:none;
+  }
+  .headline{
+    position:absolute;left:0;right:0;top:0;
+    opacity:0;transform:translateY(24px);
+    transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1);
+  }
+  .headline .kicker{
+    font-family:var(--mono);font-size:12px;letter-spacing:4px;text-transform:uppercase;
+    color:var(--cyan);margin-bottom:18px;display:block;
+  }
+  .headline h2{
+    font-size:clamp(30px,5vw,62px);font-weight:300;line-height:1.08;letter-spacing:-.02em;
+    text-shadow:0 2px 40px rgba(0,0,0,.6);
+  }
+  .headline.active{opacity:1;transform:translateY(0);}
+
+  /* ---- scroll hint ---- */
+  .hint{
+    position:absolute;left:50%;bottom:36px;transform:translateX(-50%);
+    z-index:3;font-family:var(--mono);font-size:11px;letter-spacing:3px;text-transform:uppercase;
+    color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:10px;
+    transition:opacity .5s ease;
+  }
+  .hint .arrow{width:1px;height:34px;background:linear-gradient(var(--cyan),transparent);
+    animation:hintPulse 1.8s ease-in-out infinite;}
+  @keyframes hintPulse{0%,100%{opacity:.3;transform:scaleY(.7);}50%{opacity:1;transform:scaleY(1);}}
+
+  /* a normal section after the story so you can see the pin release */
+  .after{
+    min-height:80vh;display:flex;align-items:center;justify-content:center;
+    text-align:center;padding:80px 24px;background:linear-gradient(180deg,var(--bg),#0A1628);
+  }
+  .after h3{font-size:clamp(28px,4vw,44px);font-weight:300;letter-spacing:-.02em;max-width:760px;}
+  .after p{color:var(--muted);margin-top:18px;font-size:16px;}
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    .headline{transition:none;}
+    .hint .arrow{animation:none;}
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <span class="brand">ONECHAIN</span>
+    <nav><a>Platform</a><a>Products</a><a>Trust</a><a>Docs</a></nav>
+  </div>
+
+  <!-- ===== 1. THE PINNED STORY ===== -->
+  <section class="story" id="story">
+    <div class="story-stage">
+      <canvas id="scene" aria-hidden="true"></canvas>
+      <div class="stage-vignette" aria-hidden="true"></div>
+
+      <!-- 2. chapter rail -->
+      <ul class="rail" id="rail">
+        <li data-i="0">Foundation</li>
+        <li data-i="1">Intelligence</li>
+        <li data-i="2">Network</li>
+        <li data-i="3">Security</li>
+        <li data-i="4">Scale</li>
+        <li data-i="5">Future</li>
+      </ul>
+
+      <!-- 3. headlines (one per chapter, cross-faded) -->
+      <div class="headlines" id="headlines">
+        <div class="headline" data-i="0">
+          <span class="kicker">Foundation</span>
+          <h2>We build the foundation<br>of digital trust</h2>
+        </div>
+        <div class="headline" data-i="1">
+          <span class="kicker">Intelligence</span>
+          <h2>AI that turns verified<br>data into decisions</h2>
+        </div>
+        <div class="headline" data-i="2">
+          <span class="kicker">Network</span>
+          <h2>A living network<br>of verified truth</h2>
+        </div>
+        <div class="headline" data-i="3">
+          <span class="kicker">Security</span>
+          <h2>Tamper-proof<br>by design</h2>
+        </div>
+        <div class="headline" data-i="4">
+          <span class="kicker">Scale</span>
+          <h2>Built to scale across<br>the enterprise</h2>
+        </div>
+        <div class="headline" data-i="5">
+          <span class="kicker">Future</span>
+          <h2>Defining the future<br>of verification</h2>
+        </div>
+      </div>
+
+      <div class="hint" id="hint"><span>Scroll to explore</span><span class="arrow"></span></div>
+    </div>
+  </section>
+
+  <!-- a plain section so the pin visibly releases -->
+  <section class="after">
+    <div>
+      <h3>That's the scroll story — the stage pinned while six chapters played, then released here.</h3>
+      <p>Scrub up and down to feel the blocks and light trails track your scroll.</p>
+    </div>
+  </section>
+
+<script>
+/* ========================================================================
+   SCROLL-STORY ENGINE  (vanilla, no libraries)
+   ===================================================================== */
+const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+const story     = document.getElementById('story');
+const railItems = [...document.querySelectorAll('#rail li')];
+const headlines = [...document.querySelectorAll('.headline')];
+const hint      = document.getElementById('hint');
+const N         = railItems.length;           // 6 chapters
+
+let progress = 0;        // true scroll progress 0..1 across the story
+let activeIdx = -1;
+
+/* ---- compute progress from the wrapper's position ---- */
+function computeProgress(){
+  const rect = story.getBoundingClientRect();
+  const total = story.offsetHeight - window.innerHeight; // scrollable travel
+  const scrolled = -rect.top;
+  return Math.max(0, Math.min(1, total > 0 ? scrolled / total : 0));
+}
+
+/* ---- update chapter rail + headline cross-fade ---- */
+function setActive(idx){
+  if (idx === activeIdx) return;
+  activeIdx = idx;
+  railItems.forEach((li,i)=>li.classList.toggle('active', i===idx));
+  headlines.forEach((h,i)=>h.classList.toggle('active', i===idx));
+}
+
+/* ========================================================================
+   4. CANVAS SCENE — glowing isometric blocks + flowing light trails
+   ===================================================================== */
+const canvas = document.getElementById('scene');
+const ctx = canvas.getContext('2d');
+let W=0, H=0, dpr=1;
+let renderP = 0;                 // smoothed (lerped) progress for buttery motion
+let blocks = [];
+let trails = [];
+
+const CY='0,180,216', PR='1,98,130', PU='127,119,221';
+
+function resize(){
+  dpr = Math.min(window.devicePixelRatio||1, 2);
+  W = canvas.clientWidth; H = canvas.clientHeight;
+  canvas.width = W*dpr; canvas.height = H*dpr;
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+  buildScene();
+}
+
+function buildScene(){
+  // a track of blocks the "camera" pans across with scroll progress
+  blocks = [];
+  const count = 7;
+  for(let i=0;i<count;i++){
+    blocks.push({
+      track: i/(count-1),                 // 0..1 position along the story
+      yJit: (Math.random()*0.18-0.09),    // vertical offset (fraction of H)
+      size: 60 + Math.random()*70,
+      phase: Math.random()*Math.PI*2,
+      hue: i%3===0?CY : i%3===1?PR:PU
+    });
+  }
+  // light-trail particles streaming through the scene
+  trails = [];
+  const tCount = reduce ? 0 : 90;
+  for(let i=0;i<tCount;i++) trails.push(spawnTrail());
+}
+
+function spawnTrail(){
+  return {
+    x: Math.random()*W,
+    y: H*0.55 + Math.random()*H*0.45,
+    len: 16+Math.random()*46,
+    speed: 0.6+Math.random()*1.8,
+    sway: Math.random()*Math.PI*2,
+    swayAmp: 0.3+Math.random()*0.9,
+    life: 0, max: 120+Math.random()*160,
+    hue: Math.random()<0.7?CY:PU
+  };
+}
+
+/* draw one glowing isometric cube centred at (cx,cy) */
+function drawBlock(cx, cy, r, h, hue, glow){
+  const top=[[cx,cy-r*0.5],[cx+r,cy],[cx,cy+r*0.5],[cx-r,cy]];
+  const left=[[cx-r,cy],[cx,cy+r*0.5],[cx,cy+r*0.5+h],[cx-r,cy+h]];
+  const right=[[cx+r,cy],[cx,cy+r*0.5],[cx,cy+r*0.5+h],[cx+r,cy+h]];
+  const face=(pts,a)=>{ctx.beginPath();ctx.moveTo(pts[0][0],pts[0][1]);
+    for(let i=1;i<pts.length;i++)ctx.lineTo(pts[i][0],pts[i][1]);ctx.closePath();
+    ctx.fillStyle=`rgba(${hue},${a})`;ctx.fill();};
+
+  ctx.save();
+  ctx.shadowColor=`rgba(${hue},${0.5*glow})`;
+  ctx.shadowBlur=40*glow;
+  face(left,0.10+0.10*glow);
+  face(right,0.16+0.16*glow);
+  face(top,0.30+0.35*glow);
+  ctx.restore();
+
+  // glowing edges
+  ctx.strokeStyle=`rgba(${hue},${0.35+0.45*glow})`;
+  ctx.lineWidth=1.2;
+  [top,left,right].forEach(pts=>{ctx.beginPath();ctx.moveTo(pts[0][0],pts[0][1]);
+    for(let i=1;i<pts.length;i++)ctx.lineTo(pts[i][0],pts[i][1]);ctx.closePath();ctx.stroke();});
+
+  // inner "data" line on the top face
+  ctx.strokeStyle=`rgba(${hue},${0.5*glow})`;
+  ctx.beginPath();ctx.moveTo(cx-r*0.4,cy);ctx.lineTo(cx+r*0.4,cy);ctx.stroke();
+}
+
+function drawScene(t){
+  // background wash
+  const g=ctx.createLinearGradient(0,0,0,H);
+  g.addColorStop(0,'#070b14'); g.addColorStop(0.5,'#05080f'); g.addColorStop(1,'#04060c');
+  ctx.fillStyle=g; ctx.fillRect(0,0,W,H);
+
+  // faint horizon glow that shifts with progress
+  const hx = W*(0.5 + (renderP-0.5)*0.3);
+  const hg=ctx.createRadialGradient(hx,H*0.5,0,hx,H*0.5,H*0.7);
+  hg.addColorStop(0,`rgba(${CY},0.10)`); hg.addColorStop(1,'rgba(0,0,0,0)');
+  ctx.fillStyle=hg; ctx.fillRect(0,0,W,H);
+
+  // ---- light trails (additive glow) ----
+  if(!reduce){
+    ctx.globalCompositeOperation='lighter';
+    for(const p of trails){
+      p.life++;
+      p.sway+=0.03;
+      p.x += Math.sin(p.sway)*p.swayAmp;
+      p.y -= p.speed;
+      const a = Math.sin(Math.min(1,p.life/p.max)*Math.PI)*0.6; // fade in/out
+      const grad=ctx.createLinearGradient(p.x,p.y,p.x,p.y+p.len);
+      grad.addColorStop(0,`rgba(${p.hue},${a})`);
+      grad.addColorStop(1,`rgba(${p.hue},0)`);
+      ctx.strokeStyle=grad; ctx.lineWidth=1.6;
+      ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(p.x,p.y+p.len);ctx.stroke();
+      // head glow
+      ctx.fillStyle=`rgba(${p.hue},${a*0.5})`;
+      ctx.beginPath();ctx.arc(p.x,p.y,1.6,0,Math.PI*2);ctx.fill();
+      if(p.life>p.max || p.y<-p.len) Object.assign(p,spawnTrail());
+    }
+    ctx.globalCompositeOperation='source-over';
+  }
+
+  // ---- blocks: pan across the track with progress ----
+  const camera = renderP;                 // 0..1
+  const spread = 2.2;                      // how many screens wide the track is
+  blocks.forEach((b,i)=>{
+    // screen position: blocks scroll left as progress increases
+    const rel = (b.track - camera);        // -1..1 ish
+    const cx = W*0.5 + rel*W*spread;
+    if(cx < -200 || cx > W+200) return;    // cull off-screen
+    const cy = H*0.46 + b.yJit*H + Math.sin(t*0.0009+b.phase)*10; // float
+    // emphasise the block nearest the current chapter
+    const glow = Math.max(0.15, 1 - Math.abs(rel)*3.2);
+    const s = b.size*(0.7+glow*0.5);
+    drawBlock(cx, cy, s, s*1.15, b.hue, glow);
+  });
+
+  // subtle reflection band
+  ctx.fillStyle='rgba(0,180,216,0.03)';
+  ctx.fillRect(0,H*0.7,W,2);
+}
+
+/* ---- main loop: lerp progress, draw, sync UI ---- */
+function loop(t){
+  // smooth the rendered progress toward the real scroll progress
+  renderP += (progress - renderP) * 0.08;
+  drawScene(t);
+  requestAnimationFrame(loop);
+}
+
+/* ---- scroll handling (rAF-throttled) ---- */
+let ticking=false;
+function onScroll(){
+  if(ticking) return; ticking=true;
+  requestAnimationFrame(()=>{
+    progress = computeProgress();
+    // map progress -> active chapter
+    setActive(Math.max(0, Math.min(N-1, Math.floor(progress*N + 0.0001))));
+    hint.style.opacity = progress > 0.03 ? '0' : '1';
+    ticking=false;
+  });
+}
+
+/* ---- init ---- */
+function init(){
+  resize();
+  setActive(0);
+  if(reduce){
+    // static frame, no animation loop; chapters still switch on scroll
+    renderP = 0; drawScene(0);
+  }else{
+    requestAnimationFrame(loop);
+  }
+  onScroll();
+  window.addEventListener('scroll', onScroll, {passive:true});
+  let rt; window.addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(resize,150);});
+}
+init();
+</script>
+</body>
+</html>

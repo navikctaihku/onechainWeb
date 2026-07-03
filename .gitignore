@@ -1,0 +1,12 @@
+# Monorepo — only track the OneChain marketing site
+/*
+!/onechainwebsitMockup/
+!/onechainwebsitMockup/**
+!/.github/
+!/.github/**
+!/README.md
+!/.gitignore
+
+.DS_Store
+node_modules/
+.vercel

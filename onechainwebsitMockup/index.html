@@ -1,0 +1,2062 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OneChain — Enterprise Blockchain Infrastructure</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* ===== RESET & TOKENS ===== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --oc-primary: #016282;
+      --oc-primary-light: #0189B5;
+      --oc-primary-brand: #00B4D8;
+      --oc-dark: #0A1628;
+      --oc-dark-surface: #111827;
+      --oc-bg: #FFFFFF;
+      --oc-bg-alt: #FAFAFA;
+      --oc-border: rgba(10,22,40,0.08);
+      --oc-border-strong: rgba(10,22,40,0.12);
+      --oc-text: #0A1628;
+      --oc-text-secondary: #475569;
+      --oc-muted: #64748B;
+      --oc-muted-light: #94A3B8;
+      --oc-esg-green: #2ECC71;
+      --oc-cert-gold: #F0B429;
+      --oc-ai-purple: #7F77DD;
+      --font-sans: 'Inter', -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body { font-family: var(--font-sans); color: var(--oc-text); background: var(--oc-bg); line-height: 1.6; }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+
+    /* ===== NAV ===== */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: 64px;
+      background: rgba(255,255,255,0.8);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--oc-border);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .nav-inner {
+      width: 100%; max-width: 1280px; padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo img { height: 36px; width: auto; }
+    .nav-links { display: flex; align-items: center; gap: 32px; }
+    .nav-links a {
+      font-size: 14px; font-weight: 500; color: var(--oc-muted);
+      transition: color 150ms;
+    }
+    .nav-links a:hover { color: var(--oc-text); }
+    .nav-actions { display: flex; align-items: center; gap: 12px; }
+    .btn-ghost {
+      font-size: 14px; font-weight: 500; color: var(--oc-muted);
+      padding: 8px 16px; border-radius: 8px;
+      transition: all 150ms; border: none; background: none; cursor: pointer;
+    }
+    .btn-ghost:hover { color: var(--oc-text); background: var(--oc-bg-alt); }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 14px; font-weight: 600; color: white;
+      background: var(--oc-dark); padding: 10px 20px;
+      border-radius: 8px; border: none; cursor: pointer;
+      transition: all 200ms;
+    }
+    .btn-primary:hover { background: #1a2a40; transform: translateY(-1px); }
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 14px; font-weight: 600; color: var(--oc-text);
+      background: transparent; padding: 10px 20px;
+      border-radius: 8px; border: 1px solid var(--oc-border-strong); cursor: pointer;
+      transition: all 200ms;
+    }
+    .btn-outline:hover { background: var(--oc-bg-alt); border-color: var(--oc-muted-light); }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+    }
+
+    /* ===== HERO (Vercel 3-column style) ===== */
+    .hero {
+      padding: 200px 24px 140px;
+      position: relative;
+      overflow: hidden;
+      /* linear-gradient: blends colours along a line (angle, colour stops) */
+      background: linear-gradient(180deg, #f4f9fc 0%, #ffffff 55%, #ffffff 100%);
+    }
+    /* Animated gradient blobs — radial-gradient + blur + @keyframes = soft moving colour */
+    .hero-gradients {
+      position: absolute; inset: 0;
+      overflow: hidden; pointer-events: none; z-index: 0;
+    }
+    .hero-blob {
+      position: absolute; border-radius: 50%;
+      filter: blur(90px); opacity: 0.55;
+      will-change: transform;
+    }
+    .hero-blob-1 {
+      width: 520px; height: 520px; top: -10%; left: -8%;
+      background: radial-gradient(circle, rgba(0,180,216,0.35) 0%, transparent 70%);
+      animation: blob-drift-1 18s ease-in-out infinite;
+    }
+    .hero-blob-2 {
+      width: 480px; height: 480px; top: 20%; right: -5%;
+      background: radial-gradient(circle, rgba(1,98,130,0.22) 0%, transparent 70%);
+      animation: blob-drift-2 22s ease-in-out infinite;
+    }
+    .hero-blob-3 {
+      width: 400px; height: 400px; bottom: 0; left: 35%;
+      background: radial-gradient(circle, rgba(127,119,221,0.15) 0%, transparent 70%);
+      animation: blob-drift-3 20s ease-in-out infinite;
+    }
+    @keyframes blob-drift-1 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(40px, 30px) scale(1.08); }
+    }
+    @keyframes blob-drift-2 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(-35px, 25px) scale(1.05); }
+    }
+    @keyframes blob-drift-3 {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(25px, -20px); }
+    }
+    /* Interactive node network canvas — sits above blobs, below text */
+    .hero-network {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      z-index: 0; pointer-events: none;
+    }
+    .hero-inner {
+      max-width: 1280px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 60px;
+      min-height: 480px;
+      position: relative; z-index: 1;
+    }
+    /* Left column — text */
+    .hero-left {}
+    .hero h1 {
+      font-size: clamp(36px, 5vw, 56px);
+      font-weight: 300; letter-spacing: -0.03em; line-height: 1.15;
+      color: var(--oc-dark); margin-bottom: 40px;
+    }
+    /* Gradient text: background-clip clips the gradient to letter shapes */
+    .gradient-text {
+      background: linear-gradient(135deg, var(--oc-primary) 0%, var(--oc-primary-brand) 50%, var(--oc-ai-purple) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-size: 200% 200%;
+      animation: gradient-text-shift 8s ease infinite;
+    }
+    @keyframes gradient-text-shift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    /* Center column — logo shape */
+    .hero-center {
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+    .hero-logo-shape {
+      width: 320px; height: auto;
+      filter: drop-shadow(0 24px 60px rgba(1,98,130,0.18));
+      transition: transform 0.6s cubic-bezier(0.16,1,0.3,1);
+      animation: float-gentle 6s ease-in-out infinite;
+    }
+    .hero-logo-shape:hover { transform: scale(1.03); animation-play-state: paused; }
+    @keyframes float-gentle {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+    /* subtle glow behind logo */
+    .hero-center::before {
+      content: '';
+      position: absolute;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,180,216,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* Right column — descriptors */
+    .hero-right {
+      display: flex; flex-direction: column; gap: 16px;
+      padding-left: 20px;
+    }
+    .hero-descriptor {
+      font-family: var(--font-mono); font-size: 14px; font-weight: 500;
+      color: var(--oc-dark); letter-spacing: 0.5px;
+      text-transform: uppercase; line-height: 1.4;
+    }
+
+    @media (max-width: 1024px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 48px;
+      }
+      .hero-left { order: 1; }
+      .hero-center { order: 0; }
+      .hero-right {
+        order: 2; flex-direction: row; flex-wrap: wrap;
+        justify-content: center; padding-left: 0; gap: 12px;
+      }
+      .hero-actions { justify-content: center; }
+      .hero-logo-shape { width: 240px; }
+    }
+    @media (max-width: 640px) {
+      .hero { padding: 140px 24px 80px; }
+      .hero-logo-shape { width: 180px; }
+      .hero-descriptor { font-size: 12px; }
+    }
+
+    /* ===== SCROLLING TICKER ===== */
+    .ticker {
+      border-top: 1px solid var(--oc-border);
+      border-bottom: 1px solid var(--oc-border);
+      padding: 20px 0; overflow: hidden; background: var(--oc-bg);
+    }
+    .ticker-track {
+      display: flex; gap: 48px; align-items: center;
+      animation: ticker-scroll 30s linear infinite;
+      width: max-content;
+    }
+    .ticker-item {
+      font-size: 14px; font-weight: 500; color: var(--oc-muted-light);
+      white-space: nowrap; text-transform: uppercase; letter-spacing: 1px;
+    }
+    @keyframes ticker-scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ===== SECTION COMMON ===== */
+    .section { padding: 120px 24px; }
+    .section-alt { background: var(--oc-bg-alt); }
+    .container { max-width: 1280px; margin: 0 auto; }
+
+    /* ===== FEATURES (Linear style with FIG labels) ===== */
+    .features-header {
+      max-width: 640px; margin-bottom: 80px;
+    }
+    .features-header h2 {
+      font-size: 40px; font-weight: 800; letter-spacing: -0.02em;
+      line-height: 1.1; margin-bottom: 20px;
+    }
+    .features-header p { font-size: 18px; color: var(--oc-muted); line-height: 1.6; }
+    .features-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+      background: var(--oc-border);
+      border: 1px solid var(--oc-border); border-radius: 16px;
+      overflow: hidden;
+    }
+    .feature-card {
+      background: var(--oc-bg); padding: 48px 40px;
+      position: relative; transition: background 200ms;
+    }
+    .feature-card:hover { background: var(--oc-bg-alt); }
+    .fig-label {
+      font-family: var(--font-mono); font-size: 12px; color: var(--oc-muted-light);
+      letter-spacing: 1px; margin-bottom: 40px; text-transform: uppercase;
+    }
+    .feature-icon {
+      width: 64px; height: 64px; margin-bottom: 32px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .feature-icon svg { width: 48px; height: 48px; stroke: var(--oc-dark); stroke-width: 1; fill: none; }
+    .feature-card h3 {
+      font-size: 18px; font-weight: 700; margin-bottom: 12px; letter-spacing: -0.01em;
+    }
+    .feature-card p { font-size: 15px; color: var(--oc-muted); line-height: 1.6; }
+
+    @media (max-width: 1024px) { .features-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 640px) { .features-grid { grid-template-columns: 1fr; } .feature-card { padding: 32px 24px; } }
+
+    /* ===== PRODUCTS SECTION ===== */
+    .products-header-wrap {
+      position: relative; overflow: hidden;
+      margin: -40px -24px 80px; padding: 60px 24px 40px;
+    }
+    .products-header-network {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      pointer-events: none; z-index: 0;
+    }
+    .products-header {
+      text-align: center; max-width: 700px; margin: 0 auto;
+      position: relative; z-index: 1;
+    }
+    .products-header .eyebrow {
+      font-family: var(--font-mono); font-size: 13px; color: var(--oc-primary);
+      text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px;
+    }
+    .products-header h2 {
+      font-size: 40px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.1;
+      margin-bottom: 16px;
+    }
+    .products-header p { font-size: 18px; color: var(--oc-muted); }
+
+    .product-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .product-card {
+      background: var(--oc-bg); border: 1px solid var(--oc-border);
+      border-radius: 16px; padding: 48px; position: relative; overflow: hidden;
+      transition: all 300ms;
+    }
+    .product-card:hover {
+      border-color: var(--oc-border-strong);
+      box-shadow: 0 8px 40px rgba(10,22,40,0.08);
+      transform: translateY(-2px);
+    }
+    .product-card .accent-bar {
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    }
+    .product-card.esg .accent-bar { background: linear-gradient(90deg, var(--oc-esg-green), transparent); }
+    .product-card.cert .accent-bar { background: linear-gradient(90deg, var(--oc-cert-gold), transparent); }
+    .product-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 12px; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 1px; margin-bottom: 24px; padding: 6px 12px;
+      border-radius: 6px;
+    }
+    .product-card.esg .product-badge { background: rgba(46,204,113,0.1); color: var(--oc-esg-green); }
+    .product-card.cert .product-badge { background: rgba(240,180,41,0.1); color: #C8960E; }
+    .product-card h3 { font-size: 28px; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 16px; line-height: 1.2; }
+    .product-card > p { font-size: 15px; color: var(--oc-muted); line-height: 1.6; margin-bottom: 32px; }
+    .product-features {
+      display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px;
+    }
+    .product-features .pf {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 14px; color: var(--oc-text-secondary); line-height: 1.5;
+    }
+    .product-features .pf-check {
+      width: 18px; height: 18px; border-radius: 50%; flex-shrink: 0; margin-top: 2px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 10px; font-weight: 700; color: white;
+    }
+    .product-card.esg .pf-check { background: var(--oc-esg-green); }
+    .product-card.cert .pf-check { background: var(--oc-cert-gold); color: var(--oc-dark); }
+
+    @media (max-width: 768px) { .product-cards { grid-template-columns: 1fr; } }
+
+    /* ===== FAN CARDS (CertLedger visual — light bg) ===== */
+    .fan-section {
+      background: linear-gradient(180deg, #F0F4F8 0%, #E8EEF4 100%);
+      border-radius: 16px;
+      padding: 60px 40px; margin-top: 24px;
+      display: flex; align-items: center; justify-content: center;
+      min-height: 420px; position: relative; overflow: hidden;
+    }
+    .fan-section::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 50% 80%, rgba(1,98,130,0.06), transparent 70%);
+      pointer-events: none;
+    }
+    .fan-cards {
+      position: relative; width: 220px; height: 320px;
+    }
+    .fan-card {
+      position: absolute; width: 200px; height: 300px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.7), rgba(255,255,255,0.4) 40%, rgba(220,235,245,0.5));
+      backdrop-filter: blur(20px) saturate(1.3); -webkit-backdrop-filter: blur(20px) saturate(1.3);
+      border: 1px solid rgba(255,255,255,0.6);
+      box-shadow: 0 8px 32px rgba(10,22,40,0.08), inset 0 1px 0 rgba(255,255,255,0.6);
+      padding: 20px; display: flex; flex-direction: column; justify-content: space-between;
+      transform-origin: bottom center;
+      transition: transform 0.5s cubic-bezier(0.16,1,0.3,1),
+                  box-shadow 0.4s ease,
+                  filter 0.4s ease;
+      will-change: transform, box-shadow;
+      overflow: hidden; cursor: pointer;
+    }
+    /* Active card (JS-driven) */
+    .fan-cards.fanned .fan-card.active {
+      box-shadow: 0 20px 60px rgba(1,98,130,0.22), inset 0 1px 0 rgba(255,255,255,0.8);
+      filter: brightness(1.05);
+    }
+    /* Dim siblings when one is active */
+    .fan-cards.fanned.has-active .fan-card:not(.active) {
+      filter: brightness(0.92);
+      box-shadow: 0 4px 16px rgba(10,22,40,0.05);
+    }
+    .fan-card::before {
+      content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+      background: radial-gradient(ellipse at 30% 20%, rgba(255,255,255,0.35), transparent 50%);
+      pointer-events: none;
+    }
+    .fan-card-verified {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(255,255,255,0.9); backdrop-filter: blur(8px);
+      border-radius: 999px; padding: 6px 14px; font-size: 12px;
+      font-weight: 600; color: #1a7f37; width: fit-content;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .verified-icon {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 18px; height: 18px; border-radius: 50%;
+      background: #2ECC71; color: white; font-size: 10px; font-weight: 700;
+    }
+    .fan-card-title {
+      font-size: 22px; font-weight: 700; color: var(--oc-dark);
+    }
+    .fan-card-date {
+      font-size: 11px; font-weight: 600; color: var(--oc-muted);
+      text-align: right; letter-spacing: 0.5px; line-height: 1.4;
+    }
+    /* Stacked default */
+    .fan-card[data-index="0"] { z-index: 4; transform: rotate(-2deg) translateY(0); }
+    .fan-card[data-index="1"] { z-index: 3; transform: rotate(-0.5deg) translateY(4px); }
+    .fan-card[data-index="2"] { z-index: 2; transform: rotate(0.5deg) translateY(8px); }
+    .fan-card[data-index="3"] { z-index: 1; transform: rotate(2deg) translateY(12px); }
+    /* Fanned */
+    .fan-cards.fanned .fan-card[data-index="0"] { transform: rotate(-24deg) translateY(-20px); z-index: 1; }
+    .fan-cards.fanned .fan-card[data-index="1"] { transform: rotate(-8deg) translateY(-10px); z-index: 2; }
+    .fan-cards.fanned .fan-card[data-index="2"] { transform: rotate(8deg) translateY(-10px); z-index: 3; }
+    .fan-cards.fanned .fan-card[data-index="3"] { transform: rotate(24deg) translateY(-20px); z-index: 4; }
+    /* Active card lifts smoothly */
+    .fan-cards.fanned .fan-card[data-index="0"].active { transform: rotate(-24deg) translateY(-45px) scale(1.06); z-index: 10; }
+    .fan-cards.fanned .fan-card[data-index="1"].active { transform: rotate(-8deg) translateY(-35px) scale(1.06); z-index: 10; }
+    .fan-cards.fanned .fan-card[data-index="2"].active { transform: rotate(8deg) translateY(-35px) scale(1.06); z-index: 10; }
+    .fan-cards.fanned .fan-card[data-index="3"].active { transform: rotate(24deg) translateY(-45px) scale(1.06); z-index: 10; }
+    /* Card tints — light mode versions */
+    .fan-card[data-index="0"] { transition-delay: 0s; background: linear-gradient(135deg, rgba(240,180,41,0.12), rgba(255,255,255,0.6), rgba(220,235,245,0.4)); }
+    .fan-card[data-index="1"] { transition-delay: 0.06s; background: linear-gradient(135deg, rgba(1,98,130,0.12), rgba(255,255,255,0.6), rgba(220,235,245,0.4)); }
+    .fan-card[data-index="2"] { transition-delay: 0.12s; background: linear-gradient(135deg, rgba(127,119,221,0.12), rgba(255,255,255,0.6), rgba(220,235,245,0.4)); }
+    .fan-card[data-index="3"] { transition-delay: 0.18s; background: linear-gradient(135deg, rgba(46,204,113,0.12), rgba(255,255,255,0.6), rgba(220,235,245,0.4)); }
+
+    /* ===== ESG IMAGE SECTION ===== */
+    .esg-image-section {
+      margin-top: 24px; border-radius: 16px; overflow: hidden;
+      position: relative; min-height: 420px;
+    }
+    .esg-image-section img {
+      width: 100%; height: 100%; min-height: 420px; object-fit: cover;
+      border-radius: 16px;
+      transition: transform 0.6s cubic-bezier(0.16,1,0.3,1), filter 0.6s ease;
+      filter: brightness(0.95);
+    }
+    .esg-image-section:hover img {
+      transform: scale(1.03);
+      filter: brightness(1);
+    }
+    .esg-image-overlay {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 32px 24px 24px;
+      background: linear-gradient(transparent, rgba(10,22,40,0.7));
+      border-radius: 0 0 16px 16px;
+    }
+    .esg-image-overlay p {
+      font-size: 14px; color: rgba(255,255,255,0.9); font-weight: 500;
+    }
+
+    /* ===== INFRA SECTION ===== */
+    .infra-split {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+    }
+    .infra-text h2 {
+      font-size: 40px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.1;
+      margin-bottom: 20px;
+    }
+    .infra-text p { font-size: 17px; color: var(--oc-muted); line-height: 1.7; margin-bottom: 32px; }
+    .infra-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 40px; }
+    .infra-stat .stat-number {
+      font-size: 36px; font-weight: 800; letter-spacing: -0.02em;
+      color: var(--oc-primary); line-height: 1;
+    }
+    .infra-stat .stat-label { font-size: 13px; color: var(--oc-muted); margin-top: 8px; }
+    .infra-visual {
+      background: var(--oc-dark); border-radius: 16px; padding: 48px;
+      display: flex; align-items: center; justify-content: center;
+      min-height: 400px; position: relative; overflow: hidden;
+    }
+    .infra-visual::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(circle at 50% 50%, rgba(1,98,130,0.12), transparent 60%);
+    }
+    .layer-stack { position: relative; z-index: 1; }
+    .layer {
+      width: 200px; padding: 14px 0; text-align: center;
+      font-family: var(--font-mono); font-size: 13px; font-weight: 500;
+      border-radius: 8px; margin-bottom: 8px; position: relative;
+      transition: transform 300ms ease;
+    }
+    .layer:hover { transform: translateX(8px); }
+    .layer-app { background: rgba(127,119,221,0.2); color: #B8B2EE; border: 1px solid rgba(127,119,221,0.3); }
+    .layer-service { background: rgba(1,98,130,0.2); color: #4DC9F6; border: 1px solid rgba(1,98,130,0.3); }
+    .layer-infra { background: rgba(46,204,113,0.15); color: #6EDAA0; border: 1px solid rgba(46,204,113,0.25); }
+
+    @media (max-width: 768px) {
+      .infra-split { grid-template-columns: 1fr; gap: 48px; }
+      .infra-stats { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    /* ===== RECENTLY SHIPPED ===== */
+    .shipped-section {
+      padding: 120px 24px;
+      background: var(--oc-bg-alt);
+    }
+    .shipped-section h2 {
+      font-size: 48px; font-weight: 800; letter-spacing: -0.03em;
+      line-height: 1.1; margin-bottom: 60px;
+    }
+    .shipped-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 20px;
+    }
+    .shipped-card {
+      background: var(--oc-bg);
+      border: 1px solid var(--oc-border);
+      border-radius: 16px;
+      padding: 0;
+      overflow: hidden;
+      position: relative;
+      transition: all 300ms;
+    }
+    .shipped-card:hover {
+      border-color: var(--oc-border-strong);
+      box-shadow: 0 8px 40px rgba(10,22,40,0.06);
+      transform: translateY(-2px);
+    }
+    .shipped-card-large {
+      grid-row: 1 / 3;
+    }
+    .shipped-card-visual {
+      width: 100%; height: 100%; min-height: 320px;
+      display: flex; align-items: flex-end;
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .shipped-card-large .shipped-card-visual {
+      min-height: 100%;
+    }
+    .shipped-card-visual-bg {
+      position: absolute; inset: 0;
+      overflow: hidden;
+    }
+    /* Blockchain chain visual for large card */
+    .chain-visual {
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, var(--oc-bg) 0%, var(--oc-bg-alt) 100%);
+    }
+    .chain-visual svg {
+      width: 100%; height: 100%;
+    }
+    @keyframes chain-pulse {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 1; }
+    }
+    @keyframes block-glow {
+      0%, 100% { filter: drop-shadow(0 0 0 transparent); }
+      50% { filter: drop-shadow(0 0 6px rgba(1,98,130,0.15)); }
+    }
+    .chain-block { animation: block-glow 4s ease-in-out infinite; }
+    .chain-block:nth-child(2) { animation-delay: 0.5s; }
+    .chain-block:nth-child(3) { animation-delay: 1s; }
+    .chain-block:nth-child(4) { animation-delay: 1.5s; }
+    .chain-link-pulse { animation: chain-pulse 3s ease-in-out infinite; }
+    .chain-link-pulse:nth-child(2) { animation-delay: 0.6s; }
+    .chain-link-pulse:nth-child(3) { animation-delay: 1.2s; }
+
+    .shipped-card-info {
+      position: relative; z-index: 1;
+    }
+    .shipped-card-info h3 {
+      font-size: 28px; font-weight: 800; letter-spacing: -0.02em;
+      margin-bottom: 8px; display: flex; align-items: center; gap: 10px;
+    }
+    .shipped-card-info h3 .version-badge {
+      font-size: 13px; font-weight: 600; padding: 3px 8px;
+      border: 1px solid var(--oc-border-strong); border-radius: 6px;
+      font-family: var(--font-mono); color: var(--oc-muted);
+    }
+    .shipped-card-info p {
+      font-size: 15px; color: var(--oc-muted); line-height: 1.5;
+    }
+
+    /* Workflow waterfall bars */
+    .workflow-bars {
+      display: flex; flex-direction: column; gap: 12px;
+      padding: 32px 32px 0;
+    }
+    .wf-bar {
+      display: flex; justify-content: space-between; align-items: center;
+      background: var(--oc-bg-alt); border: 1px solid var(--oc-border);
+      border-radius: 8px; padding: 12px 20px;
+      font-family: var(--font-mono); font-size: 13px;
+    }
+    .wf-bar-name { color: var(--oc-text); font-weight: 500; }
+    .wf-bar-time { color: var(--oc-muted); }
+    .wf-bar:nth-child(1) { width: 100%; }
+    .wf-bar:nth-child(2) { width: 80%; margin-left: auto; }
+    .wf-bar:nth-child(3) { width: 60%; margin-left: auto; }
+    .wf-bar:nth-child(4) { width: 55%; margin-left: auto; }
+
+    /* Sandbox visual */
+    .sandbox-visual {
+      display: flex; align-items: center; justify-content: center;
+      min-height: 240px; position: relative;
+      padding: 32px;
+    }
+    .sandbox-canvas {
+      width: 100%; max-width: 380px;
+      position: relative;
+    }
+    .sandbox-terminal {
+      background: var(--oc-dark); border-radius: 10px; overflow: hidden;
+      box-shadow: 0 4px 24px rgba(10,22,40,0.12);
+    }
+    .sandbox-terminal-bar {
+      display: flex; align-items: center; gap: 6px;
+      padding: 10px 14px; background: rgba(255,255,255,0.06);
+    }
+    .sandbox-dot { width: 8px; height: 8px; border-radius: 50%; }
+    .sandbox-dot.red { background: #FF5F57; }
+    .sandbox-dot.yellow { background: #FEBC2E; }
+    .sandbox-dot.green { background: #28C840; }
+    .sandbox-terminal-title {
+      font-family: var(--font-mono); font-size: 11px; color: rgba(255,255,255,0.35);
+      margin-left: 8px;
+    }
+    .sandbox-terminal-body {
+      padding: 16px 18px; font-family: var(--font-mono); font-size: 12px;
+      line-height: 1.8; color: rgba(255,255,255,0.5);
+    }
+    .sandbox-terminal-body .prompt { color: rgba(46,204,113,0.7); }
+    .sandbox-terminal-body .cmd { color: rgba(255,255,255,0.85); }
+    .sandbox-terminal-body .flag { color: rgba(0,180,216,0.7); }
+    .sandbox-terminal-body .output { color: rgba(255,255,255,0.4); }
+    .sandbox-terminal-body .success { color: rgba(46,204,113,0.8); }
+    .sandbox-terminal-body .hash { color: rgba(240,180,41,0.7); }
+    .sandbox-response {
+      margin-top: 12px; display: flex; flex-direction: column; gap: 6px;
+    }
+    .sandbox-res-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 8px 14px; border-radius: 8px;
+      background: var(--oc-bg-alt); border: 1px solid var(--oc-border);
+      font-family: var(--font-mono); font-size: 11px;
+    }
+    .sandbox-res-label { color: var(--oc-muted); }
+    .sandbox-res-value { color: var(--oc-text); font-weight: 500; }
+    .sandbox-res-value.ok { color: var(--oc-esg-green); }
+
+    .shipped-card-body {
+      display: flex; flex-direction: column; height: 100%;
+    }
+    .shipped-card-content {
+      flex: 1;
+    }
+    .shipped-card-footer {
+      padding: 32px 40px 40px;
+    }
+
+    @media (max-width: 768px) {
+      .shipped-grid { grid-template-columns: 1fr; }
+      .shipped-card-large { grid-row: auto; }
+      .shipped-section h2 { font-size: 36px; }
+    }
+
+    /* ===== CTA BANNER (soft animated gradient — like reference) ===== */
+    .cta-banner {
+      padding: 120px 24px;
+      text-align: left;
+      position: relative; overflow: hidden;
+      /* background-size + animated background-position = shifting gradient */
+      background: linear-gradient(135deg, #c8dce8 0%, #dce8f0 30%, #e8f2f8 60%, #f2f7fb 100%);
+      background-size: 300% 300%;
+      animation: gradient-shift 12s ease infinite;
+    }
+    @keyframes gradient-shift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+    .cta-banner::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 20% 80%, rgba(0,180,216,0.18), transparent 55%),
+                  radial-gradient(ellipse at 80% 20%, rgba(1,98,130,0.1), transparent 50%);
+      pointer-events: none;
+    }
+    .cta-inner {
+      max-width: 1280px; margin: 0 auto;
+      position: relative; z-index: 1;
+    }
+    .cta-banner h2 {
+      font-size: clamp(36px, 5vw, 56px); font-weight: 800; color: var(--oc-dark);
+      letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 16px;
+      max-width: 520px;
+    }
+    .cta-banner p {
+      font-size: 18px; color: var(--oc-text-secondary); max-width: 480px;
+      margin: 0 0 40px; line-height: 1.6;
+    }
+    .cta-banner .cta-actions {
+      display: flex; gap: 12px; flex-wrap: wrap;
+    }
+    .cta-form {
+      display: flex; gap: 12px; margin-top: 32px; max-width: 440px;
+    }
+    .cta-input {
+      flex: 1; padding: 14px 18px; border-radius: 8px;
+      border: 1px solid rgba(10,22,40,0.12);
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(8px);
+      font-size: 15px; font-family: var(--font-sans);
+      color: var(--oc-text);
+      transition: border-color 200ms, box-shadow 200ms;
+    }
+    .cta-input:focus {
+      outline: none;
+      border-color: var(--oc-primary);
+      box-shadow: 0 0 0 3px rgba(1,98,130,0.12);
+    }
+    .cta-input::placeholder { color: var(--oc-muted-light); }
+    .btn-white {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 14px; font-weight: 600; color: var(--oc-dark);
+      background: white; padding: 12px 24px; border-radius: 8px;
+      border: none; cursor: pointer; transition: all 200ms;
+    }
+    .btn-white:hover { background: #f0f0f0; transform: translateY(-1px); }
+    .btn-ghost-dark {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.7);
+      background: transparent; padding: 12px 24px; border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.15); cursor: pointer; transition: all 200ms;
+    }
+    .btn-ghost-dark:hover { color: white; border-color: rgba(255,255,255,0.3); }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      background: var(--oc-bg-alt); border-top: 1px solid var(--oc-border);
+      padding: 64px 24px 32px;
+    }
+    .footer-grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+      gap: 48px; max-width: 1280px; margin: 0 auto;
+    }
+    .footer-brand p { font-size: 14px; color: var(--oc-muted); margin-top: 16px; max-width: 260px; line-height: 1.6; }
+    .footer-col h4 {
+      font-size: 12px; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 1.5px; color: var(--oc-muted-light); margin-bottom: 16px;
+    }
+    .footer-col a {
+      display: block; font-size: 14px; color: var(--oc-muted);
+      padding: 4px 0; transition: color 150ms;
+    }
+    .footer-col a:hover { color: var(--oc-text); }
+    .footer-bottom {
+      max-width: 1280px; margin: 48px auto 0; padding-top: 24px;
+      border-top: 1px solid var(--oc-border);
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 13px; color: var(--oc-muted-light);
+    }
+    @media (max-width: 768px) {
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .footer-bottom { flex-direction: column; gap: 12px; }
+    }
+
+    /* ===== SCROLL ANIMATIONS ===== */
+    .reveal {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.16,1,0.3,1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    /* ===== ADDED DYNAMIC EFFECTS ===== */
+    /* 1. Scroll reading-progress bar (top of viewport) */
+    .scroll-progress {
+      position: fixed; top: 0; left: 0; height: 3px; width: 0;
+      background: linear-gradient(90deg, var(--oc-primary), var(--oc-primary-brand), var(--oc-ai-purple));
+      z-index: 200; box-shadow: 0 0 10px rgba(0,180,216,0.5);
+      transform-origin: left center; will-change: width;
+    }
+
+    /* 2. Nav gains depth once you scroll past the hero */
+    .nav { transition: background 250ms ease, box-shadow 250ms ease; }
+    .nav.scrolled {
+      background: rgba(255,255,255,0.92);
+      box-shadow: 0 1px 0 var(--oc-border), 0 10px 30px rgba(10,22,40,0.06);
+    }
+
+    /* 3. Hero entrance on load — gated by .anim-ready so content stays visible if JS is off */
+    .anim-ready .hero-anim {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1);
+    }
+    .anim-ready.loaded .hero-anim { opacity: 1; transform: none; }
+    .anim-ready.loaded .hero-anim[data-delay="1"] { transition-delay: 0.12s; }
+    .anim-ready.loaded .hero-anim[data-delay="2"] { transition-delay: 0.24s; }
+    .anim-ready.loaded .hero-anim[data-delay="3"] { transition-delay: 0.36s; }
+
+    /* 4. Staggered fade-up (applied to feature cards via JS) */
+    .fade-up {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity 0.6s cubic-bezier(0.16,1,0.3,1), transform 0.6s cubic-bezier(0.16,1,0.3,1);
+    }
+    .fade-up.in { opacity: 1; transform: none; }
+
+    /* 5. Arrow micro-interaction on primary buttons (magnetic pull is JS) */
+    .btn-primary svg { transition: transform 220ms cubic-bezier(0.16,1,0.3,1); }
+    .btn-primary:hover svg { transform: translateX(3px); }
+    .btn-primary { will-change: transform; }
+
+    /* Count-up number stays monospace-stable so width doesn't jump while animating */
+    .stat-number { font-variant-numeric: tabular-nums; }
+
+    /* ===== EXHIBITION VIDEO SECTION (light framed showcase) ===== */
+    .video-section {
+      padding: 120px 24px;
+      background:
+        radial-gradient(ellipse 60% 50% at 50% 42%, rgba(0,180,216,0.07), transparent 70%),
+        var(--oc-bg-alt);
+      border-top: 1px solid var(--oc-border);
+      border-bottom: 1px solid var(--oc-border);
+    }
+    .video-header {
+      text-align: center; max-width: 640px; margin: 0 auto 56px;
+    }
+    .video-header .eyebrow {
+      font-family: var(--font-mono); font-size: 13px; color: var(--oc-primary);
+      text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px;
+    }
+    .video-header h2 {
+      font-size: clamp(32px, 4.5vw, 48px); font-weight: 800;
+      letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 16px;
+      color: var(--oc-dark);
+    }
+    .video-header p { font-size: 18px; color: var(--oc-muted); line-height: 1.6; }
+    .video-frame {
+      position: relative;
+      max-width: 1080px; margin: 0 auto;
+      aspect-ratio: 16 / 9;
+      border-radius: 20px; overflow: hidden;
+      background: #eef4f8;
+      border: 1px solid var(--oc-border-strong);
+      box-shadow:
+        0 1px 2px rgba(10,22,40,0.05),
+        0 24px 70px rgba(1,98,130,0.16);
+      transition: transform 0.5s cubic-bezier(0.16,1,0.3,1), box-shadow 0.5s ease;
+    }
+    .video-frame:hover {
+      transform: translateY(-4px);
+      box-shadow:
+        0 1px 2px rgba(10,22,40,0.05),
+        0 32px 90px rgba(1,98,130,0.22);
+    }
+    .video-frame video { width: 100%; height: 100%; display: block; object-fit: cover; }
+    /* caption chip pinned inside the frame, bottom-left */
+    .video-caption {
+      position: absolute; left: 20px; bottom: 20px; z-index: 3;
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 9px 16px; border-radius: 999px;
+      background: rgba(255,255,255,0.92);
+      -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+      font-family: var(--font-mono); font-size: 12px; letter-spacing: 1px;
+      text-transform: uppercase; color: var(--oc-primary);
+      box-shadow: 0 4px 16px rgba(10,22,40,0.12);
+      pointer-events: none; transition: opacity 0.4s ease;
+    }
+    .video-caption .dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--oc-primary-brand);
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+    @keyframes pulse-dot { 0%,100% { opacity: 1; } 50% { opacity: 0.35; } }
+    .video-caption.hidden { opacity: 0; }
+    /* "Tap for sound" — only shown when the browser blocks autoplay-with-sound */
+    .unmute-hint {
+      position: absolute; right: 20px; bottom: 20px; z-index: 4; display: none;
+      align-items: center; gap: 8px; padding: 11px 18px; border-radius: 999px; border: none;
+      cursor: pointer; background: rgba(255,255,255,0.94); color: var(--oc-dark);
+      font-family: var(--font-sans); font-weight: 600; font-size: 13px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.18); transition: transform 0.2s ease, opacity 0.3s ease;
+    }
+    .unmute-hint.show { display: inline-flex; }
+    .unmute-hint:hover { transform: scale(1.05); }
+    .video-overlay {
+      position: absolute; inset: 0; z-index: 2;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: opacity 0.35s ease;
+      background: transparent;
+      opacity: 0; pointer-events: none;
+    }
+    .video-overlay.show {
+      opacity: 1; pointer-events: auto;
+      background: rgba(255,255,255,0.35);
+      -webkit-backdrop-filter: blur(2px); backdrop-filter: blur(2px);
+    }
+    .play-btn {
+      width: 84px; height: 84px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(255,255,255,0.94); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+      box-shadow: 0 10px 40px rgba(1,98,130,0.28);
+      transition: transform 0.3s cubic-bezier(0.16,1,0.3,1);
+    }
+    .video-overlay:hover .play-btn { transform: scale(1.08); }
+    .play-btn svg { width: 30px; height: 30px; margin-left: 4px; fill: var(--oc-dark); }
+    @media (max-width: 640px) {
+      .video-section { padding: 80px 16px; }
+      .video-header { margin-bottom: 36px; }
+      .video-frame { border-radius: 14px; }
+      .video-caption { left: 12px; bottom: 12px; padding: 7px 12px; font-size: 10px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .fan-card { transition: none !important; }
+      .hero-blob, .hero-logo-shape, .gradient-text, .cta-banner { animation: none !important; }
+      .cta-banner { background-size: auto; }
+      .scroll-progress { display: none; }
+      .hero-anim, .fade-up { opacity: 1 !important; transform: none !important; transition: none !important; }
+    }
+
+    /* ============================================================
+       URBAN INFRASTRUCTURE — split hero (reference layout + video)
+       ============================================================ */
+    .reclaim {
+      position: relative; overflow: hidden;
+      padding: 100px 24px 120px;
+      background: #ffffff;
+      border-top: 1px solid var(--oc-border);
+      border-bottom: 1px solid var(--oc-border);
+    }
+    .reclaim-split {
+      max-width: 1280px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px 64px;
+      align-items: center;
+    }
+    .reclaim-copy { max-width: 520px; }
+    .reclaim-eyebrow {
+      font-family: var(--font-mono); font-size: 13px; font-weight: 500;
+      letter-spacing: 2px; text-transform: uppercase; color: var(--oc-primary);
+      display: inline-flex; align-items: center; gap: 10px; margin-bottom: 20px;
+    }
+    .reclaim-eyebrow::before {
+      content: ''; width: 28px; height: 1px; background: var(--oc-primary-brand);
+    }
+    .reclaim h2 {
+      font-size: clamp(36px, 4.5vw, 56px); font-weight: 800; line-height: 1.08;
+      letter-spacing: -0.03em; color: var(--oc-dark);
+      margin-bottom: 20px;
+    }
+    .reclaim h2 .accent {
+      background: linear-gradient(120deg, var(--oc-primary) 0%, var(--oc-primary-brand) 60%, #2dd4bf 100%);
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .reclaim-sub {
+      font-size: 18px; line-height: 1.65; color: var(--oc-text-secondary);
+      margin-bottom: 32px;
+    }
+    .reclaim-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .reclaim-cta {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 15px; font-weight: 600; color: #fff;
+      padding: 14px 26px; border-radius: 10px; cursor: pointer; border: none;
+      background: linear-gradient(120deg, var(--oc-primary) 0%, var(--oc-primary-brand) 100%);
+      box-shadow: 0 8px 24px rgba(0,180,216,0.25);
+      transition: transform 180ms ease, box-shadow 180ms ease;
+    }
+    .reclaim-cta:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(0,180,216,0.35); }
+    .reclaim-cta-outline {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 15px; font-weight: 600; color: var(--oc-primary);
+      padding: 14px 26px; border-radius: 10px; cursor: pointer;
+      background: #fff; border: 1.5px solid rgba(1,98,130,0.25);
+      transition: all 180ms ease;
+    }
+    .reclaim-cta-outline:hover {
+      background: var(--oc-bg-alt); border-color: var(--oc-primary);
+    }
+    .reclaim-media {
+      position: relative;
+      display: flex; align-items: center; justify-content: center;
+      min-height: 380px;
+      background: transparent;
+    }
+    .reclaim-media-glow {
+      position: absolute; inset: -15% -10%;
+      background: radial-gradient(ellipse at 50% 50%, rgba(0,180,216,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .reclaim-video-wrap {
+      position: relative; z-index: 1;
+      width: 100%; max-width: 600px;
+      overflow: visible;
+      background: transparent;
+    }
+    .reclaim-video {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      object-position: center center;
+      background: transparent;
+      /* video bg is ~rgb(200,205,205); brightness pushes it to white,
+         multiply makes remaining white melt into the page */
+      filter: brightness(1.28) contrast(1.02) saturate(1.15);
+      mix-blend-mode: multiply;
+      -webkit-mask-image: radial-gradient(ellipse 96% 92% at 50% 48%, #000 60%, transparent 100%);
+              mask-image: radial-gradient(ellipse 96% 92% at 50% 48%, #000 60%, transparent 100%);
+    }
+    /* feathered white cover: hides the watermark in the bottom-right corner
+       without the hard rectangular edge a solid patch would show */
+    .reclaim-video-cover {
+      position: absolute;
+      right: -4%;
+      bottom: -6%;
+      width: 46%;
+      height: 42%;
+      background: radial-gradient(ellipse at 100% 100%, #fff 0%, #fff 48%, rgba(255,255,255,0) 78%);
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    @media (max-width: 920px) {
+      .reclaim { padding: 80px 24px 96px; }
+      .reclaim-split {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .reclaim-copy { max-width: none; text-align: center; margin: 0 auto; }
+      .reclaim-actions { justify-content: center; }
+      .reclaim-media { min-height: 280px; order: -1; }
+      .reclaim-video-wrap { max-width: 420px; margin: 0 auto; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .reclaim-video { display: none; }
+      .reclaim-video-wrap::after {
+        content: '';
+        display: block; aspect-ratio: 16/10;
+        background: linear-gradient(135deg, #eef6fa, #fff);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SCROLL PROGRESS BAR -->
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo"><img src="onchain-logo.png" alt="OneChain" /></a>
+      <div class="nav-links">
+        <a href="#products">Products</a>
+        <a href="#features">Features</a>
+        <a href="#infrastructure">Infrastructure</a>
+        <a href="esgledger.html">ESGLedger</a>
+        <a href="certledger.html">CertLedger</a>
+        <a href="about.html">About</a>
+      </div>
+      <div class="nav-actions">
+        <button class="btn-ghost">Log in</button>
+        <button class="btn-primary">Get Started</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-gradients" aria-hidden="true">
+      <div class="hero-blob hero-blob-1"></div>
+      <div class="hero-blob hero-blob-2"></div>
+      <div class="hero-blob hero-blob-3"></div>
+    </div>
+    <!-- Interactive blockchain node network (drifts + reacts to mouse) -->
+    <canvas class="hero-network" id="heroNetwork" aria-hidden="true"></canvas>
+    <div class="hero-inner">
+      <!-- Left: headline + CTAs -->
+      <div class="hero-left">
+        <h1 class="hero-anim" data-delay="0">Enterprise<br><span class="gradient-text">Blockchain</span><br>Infrastructure</h1>
+        <div class="hero-actions hero-anim" data-delay="1">
+          <button class="btn-primary" style="padding: 14px 28px; font-size: 16px;">
+            Deploy Now
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button class="btn-outline" style="padding: 14px 28px; font-size: 16px;">Talk to Sales</button>
+        </div>
+      </div>
+
+      <!-- Center: OneChain logo -->
+      <div class="hero-center">
+        <img src="onchain-logo.png" alt="OneChain" class="hero-logo-shape" />
+      </div>
+
+      <!-- Right: monospaced descriptors -->
+      <div class="hero-right hero-anim" data-delay="2">
+        <div class="hero-descriptor">For Enterprise Trust</div>
+        <div class="hero-descriptor">To Verify and Certify</div>
+        <div class="hero-descriptor">Powered by AI + Blockchain</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TICKER -->
+  <div class="ticker">
+    <div class="ticker-track">
+      <span class="ticker-item">Hyperledger Fabric</span>
+      <span class="ticker-item">AI-Powered Verification</span>
+      <span class="ticker-item">ESG Compliance</span>
+      <span class="ticker-item">Credential Issuance</span>
+      <span class="ticker-item">Enterprise Grade</span>
+      <span class="ticker-item">ISO 27001</span>
+      <span class="ticker-item">Zero-Knowledge Proofs</span>
+      <span class="ticker-item">Smart Contracts</span>
+      <span class="ticker-item">Hyperledger Fabric</span>
+      <span class="ticker-item">AI-Powered Verification</span>
+      <span class="ticker-item">ESG Compliance</span>
+      <span class="ticker-item">Credential Issuance</span>
+      <span class="ticker-item">Enterprise Grade</span>
+      <span class="ticker-item">ISO 27001</span>
+      <span class="ticker-item">Zero-Knowledge Proofs</span>
+      <span class="ticker-item">Smart Contracts</span>
+    </div>
+  </div>
+
+  <!-- URBAN INFRASTRUCTURE — split layout + holographic city video -->
+  <section class="reclaim reveal" id="reclamation">
+    <div class="reclaim-split">
+      <div class="reclaim-copy">
+        <span class="reclaim-eyebrow">Enterprise Blockchain</span>
+        <h2>The Future of <span class="accent">Urban Infrastructure</span></h2>
+        <p class="reclaim-sub">Leveraging decentralized networks for seamless, smart, and sustainable city planning.</p>
+        <div class="reclaim-actions">
+          <button class="reclaim-cta">
+            Explore the Platform
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button class="reclaim-cta-outline">Learn More</button>
+        </div>
+      </div>
+      <div class="reclaim-media">
+        <div class="reclaim-media-glow" aria-hidden="true"></div>
+        <div class="reclaim-video-wrap">
+          <video
+            class="reclaim-video"
+            id="reclaimVideo"
+            src="videos/holographic-city.mp4?v=202607021210"
+            autoplay muted loop playsinline preload="auto"
+            aria-label="Futuristic holographic wireframe city animation"
+          ></video>
+          <div class="reclaim-video-cover" aria-hidden="true"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES (Linear style) -->
+  <section class="section" id="features">
+    <div class="container">
+      <div class="features-header reveal">
+        <h2>Your product, delivered. <span style="color: var(--oc-muted-light);">Security, intelligence, and blockchain trust included.</span></h2>
+        <p>Three layers working together so you can focus on what matters — building products that earn trust.</p>
+      </div>
+      <div class="features-grid reveal">
+        <div class="feature-card">
+          <div class="fig-label">FIG 0.1</div>
+          <div class="feature-icon">
+            <svg viewBox="0 0 48 48"><rect x="8" y="28" width="32" height="12" rx="2"/><rect x="12" y="16" width="24" height="10" rx="2"/><rect x="16" y="8" width="16" height="6" rx="2"/></svg>
+          </div>
+          <h3>Built for purpose</h3>
+          <p>Permissioned blockchain built on Hyperledger Fabric. Designed for enterprise compliance, not crypto speculation.</p>
+        </div>
+        <div class="feature-card">
+          <div class="fig-label">FIG 0.2</div>
+          <div class="feature-icon">
+            <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="16"/><path d="M24 8v16l12 8"/></svg>
+          </div>
+          <h3>Powered by AI</h3>
+          <p>Pattern recognition, anomaly detection, and predictive analytics turn verified on-chain data into actionable intelligence.</p>
+        </div>
+        <div class="feature-card">
+          <div class="fig-label">FIG 0.3</div>
+          <div class="feature-icon">
+            <svg viewBox="0 0 48 48"><path d="M8 24h32"/><path d="M24 8v32"/><circle cx="24" cy="24" r="6"/><circle cx="8" cy="24" r="3"/><circle cx="40" cy="24" r="3"/><circle cx="24" cy="8" r="3"/><circle cx="24" cy="40" r="3"/></svg>
+          </div>
+          <h3>Designed for speed</h3>
+          <p>Sub-second finality. 3,000+ TPS throughput. Energy-efficient consensus for enterprise-scale operations.</p>
+        </div>
+        <div class="feature-card">
+          <div class="fig-label">FIG 0.4</div>
+          <div class="feature-icon">
+            <svg viewBox="0 0 48 48"><rect x="6" y="6" width="16" height="16" rx="3"/><rect x="26" y="6" width="16" height="16" rx="3"/><rect x="6" y="26" width="16" height="16" rx="3"/><rect x="26" y="26" width="16" height="16" rx="3"/></svg>
+          </div>
+          <h3>Modular architecture</h3>
+          <p>Plug-and-play services. Choose the components you need — identity, ledger, verification, analytics — and compose your stack.</p>
+        </div>
+        <div class="feature-card">
+          <div class="fig-label">FIG 0.5</div>
+          <div class="feature-icon">
+            <svg viewBox="0 0 48 48"><path d="M12 36V20l12-12 12 12v16"/><rect x="18" y="28" width="12" height="8"/></svg>
+          </div>
+          <h3>Tamper-proof records</h3>
+          <p>Immutable audit trails. Cryptographic proof of every transaction. Data integrity you can mathematically verify.</p>
+        </div>
+        <div class="feature-card">
+          <div class="fig-label">FIG 0.6</div>
+          <div class="feature-icon">
+            <svg viewBox="0 0 48 48"><path d="M24 4L4 14v20l20 10 20-10V14L24 4z"/><path d="M4 14l20 10 20-10"/><path d="M24 24v20"/></svg>
+          </div>
+          <h3>Enterprise security</h3>
+          <p>Role-based access, encrypted channels, hardware security modules. Built for regulated industries from day one.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXHIBITION VIDEO (framed showcase) -->
+  <section class="video-section reveal" id="exhibition">
+    <div class="video-header">
+      <div class="eyebrow">Cyberport Exhibition</div>
+      <h2>OneChain, on stage.</h2>
+      <p>See the platform in action — blockchain-verified recycling coverage across Hong Kong, live from our Cyberport showcase.</p>
+    </div>
+    <div class="video-frame">
+      <video id="exhibitionVideo" poster="onechain-exhibition-poster.jpg"
+             autoplay muted playsinline preload="auto"
+             controls>
+        <source src="onechain-exhibition.mp4" type="video/mp4">
+        Your browser doesn't support embedded video.
+      </video>
+      <div class="video-overlay" id="videoOverlay" aria-hidden="true">
+        <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+      </div>
+      <div class="video-caption" id="videoText">
+        <span class="dot"></span> Live Demo — Hong Kong Coverage Map
+      </div>
+      <button class="unmute-hint" id="unmuteHint" type="button" aria-label="Unmute video">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3a4.5 4.5 0 00-2.5-4v8a4.5 4.5 0 002.5-4z"/></svg>
+        Tap for sound
+      </button>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section class="section section-alt" id="products">
+    <div class="container">
+      <div class="products-header-wrap reveal">
+        <canvas class="products-header-network" id="productsNetwork" aria-hidden="true"></canvas>
+        <div class="products-header">
+          <div class="eyebrow">Hero Products</div>
+          <h2>Built on OneChain. Ready for enterprise.</h2>
+          <p>Two flagship products proving the platform works — each solving a real-world trust problem.</p>
+        </div>
+      </div>
+      <div class="product-cards">
+        <!-- ESGLedger -->
+        <div class="product-card esg reveal">
+          <div class="accent-bar"></div>
+          <div class="product-badge">ESGLedger</div>
+          <h3>Unlocking ESG Trust</h3>
+          <p>Blockchain-verified ESG data platform and plastic credit marketplace. Anti-greenwashing technology for companies that mean what they claim.</p>
+          <div class="product-features">
+            <div class="pf"><span class="pf-check">&#10003;</span> AI-powered anomaly detection on credit submissions</div>
+            <div class="pf"><span class="pf-check">&#10003;</span> Full credit lifecycle: Collect &rarr; Verify &rarr; Mint &rarr; Trade &rarr; Retire</div>
+            <div class="pf"><span class="pf-check">&#10003;</span> Auto-generated compliance reports (GRI, SASB, TCFD)</div>
+            <div class="pf"><span class="pf-check">&#10003;</span> SDG 12 &amp; 14 aligned</div>
+          </div>
+          <a href="esgledger.html" class="btn-primary" style="background: var(--oc-esg-green); width: fit-content;">
+            Enter Platform
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <!-- ESGLedger dynamic image -->
+          <div class="esg-image-section reveal" style="margin-top: 32px;">
+            <img src="esgledger-hero.jpg" alt="ESGLedger — Smart recycling with blockchain-verified Hong Kong coverage map"
+                 onerror="this.parentElement.style.background='linear-gradient(135deg, rgba(46,204,113,0.08), rgba(1,98,130,0.06))'; this.parentElement.style.minHeight='200px'; this.style.display='none';" />
+            <div class="esg-image-overlay">
+              <p>Blockchain-verified plastic credit tracking across Hong Kong</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- CertLedger -->
+        <div class="product-card cert reveal">
+          <div class="accent-bar"></div>
+          <div class="product-badge">CertLedger</div>
+          <h3>Certify with Blockchain</h3>
+          <p>Blockchain-powered credential issuance and identity verification. Tamper-proof, paperless, instant verification.</p>
+          <div class="product-features">
+            <div class="pf"><span class="pf-check">&#10003;</span> Issue &rarr; Hold &rarr; Verify in three simple steps</div>
+            <div class="pf"><span class="pf-check">&#10003;</span> AI fraud pattern detection</div>
+            <div class="pf"><span class="pf-check">&#10003;</span> White-label for institutions</div>
+            <div class="pf"><span class="pf-check">&#10003;</span> API integration for LMS and HR systems</div>
+          </div>
+          <a href="certledger.html" class="btn-primary" style="background: var(--oc-cert-gold); color: var(--oc-dark); width: fit-content;">
+            Start Issuing
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <!-- Fan cards visual -->
+          <div class="fan-section" style="margin-top: 32px;">
+            <div class="fan-cards" id="fanCards">
+              <div class="fan-card" data-index="0">
+                <div class="fan-card-verified"><span class="verified-icon">&#10003;</span> Verified</div>
+                <div class="fan-card-title">Education</div>
+                <div class="fan-card-date">ISSUED<br>12/12/2049</div>
+              </div>
+              <div class="fan-card" data-index="1">
+                <div class="fan-card-verified"><span class="verified-icon">&#10003;</span> Verified</div>
+                <div class="fan-card-title">Professional</div>
+                <div class="fan-card-date">ISSUED<br>12/12/2049</div>
+              </div>
+              <div class="fan-card" data-index="2">
+                <div class="fan-card-verified"><span class="verified-icon">&#10003;</span> Verified</div>
+                <div class="fan-card-title">Events</div>
+                <div class="fan-card-date">ISSUED<br>12/12/2049</div>
+              </div>
+              <div class="fan-card" data-index="3">
+                <div class="fan-card-verified"><span class="verified-icon">&#10003;</span> Verified</div>
+                <div class="fan-card-title">Government</div>
+                <div class="fan-card-date">ISSUED<br>12/12/2049</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INFRASTRUCTURE -->
+  <section class="section" id="infrastructure">
+    <div class="container">
+      <div class="infra-split">
+        <div class="infra-text reveal">
+          <h2>Three layers. <span style="color: var(--oc-muted-light);">One platform.</span></h2>
+          <p>A composable stack designed for enterprise blockchain. Deploy once, scale everywhere. Each layer works independently, or together as a unified platform.</p>
+          <a href="infrastructure.html" class="btn-outline">Explore Infrastructure</a>
+          <div class="infra-stats">
+            <div class="infra-stat">
+              <div class="stat-number" data-count data-target="3000" data-comma="true" data-suffix="+">3,000+</div>
+              <div class="stat-label">TPS throughput</div>
+            </div>
+            <div class="infra-stat">
+              <div class="stat-number" data-count data-target="1" data-prefix="&lt;" data-suffix="s">&lt;1s</div>
+              <div class="stat-label">Finality time</div>
+            </div>
+            <div class="infra-stat">
+              <div class="stat-number" data-count data-target="99.9" data-decimals="1" data-suffix="%">99.9%</div>
+              <div class="stat-label">Uptime SLA</div>
+            </div>
+          </div>
+        </div>
+        <div class="infra-visual reveal">
+          <div class="layer-stack">
+            <div class="layer layer-app">Application Layer</div>
+            <div class="layer layer-app">ESGLedger</div>
+            <div class="layer layer-app">CertLedger</div>
+            <div style="height: 16px;"></div>
+            <div class="layer layer-service">Service Layer</div>
+            <div class="layer layer-service">Identity</div>
+            <div class="layer layer-service">Smart Contracts</div>
+            <div style="height: 16px;"></div>
+            <div class="layer layer-infra">Infrastructure</div>
+            <div class="layer layer-infra">Hyperledger Fabric</div>
+            <div class="layer layer-infra">Consensus Engine</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RECENTLY SHIPPED -->
+  <section class="shipped-section">
+    <div class="container">
+      <h2 class="reveal">Explore the platform</h2>
+      <div class="shipped-grid">
+        <!-- Large card: Platform v2 — blockchain chain visual -->
+        <div class="shipped-card shipped-card-large reveal">
+          <div class="shipped-card-body">
+            <div class="shipped-card-visual" style="flex:1; padding: 0;">
+              <div class="shipped-card-visual-bg">
+                <div class="chain-visual">
+                  <svg viewBox="0 0 600 700" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+                    <!-- Grid lines background -->
+                    <defs>
+                      <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(10,22,40,0.03)" stroke-width="0.5"/>
+                      </pattern>
+                    </defs>
+                    <rect width="600" height="700" fill="url(#grid)"/>
+
+                    <!-- Chain connections (links between blocks) -->
+                    <!-- Row 1 to Row 2 -->
+                    <line x1="150" y1="135" x2="110" y2="235" stroke="rgba(1,98,130,0.12)" stroke-width="2" stroke-dasharray="6 4" class="chain-link-pulse"/>
+                    <line x1="300" y1="135" x2="300" y2="235" stroke="rgba(1,98,130,0.15)" stroke-width="2" class="chain-link-pulse"/>
+                    <line x1="450" y1="135" x2="490" y2="235" stroke="rgba(1,98,130,0.12)" stroke-width="2" stroke-dasharray="6 4" class="chain-link-pulse"/>
+                    <!-- Row 2 to Row 3 -->
+                    <line x1="110" y1="315" x2="200" y2="415" stroke="rgba(1,98,130,0.12)" stroke-width="2" stroke-dasharray="6 4" class="chain-link-pulse"/>
+                    <line x1="300" y1="315" x2="370" y2="415" stroke="rgba(1,98,130,0.15)" stroke-width="2" class="chain-link-pulse"/>
+                    <line x1="490" y1="315" x2="530" y2="415" stroke="rgba(1,98,130,0.12)" stroke-width="2" stroke-dasharray="6 4" class="chain-link-pulse"/>
+                    <!-- Cross connections (network feel) -->
+                    <line x1="150" y1="100" x2="300" y2="100" stroke="rgba(1,98,130,0.06)" stroke-width="1"/>
+                    <line x1="300" y1="100" x2="450" y2="100" stroke="rgba(1,98,130,0.06)" stroke-width="1"/>
+                    <line x1="110" y1="275" x2="300" y2="275" stroke="rgba(1,98,130,0.06)" stroke-width="1"/>
+                    <line x1="300" y1="275" x2="490" y2="275" stroke="rgba(1,98,130,0.06)" stroke-width="1"/>
+                    <!-- Small link chain icons on connections -->
+                    <circle cx="225" cy="185" r="4" fill="rgba(1,98,130,0.1)" stroke="rgba(1,98,130,0.2)" stroke-width="1"/>
+                    <circle cx="395" cy="185" r="4" fill="rgba(1,98,130,0.1)" stroke="rgba(1,98,130,0.2)" stroke-width="1"/>
+                    <circle cx="200" cy="365" r="4" fill="rgba(1,98,130,0.1)" stroke="rgba(1,98,130,0.2)" stroke-width="1"/>
+
+                    <!-- BLOCK 1 (top-left) -->
+                    <g class="chain-block">
+                      <rect x="80" y="55" width="140" height="80" rx="12" fill="white" stroke="rgba(10,22,40,0.1)" stroke-width="1.5"/>
+                      <rect x="92" y="67" width="50" height="6" rx="3" fill="rgba(1,98,130,0.15)"/>
+                      <text x="92" y="90" font-family="'JetBrains Mono', monospace" font-size="9" fill="rgba(100,116,139,0.7)">0x8f3a...c2d1</text>
+                      <rect x="92" y="100" width="116" height="4" rx="2" fill="rgba(10,22,40,0.04)"/>
+                      <rect x="92" y="108" width="80" height="4" rx="2" fill="rgba(10,22,40,0.04)"/>
+                      <rect x="92" y="116" width="45" height="4" rx="2" fill="rgba(46,204,113,0.2)"/>
+                      <circle cx="200" cy="70" r="8" fill="rgba(46,204,113,0.1)" stroke="rgba(46,204,113,0.3)" stroke-width="1"/>
+                      <path d="M197 70l2 2 4-4" stroke="rgba(46,204,113,0.6)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                    </g>
+
+                    <!-- BLOCK 2 (top-center — highlighted/active) -->
+                    <g class="chain-block">
+                      <rect x="230" y="55" width="140" height="80" rx="12" fill="white" stroke="rgba(1,98,130,0.25)" stroke-width="2"/>
+                      <rect x="242" y="67" width="60" height="6" rx="3" fill="rgba(1,98,130,0.25)"/>
+                      <text x="242" y="90" font-family="'JetBrains Mono', monospace" font-size="9" fill="rgba(1,98,130,0.6)">#4,209,831</text>
+                      <rect x="242" y="100" width="116" height="4" rx="2" fill="rgba(1,98,130,0.06)"/>
+                      <rect x="242" y="108" width="90" height="4" rx="2" fill="rgba(1,98,130,0.06)"/>
+                      <rect x="242" y="116" width="55" height="4" rx="2" fill="rgba(1,98,130,0.12)"/>
+                      <circle cx="350" cy="70" r="8" fill="rgba(1,98,130,0.08)" stroke="rgba(1,98,130,0.3)" stroke-width="1"/>
+                      <path d="M347 70l2 2 4-4" stroke="rgba(1,98,130,0.6)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                    </g>
+
+                    <!-- BLOCK 3 (top-right) -->
+                    <g class="chain-block">
+                      <rect x="380" y="55" width="140" height="80" rx="12" fill="white" stroke="rgba(10,22,40,0.1)" stroke-width="1.5"/>
+                      <rect x="392" y="67" width="40" height="6" rx="3" fill="rgba(10,22,40,0.08)"/>
+                      <text x="392" y="90" font-family="'JetBrains Mono', monospace" font-size="9" fill="rgba(100,116,139,0.7)">0xb7e2...91af</text>
+                      <rect x="392" y="100" width="116" height="4" rx="2" fill="rgba(10,22,40,0.04)"/>
+                      <rect x="392" y="108" width="70" height="4" rx="2" fill="rgba(10,22,40,0.04)"/>
+                      <rect x="392" y="116" width="95" height="4" rx="2" fill="rgba(240,180,41,0.2)"/>
+                      <circle cx="500" cy="70" r="8" fill="rgba(240,180,41,0.1)" stroke="rgba(240,180,41,0.3)" stroke-width="1"/>
+                      <path d="M497 70l2 2 4-4" stroke="rgba(240,180,41,0.6)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                    </g>
+
+                    <!-- BLOCK 4 (middle-left) -->
+                    <g class="chain-block">
+                      <rect x="40" y="235" width="140" height="80" rx="12" fill="white" stroke="rgba(10,22,40,0.08)" stroke-width="1"/>
+                      <rect x="52" y="247" width="45" height="6" rx="3" fill="rgba(10,22,40,0.06)"/>
+                      <text x="52" y="270" font-family="'JetBrains Mono', monospace" font-size="9" fill="rgba(100,116,139,0.5)">0x2c91...e4b8</text>
+                      <rect x="52" y="280" width="116" height="4" rx="2" fill="rgba(10,22,40,0.03)"/>
+                      <rect x="52" y="288" width="60" height="4" rx="2" fill="rgba(10,22,40,0.03)"/>
+                      <rect x="52" y="296" width="80" height="4" rx="2" fill="rgba(127,119,221,0.15)"/>
+                    </g>
+
+                    <!-- BLOCK 5 (middle-center) -->
+                    <g class="chain-block">
+                      <rect x="230" y="235" width="140" height="80" rx="12" fill="white" stroke="rgba(10,22,40,0.1)" stroke-width="1.5"/>
+                      <rect x="242" y="247" width="55" height="6" rx="3" fill="rgba(10,22,40,0.08)"/>
+                      <text x="242" y="270" font-family="'JetBrains Mono', monospace" font-size="9" fill="rgba(100,116,139,0.6)">0xd4f6...37ca</text>
+                      <rect x="242" y="280" width="116" height="4" rx="2" fill="rgba(10,22,40,0.04)"/>
+                      <rect x="242" y="288" width="85" height="4" rx="2" fill="rgba(10,22,40,0.04)"/>
+                      <rect x="242" y="296" width="50" height="4" rx="2" fill="rgba(46,204,113,0.15)"/>
+                    </g>
+
+                    <!-- BLOCK 6 (middle-right) -->
+                    <g class="chain-block">
+                      <rect x="420" y="235" width="140" height="80" rx="12" fill="white" stroke="rgba(10,22,40,0.08)" stroke-width="1"/>
+                      <rect x="432" y="247" width="35" height="6" rx="3" fill="rgba(10,22,40,0.06)"/>
+                      <text x="432" y="270" font-family="'JetBrains Mono', monospace" font-size="9" fill="rgba(100,116,139,0.5)">0x19ab...f502</text>
+                      <rect x="432" y="280" width="116" height="4" rx="2" fill="rgba(10,22,40,0.03)"/>
+                      <rect x="432" y="288" width="75" height="4" rx="2" fill="rgba(10,22,40,0.03)"/>
+                    </g>
+
+                    <!-- BLOCK 7 (bottom-left) — partial/incoming -->
+                    <g class="chain-block" opacity="0.5">
+                      <rect x="130" y="415" width="140" height="80" rx="12" fill="white" stroke="rgba(10,22,40,0.06)" stroke-width="1"/>
+                      <rect x="142" y="427" width="40" height="6" rx="3" fill="rgba(10,22,40,0.05)"/>
+                      <text x="142" y="450" font-family="'JetBrains Mono', monospace" font-size="9" fill="rgba(100,116,139,0.4)">0xe7c3...a1d9</text>
+                      <rect x="142" y="460" width="116" height="4" rx="2" fill="rgba(10,22,40,0.02)"/>
+                      <rect x="142" y="468" width="60" height="4" rx="2" fill="rgba(10,22,40,0.02)"/>
+                    </g>
+
+                    <!-- BLOCK 8 (bottom-center) — partial -->
+                    <g class="chain-block" opacity="0.5">
+                      <rect x="300" y="415" width="140" height="80" rx="12" fill="white" stroke="rgba(10,22,40,0.06)" stroke-width="1"/>
+                      <rect x="312" y="427" width="50" height="6" rx="3" fill="rgba(10,22,40,0.05)"/>
+                      <text x="312" y="450" font-family="'JetBrains Mono', monospace" font-size="9" fill="rgba(100,116,139,0.4)">pending...</text>
+                      <rect x="312" y="460" width="116" height="4" rx="2" fill="rgba(10,22,40,0.02)"/>
+                    </g>
+
+                    <!-- BLOCK 9 (bottom-right) — partial -->
+                    <g class="chain-block" opacity="0.35">
+                      <rect x="470" y="415" width="120" height="70" rx="12" fill="white" stroke="rgba(10,22,40,0.05)" stroke-width="1"/>
+                      <rect x="482" y="427" width="35" height="6" rx="3" fill="rgba(10,22,40,0.04)"/>
+                      <text x="482" y="450" font-family="'JetBrains Mono', monospace" font-size="9" fill="rgba(100,116,139,0.3)">queued</text>
+                    </g>
+
+                    <!-- Decorative data flow dots -->
+                    <circle cx="225" cy="100" r="2" fill="rgba(1,98,130,0.2)"/>
+                    <circle cx="375" cy="100" r="2" fill="rgba(1,98,130,0.2)"/>
+                    <circle cx="200" cy="275" r="2" fill="rgba(1,98,130,0.15)"/>
+                    <circle cx="400" cy="275" r="2" fill="rgba(1,98,130,0.15)"/>
+
+                    <!-- Subtle bottom fade -->
+                    <rect x="0" y="520" width="600" height="180" fill="url(#bottomFade)"/>
+                    <defs>
+                      <linearGradient id="bottomFade" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="white" stop-opacity="0"/>
+                        <stop offset="100%" stop-color="white" stop-opacity="0.9"/>
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                </div>
+              </div>
+              <div class="shipped-card-info" style="padding: 40px;">
+                <h3>OneChain Platform <span class="version-badge">v2</span></h3>
+                <p>See what's next in enterprise blockchain infrastructure.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Top right: Smart Contracts -->
+        <div class="shipped-card reveal">
+          <div class="shipped-card-body">
+            <div class="shipped-card-content">
+              <div class="workflow-bars">
+                <div class="wf-bar"><span class="wf-bar-name">deploy()</span><span class="wf-bar-time">420ms</span></div>
+                <div class="wf-bar"><span class="wf-bar-name">verify()</span><span class="wf-bar-time">252ms</span></div>
+                <div class="wf-bar"><span class="wf-bar-name">mint()</span><span class="wf-bar-time">168ms</span></div>
+                <div class="wf-bar"><span class="wf-bar-name">audit()</span><span class="wf-bar-time">168ms</span></div>
+              </div>
+            </div>
+            <div class="shipped-card-footer">
+              <div class="shipped-card-info">
+                <h3>Smart Contracts</h3>
+                <p>Deploy, verify, and audit in milliseconds — not minutes.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom right: API Sandbox -->
+        <div class="shipped-card reveal">
+          <div class="shipped-card-body">
+            <div class="shipped-card-content">
+              <div class="sandbox-visual">
+                <div class="sandbox-canvas">
+                  <div class="sandbox-terminal">
+                    <div class="sandbox-terminal-bar">
+                      <div class="sandbox-dot red"></div>
+                      <div class="sandbox-dot yellow"></div>
+                      <div class="sandbox-dot green"></div>
+                      <span class="sandbox-terminal-title">onechain-sandbox</span>
+                    </div>
+                    <div class="sandbox-terminal-body">
+                      <div><span class="prompt">$</span> <span class="cmd">onechain deploy</span> <span class="flag">--network testnet</span></div>
+                      <div><span class="output">Compiling contract...</span></div>
+                      <div><span class="success">&#10003; Contract deployed</span></div>
+                      <div><span class="output">tx: </span><span class="hash">0x8f3a...c2d1</span></div>
+                      <div style="margin-top:6px;"><span class="prompt">$</span> <span class="cmd">onechain verify</span> <span class="hash">0x8f3a</span></div>
+                      <div><span class="success">&#10003; Verified on-chain</span> <span class="output">(168ms)</span></div>
+                    </div>
+                  </div>
+                  <div class="sandbox-response">
+                    <div class="sandbox-res-row">
+                      <span class="sandbox-res-label">Status</span>
+                      <span class="sandbox-res-value ok">&#10003; Live</span>
+                    </div>
+                    <div class="sandbox-res-row">
+                      <span class="sandbox-res-label">Network</span>
+                      <span class="sandbox-res-value">Testnet v2</span>
+                    </div>
+                    <div class="sandbox-res-row">
+                      <span class="sandbox-res-label">Gas</span>
+                      <span class="sandbox-res-value">0.0024 OC</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="shipped-card-footer">
+              <div class="shipped-card-info">
+                <h3>API Sandbox</h3>
+                <p>The safest way to test enterprise blockchain integrations.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section class="cta-banner reveal">
+    <div class="cta-inner">
+      <h2>Be the first to know</h2>
+      <p>Subscribe to the OneChain newsletter for product updates and enterprise blockchain insights.</p>
+      <form class="cta-form" onsubmit="event.preventDefault()">
+        <input class="cta-input" type="email" placeholder="you@company.com" aria-label="Email address" />
+        <button class="btn-primary" type="submit">Subscribe</button>
+      </form>
+      <div class="cta-actions" style="margin-top: 24px;">
+        <button class="btn-primary">
+          Get Started
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button class="btn-outline">Contact Sales</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo"><img src="onchain-logo.png" alt="OneChain" style="height: 32px;" /></a>
+        <p>Enterprise blockchain infrastructure for trust, verification, and compliance at scale.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Products</h4>
+        <a href="esgledger.html">ESGLedger</a>
+        <a href="certledger.html">CertLedger</a>
+        <a href="infrastructure.html">Infrastructure</a>
+        <a href="#">API Docs</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="about.html">About</a>
+        <a href="#">Careers</a>
+        <a href="#">Press</a>
+        <a href="#">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <a href="#">Blog</a>
+        <a href="#">Documentation</a>
+        <a href="#">Changelog</a>
+        <a href="#">Status</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Cookie Policy</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 OneChain. All rights reserved.</span>
+      <span>Built in Hong Kong</span>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+    }, { threshold: 0.15 });
+    reveals.forEach(el => revealObs.observe(el));
+
+    // Fan cards — scroll trigger + interactive hover
+    const fanCards = document.getElementById('fanCards');
+    if (fanCards) {
+      const cards = fanCards.querySelectorAll('.fan-card');
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (prefersReducedMotion) { fanCards.classList.add('fanned'); }
+      else {
+        const fanObs = new IntersectionObserver((entries) => {
+          entries.forEach(e => {
+            if (e.isIntersecting && e.intersectionRatio >= 0.4) fanCards.classList.add('fanned');
+            else if (!e.isIntersecting) {
+              fanCards.classList.remove('fanned');
+              fanCards.classList.remove('has-active');
+              cards.forEach(c => c.classList.remove('active'));
+            }
+          });
+        }, { threshold: [0, 0.2, 0.4, 0.6, 0.8, 1.0] });
+        fanObs.observe(fanCards);
+      }
+
+      // Smooth card hover interaction
+      cards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+          if (!fanCards.classList.contains('fanned')) return;
+          fanCards.classList.add('has-active');
+          cards.forEach(c => c.classList.remove('active'));
+          card.classList.add('active');
+        });
+      });
+
+      // Remove active when mouse leaves the entire fan area
+      fanCards.addEventListener('mouseleave', () => {
+        fanCards.classList.remove('has-active');
+        cards.forEach(c => c.classList.remove('active'));
+      });
+    }
+
+    // ===== Reusable interactive node network =====
+    function initNodeNetwork(container, canvas, opts = {}) {
+      if (!container || !canvas) return;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+      const ctx = canvas.getContext('2d');
+      const LINK_DIST = opts.linkDist || 120;
+      const MOUSE_DIST = opts.mouseDist || 160;
+      const PULL = opts.pull ?? 0.35;        // mouse responsiveness
+      const leftColor = opts.leftColor || '0,180,216';
+      const rightColor = opts.rightColor || '0,180,216';
+      const leftBand = opts.leftBand ?? 0.28;
+      const rightBand = opts.rightBand ?? 0.72;
+      let dpr = Math.min(window.devicePixelRatio || 1, 2);
+      let w = 0, h = 0, nodes = [];
+      const mouse = { x: -9999, y: -9999, active: false };
+
+      function buildNodes() {
+        const perSide = Math.max(6, Math.min(14, Math.round(w * h / 80000)));
+        nodes = [];
+        const bands = [
+          { min: 0, max: w * leftBand, color: leftColor },
+          { min: w * rightBand, max: w, color: rightColor }
+        ];
+        bands.forEach(band => {
+          for (let i = 0; i < perSide; i++) {
+            nodes.push({
+              x: band.min + Math.random() * (band.max - band.min),
+              y: Math.random() * h,
+              vx: (Math.random() - 0.5) * 0.3,
+              vy: (Math.random() - 0.5) * 0.3,
+              r: 2 + Math.random() * 3.5,
+              color: band.color,
+              homeBandMin: band.min,
+              homeBandMax: band.max
+            });
+          }
+        });
+      }
+
+      function resize() {
+        const rect = container.getBoundingClientRect();
+        w = rect.width; h = rect.height;
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        canvas.width = w * dpr;
+        canvas.height = h * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        buildNodes();
+      }
+
+      function tick() {
+        ctx.clearRect(0, 0, w, h);
+        for (const n of nodes) {
+          if (mouse.active) {
+            const dx = mouse.x - n.x, dy = mouse.y - n.y;
+            const d = Math.hypot(dx, dy);
+            if (d < MOUSE_DIST && d > 0.1) {
+              const pull = (1 - d / MOUSE_DIST) * PULL;
+              n.vx += (dx / d) * pull * 0.06;
+              n.vy += (dy / d) * pull * 0.06;
+            }
+          }
+          n.x += n.vx; n.y += n.vy;
+          n.vx *= 0.99; n.vy *= 0.99;
+          if (n.x < n.homeBandMin) { n.x = n.homeBandMin; n.vx *= -1; }
+          if (n.x > n.homeBandMax) { n.x = n.homeBandMax; n.vx *= -1; }
+          if (n.y < 0) { n.y = 0; n.vy *= -1; }
+          if (n.y > h) { n.y = h; n.vy *= -1; }
+          if (Math.abs(n.vx) < 0.05) n.vx += (Math.random() - 0.5) * 0.2;
+          if (Math.abs(n.vy) < 0.05) n.vy += (Math.random() - 0.5) * 0.2;
+        }
+        for (let i = 0; i < nodes.length; i++) {
+          for (let j = i + 1; j < nodes.length; j++) {
+            const a = nodes[i], b = nodes[j];
+            const d = Math.hypot(a.x - b.x, a.y - b.y);
+            if (d < LINK_DIST) {
+              const alpha = (1 - d / LINK_DIST) * 0.45;
+              ctx.strokeStyle = `rgba(${a.color},${alpha})`;
+              ctx.lineWidth = 1;
+              ctx.beginPath();
+              ctx.moveTo(a.x, a.y);
+              ctx.lineTo(b.x, b.y);
+              ctx.stroke();
+            }
+          }
+        }
+        if (mouse.active) {
+          for (const n of nodes) {
+            const d = Math.hypot(mouse.x - n.x, mouse.y - n.y);
+            if (d < MOUSE_DIST) {
+              ctx.strokeStyle = `rgba(${n.color},${(1 - d / MOUSE_DIST) * 0.65})`;
+              ctx.lineWidth = 1.2;
+              ctx.beginPath();
+              ctx.moveTo(mouse.x, mouse.y);
+              ctx.lineTo(n.x, n.y);
+              ctx.stroke();
+            }
+          }
+        }
+        for (const n of nodes) {
+          ctx.beginPath();
+          ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(${n.color},0.8)`;
+          ctx.fill();
+          ctx.beginPath();
+          ctx.arc(n.x, n.y, n.r * 2.2, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(${n.color},0.07)`;
+          ctx.fill();
+        }
+        requestAnimationFrame(tick);
+      }
+
+      container.addEventListener('mousemove', (e) => {
+        const rect = container.getBoundingClientRect();
+        mouse.x = e.clientX - rect.left;
+        mouse.y = e.clientY - rect.top;
+        mouse.active = true;
+      });
+      container.addEventListener('mouseleave', () => { mouse.active = false; });
+
+      let resizeTimer;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(resize, 150);
+      });
+
+      resize();
+      requestAnimationFrame(tick);
+    }
+
+    // Hero network — cyan on both sides
+    initNodeNetwork(
+      document.querySelector('.hero'),
+      document.getElementById('heroNetwork'),
+      { leftColor: '0,180,216', rightColor: '0,180,216', linkDist: 130, mouseDist: 260, pull: 0.65 }
+    );
+
+    // Products header — green left (ESGLedger), gold right (CertLedger)
+    initNodeNetwork(
+      document.querySelector('.products-header-wrap'),
+      document.getElementById('productsNetwork'),
+      { leftColor: '46,204,113', rightColor: '240,180,41', linkDist: 110, mouseDist: 150 }
+    );
+
+    // ============================================================
+    // ===== ADDED DYNAMIC EFFECTS =====
+    // ============================================================
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // --- 1. Hero entrance on load -------------------------------
+    // Gate with .anim-ready so the hero stays visible if JS never runs.
+    if (!reducedMotion) {
+      document.body.classList.add('anim-ready');
+      window.addEventListener('load', () => {
+        requestAnimationFrame(() => document.body.classList.add('loaded'));
+      });
+      // Safety net in case 'load' already fired
+      if (document.readyState === 'complete') {
+        requestAnimationFrame(() => document.body.classList.add('loaded'));
+      }
+    }
+
+    // --- 2. Scroll reading-progress bar -------------------------
+    const progressBar = document.getElementById('scrollProgress');
+    if (progressBar && !reducedMotion) {
+      let ticking = false;
+      const updateProgress = () => {
+        const h = document.documentElement;
+        const scrolled = h.scrollTop;
+        const max = h.scrollHeight - h.clientHeight;
+        const pct = max > 0 ? (scrolled / max) * 100 : 0;
+        progressBar.style.width = pct + '%';
+        ticking = false;
+      };
+      window.addEventListener('scroll', () => {
+        if (!ticking) { requestAnimationFrame(updateProgress); ticking = true; }
+      }, { passive: true });
+      updateProgress();
+    }
+
+    // --- 3. Nav depth on scroll ---------------------------------
+    const navEl = document.querySelector('.nav');
+    if (navEl) {
+      const onScrollNav = () => navEl.classList.toggle('scrolled', window.scrollY > 40);
+      window.addEventListener('scroll', onScrollNav, { passive: true });
+      onScrollNav();
+    }
+
+    // --- 4. Count-up statistics ---------------------------------
+    // Animates any [data-count] from 0 -> data-target once it scrolls in.
+    const easeOutExpo = t => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t));
+    function animateCount(el) {
+      const target = parseFloat(el.dataset.target) || 0;
+      const decimals = parseInt(el.dataset.decimals || '0', 10);
+      const prefix = el.dataset.prefix ? el.dataset.prefix.replace('&lt;', '<') : '';
+      const suffix = el.dataset.suffix || '';
+      const useComma = el.dataset.comma === 'true';
+      const duration = 1600;
+      const start = performance.now();
+      const format = v => {
+        let s = v.toFixed(decimals);
+        if (useComma) s = Number(s).toLocaleString('en-US');
+        return prefix + s + suffix;
+      };
+      const step = now => {
+        const p = Math.min((now - start) / duration, 1);
+        el.textContent = format(target * easeOutExpo(p));
+        if (p < 1) requestAnimationFrame(step);
+        else el.textContent = format(target);
+      };
+      requestAnimationFrame(step);
+    }
+    const counters = document.querySelectorAll('[data-count]');
+    if (counters.length) {
+      if (reducedMotion) {
+        // Leave the original text as-is (already the final value).
+      } else {
+        const countObs = new IntersectionObserver((entries, obs) => {
+          entries.forEach(e => {
+            if (e.isIntersecting) { animateCount(e.target); obs.unobserve(e.target); }
+          });
+        }, { threshold: 0.4 });
+        counters.forEach(c => countObs.observe(c));
+      }
+    }
+
+    // --- 5. Staggered reveal for feature cards ------------------
+    const featureGrid = document.querySelector('.features-grid');
+    if (featureGrid && !reducedMotion) {
+      featureGrid.classList.remove('reveal'); // avoid double-animating the whole block
+      featureGrid.classList.add('visible');
+      const cards = [...featureGrid.querySelectorAll('.feature-card')];
+      cards.forEach(c => c.classList.add('fade-up'));
+      const gridObs = new IntersectionObserver((entries, obs) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            cards.forEach((c, i) => setTimeout(() => c.classList.add('in'), i * 90));
+            obs.disconnect();
+          }
+        });
+      }, { threshold: 0.15 });
+      gridObs.observe(featureGrid);
+    }
+
+    // --- 6. Magnetic primary buttons ----------------------------
+    // Button drifts a fraction of the cursor's offset, springs back on leave.
+    if (!reducedMotion && window.matchMedia('(hover: hover)').matches) {
+      document.querySelectorAll('.btn-primary').forEach(btn => {
+        const strength = 0.25, max = 6; // gentle
+        btn.addEventListener('mousemove', e => {
+          const r = btn.getBoundingClientRect();
+          let x = (e.clientX - (r.left + r.width / 2)) * strength;
+          let y = (e.clientY - (r.top + r.height / 2)) * strength;
+          x = Math.max(-max, Math.min(max, x));
+          y = Math.max(-max, Math.min(max, y));
+          btn.style.transform = `translate(${x}px, ${y}px)`;
+        });
+        btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
+      });
+    }
+
+    // --- 7. Exhibition video: muted autoplay, light overlay only on manual pause ---
+    const exVid = document.getElementById('exhibitionVideo');
+    const exOverlay = document.getElementById('videoOverlay');
+    const exText = document.getElementById('videoText');
+    const unmuteHint = document.getElementById('unmuteHint');
+    if (exVid && exOverlay) {
+      let pauseFromScroll = false;
+
+      const showOverlay = () => {
+        exOverlay.classList.add('show');
+        exOverlay.setAttribute('aria-hidden', 'false');
+        if (exText) exText.classList.remove('hidden');
+      };
+      const hideOverlay = () => {
+        exOverlay.classList.remove('show');
+        exOverlay.setAttribute('aria-hidden', 'true');
+        if (exText) exText.classList.add('hidden');
+      };
+
+      const playMuted = () => {
+        hideOverlay();
+        exVid.muted = true;
+        return exVid.play().catch(() => {});
+      };
+
+      exOverlay.addEventListener('click', () => playMuted());
+      exVid.addEventListener('play', hideOverlay);
+      exVid.addEventListener('ended', showOverlay);
+      exVid.addEventListener('pause', () => {
+        if (pauseFromScroll || exVid.ended) return;
+        showOverlay();
+      });
+
+      if (unmuteHint) {
+        unmuteHint.addEventListener('click', () => {
+          exVid.muted = false;
+          exVid.play().catch(() => {});
+          unmuteHint.classList.remove('show');
+        });
+        exVid.addEventListener('volumechange', () => {
+          if (!exVid.muted) unmuteHint.classList.remove('show');
+        });
+      }
+
+      hideOverlay();
+      exVid.muted = true;
+      playMuted().then(() => {
+        if (unmuteHint && exVid.muted) unmuteHint.classList.add('show');
+      });
+
+      const exSection = document.getElementById('exhibition');
+      if (exSection && !reducedMotion) {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach(e => {
+            if (e.isIntersecting && e.intersectionRatio >= 0.35) {
+              playMuted().then(() => {
+                if (unmuteHint && exVid.muted) unmuteHint.classList.add('show');
+              });
+            } else if (!e.isIntersecting) {
+              pauseFromScroll = true;
+              exVid.pause();
+              pauseFromScroll = false;
+              hideOverlay();
+            }
+          });
+        }, { threshold: [0, 0.35, 0.6] });
+        io.observe(exSection);
+      }
+    }
+
+    // Reclaim section — force autoplay when in view
+    const reclaimVid = document.getElementById('reclaimVideo');
+    const reclaimSection = document.getElementById('reclamation');
+    if (reclaimVid && reclaimSection) {
+      reclaimVid.muted = true;
+      const playReclaim = () => reclaimVid.play().catch(() => {});
+      playReclaim();
+      document.addEventListener('visibilitychange', () => {
+        if (!document.hidden) playReclaim();
+      });
+      new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) playReclaim();
+          else reclaimVid.pause();
+        });
+      }, { threshold: 0.2 }).observe(reclaimSection);
+    }
+  </script>
+
+
+</body>
+</html>

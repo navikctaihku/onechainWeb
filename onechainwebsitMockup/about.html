@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About OneChain — Building the Foundation of Digital Trust</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --oc-primary: #016282; --oc-primary-light: #0189B5;
+      --oc-cyan: #00B4D8;
+      --oc-dark: #0A1628; --oc-dark-surface: #0F1D32; --oc-dark-border: rgba(10,22,40,0.08);
+      --oc-light-bg: #F7FAFB; --oc-white: #FFFFFF;
+      --oc-ai-purple: #7F77DD; --oc-muted: #64748B; --oc-muted-light: #475569;
+      --font-display: 'Nunito', sans-serif; --font-body: 'Inter', sans-serif;
+      --radius-sm: 8px; --radius-md: 12px; --radius-lg: 16px; --radius-xl: 24px; --radius-full: 9999px;
+    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); background: #FFFFFF; color: #0A1628; line-height: 1.6; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+    a { text-decoration: none; color: inherit; }
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 64px; }
+    @media (max-width: 768px) { .container { padding: 0 24px; } }
+
+    /* NAV */
+    nav.site-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(255,255,255,0.85); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(10,22,40,0.08); height: 64px; }
+    nav.site-nav .container { display: flex; align-items: center; justify-content: space-between; height: 100%; }
+    .nav-logo { display: flex; align-items: center; }
+    .nav-logo img { height: 40px; width: auto; }
+    .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+    .nav-links a { font-size: 14px; font-weight: 500; color: var(--oc-muted); transition: color 150ms; }
+    .nav-links a:hover, .nav-links a.active { color: var(--oc-dark); }
+    .nav-cta { background: var(--oc-primary); color: white; padding: 8px 20px; border-radius: var(--radius-sm); font-size: 14px; font-weight: 600; border: none; cursor: pointer; }
+    .hamburger { display: none; background: none; border: none; color: var(--oc-dark); font-size: 24px; cursor: pointer; }
+    @media (max-width: 1024px) { .nav-links { display: none; } .hamburger { display: block; } }
+
+    /* HERO */
+    .hero {
+      padding: 160px 0 100px; text-align: center; position: relative; overflow: hidden;
+      background: linear-gradient(180deg, #eef7fa 0%, #ffffff 55%, #ffffff 100%);
+    }
+    .hero-gradients { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+    .hero-blob { position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.55; will-change: transform; }
+    .hero-blob-1 {
+      width: 500px; height: 500px; top: -8%; left: -6%;
+      background: radial-gradient(circle, rgba(1,137,181,0.30) 0%, transparent 70%);
+      animation: blob-drift-1 18s ease-in-out infinite;
+    }
+    .hero-blob-2 {
+      width: 460px; height: 460px; top: 15%; right: -4%;
+      background: radial-gradient(circle, rgba(127,119,221,0.15) 0%, transparent 70%);
+      animation: blob-drift-2 22s ease-in-out infinite;
+    }
+    @keyframes blob-drift-1 { 0%, 100% { transform: translate(0,0) scale(1); } 50% { transform: translate(35px,25px) scale(1.06); } }
+    @keyframes blob-drift-2 { 0%, 100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-30px,20px) scale(1.04); } }
+    .hero .container { position: relative; z-index: 1; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(1,98,130,0.08); border: 1px solid rgba(1,98,130,0.2); padding: 6px 16px; border-radius: var(--radius-full); font-size: 13px; font-weight: 600; color: var(--oc-primary); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 24px; }
+    .hero-badge .dot { width: 6px; height: 6px; background: var(--oc-primary-light); border-radius: 50%; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+    .hero h1 { font-family: var(--font-display); font-size: 56px; font-weight: 800; line-height: 1.15; max-width: 780px; margin: 0 auto 20px; color: var(--oc-dark); }
+    .gradient-text {
+      background: linear-gradient(135deg, var(--oc-primary) 0%, var(--oc-primary-light) 50%, var(--oc-cyan) 100%);
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+      background-size: 200% 200%; animation: gradient-text-shift 8s ease infinite;
+    }
+    @keyframes gradient-text-shift { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+    .hero-sub { font-size: 18px; color: var(--oc-muted); max-width: 620px; margin: 0 auto 40px; }
+    .hero-ctas { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary-lg { background: var(--oc-primary); color: #fff; padding: 14px 32px; border-radius: var(--radius-sm); font-size: 16px; font-weight: 600; border: none; cursor: pointer; transition: all 200ms; display: inline-flex; align-items: center; gap: 8px; }
+    .btn-primary-lg:hover { box-shadow: 0 0 32px rgba(1,137,181,0.3); transform: translateY(-1px); }
+    .btn-outline { background: transparent; color: var(--oc-dark); padding: 14px 32px; border-radius: var(--radius-sm); font-size: 16px; font-weight: 600; border: 1px solid rgba(10,22,40,0.08); cursor: pointer; transition: all 200ms; }
+    .btn-outline:hover { background: #F7FAFB; }
+    @media (max-width: 768px) { .hero { padding: 140px 0 80px; } .hero h1 { font-size: 32px; } }
+
+    /* SECTIONS */
+    .section { padding: 96px 0; background: #FFFFFF; }
+    .section-alt { background: #F7FAFB; }
+    .section-header { text-align: center; margin-bottom: 64px; }
+    .section-eyebrow { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; color: var(--oc-primary); margin-bottom: 12px; }
+    .section-header h2 { font-family: var(--font-display); font-size: 36px; font-weight: 700; margin-bottom: 16px; line-height: 1.25; color: var(--oc-dark); }
+    .section-header p { font-size: 18px; color: var(--oc-muted); max-width: 640px; margin: 0 auto; }
+
+    /* STATS BAND */
+    .stats-band { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; max-width: 960px; margin: 0 auto; text-align: center; }
+    .stat h3 { font-family: var(--font-display); font-size: 44px; font-weight: 800; color: var(--oc-primary); line-height: 1.1; }
+    .stat p { font-size: 14px; color: var(--oc-muted); margin-top: 6px; }
+    @media (max-width: 768px) { .stats-band { grid-template-columns: 1fr 1fr; } }
+
+    /* ===== SCROLL STORY (dark, pinned) ===== */
+    .story { position: relative; height: 600vh; background: #05080f; }
+    .story-stage { position: sticky; top: 0; height: 100vh; overflow: hidden; }
+    #scene { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+    .stage-vignette {
+      position: absolute; inset: 0; pointer-events: none; z-index: 2;
+      background:
+        radial-gradient(ellipse at 50% 38%, transparent 40%, rgba(5,8,15,.55) 100%),
+        linear-gradient(180deg, rgba(5,8,15,.5) 0%, transparent 22%, transparent 60%, rgba(5,8,15,.9) 100%);
+    }
+    .rail { position: absolute; left: 48px; top: 50%; transform: translateY(-50%); z-index: 3; list-style: none; display: flex; flex-direction: column; gap: 18px; }
+    .rail li {
+      font-family: ui-monospace, 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 3px; text-transform: uppercase;
+      color: rgba(234,242,247,.30); display: flex; align-items: center; gap: 12px; transition: color .4s ease;
+    }
+    .rail li::before { content: ''; width: 6px; height: 6px; border-radius: 1px; background: currentColor; transform: scale(.6); transition: transform .4s ease, box-shadow .4s ease; }
+    .rail li.active { color: #fff; }
+    .rail li.active::before { transform: scale(1); box-shadow: 0 0 12px var(--oc-cyan); background: var(--oc-cyan); }
+    @media (max-width: 720px) { .rail { left: 20px; gap: 12px; } .rail li { font-size: 11px; letter-spacing: 2px; } }
+    .headlines { position: absolute; left: 50%; bottom: 16%; transform: translateX(-50%); width: min(900px, 86vw); text-align: center; z-index: 3; min-height: 160px; pointer-events: none; }
+    .headline { position: absolute; left: 0; right: 0; top: 0; opacity: 0; transform: translateY(24px); transition: opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1); }
+    .headline .kicker { font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 4px; text-transform: uppercase; color: var(--oc-cyan); margin-bottom: 18px; display: block; }
+    .headline h2 { font-family: var(--font-display); color: #eaf2f7; font-size: clamp(30px, 5vw, 62px); font-weight: 300; line-height: 1.08; letter-spacing: -.02em; text-shadow: 0 2px 40px rgba(0,0,0,.6); }
+    .headline.active { opacity: 1; transform: translateY(0); }
+    .hint { position: absolute; left: 50%; bottom: 36px; transform: translateX(-50%); z-index: 3; font-family: ui-monospace, monospace; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: rgba(234,242,247,.45); display: flex; flex-direction: column; align-items: center; gap: 10px; transition: opacity .5s ease; }
+    .hint .arrow { width: 1px; height: 34px; background: linear-gradient(var(--oc-cyan), transparent); animation: hintPulse 1.8s ease-in-out infinite; }
+    @keyframes hintPulse { 0%,100% { opacity: .3; transform: scaleY(.7); } 50% { opacity: 1; transform: scaleY(1); } }
+
+    /* TIMELINE */
+    .timeline { max-width: 760px; margin: 0 auto; position: relative; padding-left: 32px; }
+    .timeline::before { content: ''; position: absolute; left: 7px; top: 8px; bottom: 8px; width: 2px; background: linear-gradient(180deg, var(--oc-primary-light), rgba(1,137,181,0.1)); }
+    .timeline-item { position: relative; padding-bottom: 40px; }
+    .timeline-item:last-child { padding-bottom: 0; }
+    .timeline-item::before { content: ''; position: absolute; left: -32px; top: 8px; width: 16px; height: 16px; border-radius: 50%; background: #fff; border: 3px solid var(--oc-primary-light); }
+    .timeline-item .tl-year { font-family: var(--font-display); font-size: 14px; font-weight: 800; color: var(--oc-primary); text-transform: uppercase; letter-spacing: 1.5px; }
+    .timeline-item h4 { font-family: var(--font-display); font-size: 20px; font-weight: 700; color: var(--oc-dark); margin: 4px 0 6px; }
+    .timeline-item p { font-size: 15px; color: var(--oc-muted); }
+
+    /* VALUES */
+    .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .value-card { background: #FFFFFF; border-radius: var(--radius-lg); padding: 32px; border: 1px solid rgba(10,22,40,0.08); box-shadow: 0 1px 3px rgba(10,22,40,0.04); transition: all 250ms; }
+    .value-card:hover { box-shadow: 0 8px 32px rgba(10,22,40,0.08); transform: translateY(-2px); border-color: rgba(1,137,181,0.3); }
+    .value-card .v-icon { width: 44px; height: 44px; border-radius: var(--radius-md); background: rgba(1,137,181,0.1); color: var(--oc-primary); display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 16px; }
+    .value-card h4 { font-family: var(--font-display); font-size: 18px; font-weight: 700; color: var(--oc-dark); margin-bottom: 8px; }
+    .value-card p { font-size: 14px; color: var(--oc-muted); line-height: 1.6; }
+    @media (max-width: 768px) { .values-grid { grid-template-columns: 1fr; } }
+
+    /* HONG KONG */
+    .hk-split { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    .hk-split h2 { font-family: var(--font-display); font-size: 36px; font-weight: 700; line-height: 1.25; color: var(--oc-dark); margin-bottom: 16px; }
+    .hk-split p { font-size: 16px; color: var(--oc-muted); margin-bottom: 16px; }
+    .hk-card {
+      border-radius: var(--radius-xl); padding: 48px; color: #fff; position: relative; overflow: hidden;
+      background: linear-gradient(140deg, var(--oc-dark) 0%, #0d2a3f 60%, var(--oc-primary) 130%);
+    }
+    .hk-card::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 80% 10%, rgba(0,180,216,0.18), transparent 55%); pointer-events: none; }
+    .hk-card h3 { font-family: var(--font-display); font-size: 24px; font-weight: 700; margin-bottom: 12px; position: relative; z-index: 1; }
+    .hk-card p { color: rgba(234,242,247,0.75); font-size: 15px; position: relative; z-index: 1; }
+    .hk-card .hk-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; position: relative; z-index: 1; }
+    .hk-card .hk-tag { font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; padding: 6px 14px; border-radius: var(--radius-full); background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); }
+    @media (max-width: 900px) { .hk-split { grid-template-columns: 1fr; gap: 40px; } }
+
+    /* CTA */
+    .cta-section {
+      padding: 120px 0; text-align: left; position: relative; overflow: hidden;
+      background: linear-gradient(135deg, #dceef4 0%, #e8f3f7 35%, #f2f9fb 65%, #f8fcfd 100%);
+      background-size: 300% 300%; animation: gradient-shift 12s ease infinite; color: var(--oc-dark);
+    }
+    @keyframes gradient-shift { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+    .cta-section::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 20% 80%, rgba(1,137,181,0.15), transparent 55%),
+                  radial-gradient(ellipse at 80% 20%, rgba(127,119,221,0.08), transparent 50%);
+      pointer-events: none;
+    }
+    .cta-section .container { position: relative; z-index: 1; }
+    .cta-section h2 { font-family: var(--font-display); font-size: clamp(32px, 5vw, 48px); font-weight: 700; margin-bottom: 16px; color: var(--oc-dark); max-width: 520px; }
+    .cta-section p { font-size: 18px; color: var(--oc-muted-light); margin-bottom: 32px; max-width: 460px; }
+    .cta-form { display: flex; gap: 12px; margin-bottom: 24px; max-width: 440px; flex-wrap: wrap; }
+    .cta-input {
+      flex: 1; min-width: 200px; padding: 14px 18px; border-radius: var(--radius-sm);
+      border: 1px solid rgba(10,22,40,0.12); background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(8px); font-size: 15px; font-family: var(--font-body); color: var(--oc-dark);
+      transition: border-color 200ms, box-shadow 200ms;
+    }
+    .cta-input:focus { outline: none; border-color: var(--oc-primary-light); box-shadow: 0 0 0 3px rgba(1,137,181,0.2); }
+    .cta-input::placeholder { color: var(--oc-muted); }
+
+    /* FOOTER */
+    footer { background: #F7FAFB; border-top: 1px solid rgba(10,22,40,0.08); padding: 64px 0 32px; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+    .footer-brand p { font-size: 14px; color: var(--oc-muted); margin-top: 12px; }
+    .footer-col h5 { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: var(--oc-muted); margin-bottom: 20px; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 12px; }
+    .footer-col a { font-size: 14px; color: var(--oc-muted); transition: color 150ms; }
+    .footer-col a:hover { color: var(--oc-dark); }
+    .footer-bottom { border-top: 1px solid rgba(10,22,40,0.08); padding-top: 24px; }
+    .footer-bottom p { font-size: 13px; color: var(--oc-muted); }
+    @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; } }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    .animate-in { opacity: 0; transform: translateY(24px); animation: fadeUp 0.6s cubic-bezier(0.16,1,0.3,1) forwards; }
+    .delay-1 { animation-delay: 0.1s; } .delay-2 { animation-delay: 0.2s; } .delay-3 { animation-delay: 0.3s; }
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.16,1,0.3,1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .animate-in { animation: none; opacity: 1; transform: none; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .hero-blob, .gradient-text, .cta-section { animation: none !important; }
+      .cta-section { background-size: auto; }
+      .headline { transition: none; }
+      .hint .arrow { animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav">
+    <div class="container">
+      <a href="index.html" class="nav-logo"><img src="onchain-logo.png" alt="OneChain" /></a>
+      <ul class="nav-links">
+        <li><a href="about.html" class="active">About</a></li>
+        <li><a href="infrastructure.html">Infrastructure</a></li>
+        <li><a href="esgledger.html">ESGLedger</a></li>
+        <li><a href="certledger.html">CertLedger</a></li>
+      </ul>
+      <a href="mailto:enquiries@onechain.hk" class="nav-cta">Contact</a>
+      <button class="hamburger" aria-label="Menu">☰</button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-gradients" aria-hidden="true">
+      <div class="hero-blob hero-blob-1"></div>
+      <div class="hero-blob hero-blob-2"></div>
+    </div>
+    <div class="container">
+      <div class="hero-badge animate-in"><span class="dot"></span> About OneChain</div>
+      <h1 class="animate-in delay-1">We build the foundation of <span class="gradient-text">digital trust</span></h1>
+      <p class="hero-sub animate-in delay-2">OneChain is a full-stack blockchain company from Hong Kong. We turn tamper-proof infrastructure into products that make verification effortless — for regulators, enterprises, and everyone in between.</p>
+      <div class="hero-ctas animate-in delay-3">
+        <a href="#story" class="btn-primary-lg">
+          Our Story
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#values" class="btn-outline">What We Stand For</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="section reveal" style="padding-top: 64px;">
+    <div class="container">
+      <div class="stats-band">
+        <div class="stat"><h3>2</h3><p>Products in production — ESGLedger &amp; CertLedger</p></div>
+        <div class="stat"><h3>100%</h3><p>On-chain, tamper-proof verification</p></div>
+        <div class="stat"><h3>HK</h3><p>Headquartered at Cyberport, Hong Kong</p></div>
+        <div class="stat"><h3>1</h3><p>Chain connecting the entire trust stack</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SCROLL STORY ===== -->
+  <section class="story" id="story">
+    <div class="story-stage">
+      <canvas id="scene" aria-hidden="true"></canvas>
+      <div class="stage-vignette" aria-hidden="true"></div>
+
+      <ul class="rail" id="rail">
+        <li data-i="0">Foundation</li>
+        <li data-i="1">Intelligence</li>
+        <li data-i="2">Network</li>
+        <li data-i="3">Security</li>
+        <li data-i="4">Scale</li>
+        <li data-i="5">Future</li>
+      </ul>
+
+      <div class="headlines" id="headlines">
+        <div class="headline" data-i="0">
+          <span class="kicker">Foundation</span>
+          <h2>We build the foundation<br>of digital trust</h2>
+        </div>
+        <div class="headline" data-i="1">
+          <span class="kicker">Intelligence</span>
+          <h2>AI that turns verified<br>data into decisions</h2>
+        </div>
+        <div class="headline" data-i="2">
+          <span class="kicker">Network</span>
+          <h2>A living network<br>of verified truth</h2>
+        </div>
+        <div class="headline" data-i="3">
+          <span class="kicker">Security</span>
+          <h2>Tamper-proof<br>by design</h2>
+        </div>
+        <div class="headline" data-i="4">
+          <span class="kicker">Scale</span>
+          <h2>Built to scale across<br>the enterprise</h2>
+        </div>
+        <div class="headline" data-i="5">
+          <span class="kicker">Future</span>
+          <h2>Defining the future<br>of verification</h2>
+        </div>
+      </div>
+
+      <div class="hint" id="hint"><span>Scroll to explore</span><span class="arrow"></span></div>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section class="section section-alt reveal">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">Milestones</div>
+        <h2>From an idea to an ecosystem.</h2>
+        <p>How OneChain grew from a Cyberport incubation project into a full trust-infrastructure stack.</p>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="tl-year">Founded</div>
+          <h4>OneChain begins at Cyberport</h4>
+          <p>Incubated at Cyberport, Hong Kong's digital-technology flagship, with a single thesis: verification should be instant, and trust should be infrastructure.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="tl-year">Infrastructure</div>
+          <h4>The OneChain network goes live</h4>
+          <p>Our enterprise blockchain layer ships — permissioned where it must be, open where it can be, and built for regulatory-grade audit trails.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="tl-year">ESGLedger</div>
+          <h4>Sustainability data, made verifiable</h4>
+          <p>ESGLedger launches, anchoring recycling and ESG reporting for Hong Kong's circular-economy ecosystem on-chain.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="tl-year">CertLedger</div>
+          <h4>Credentials anyone can verify</h4>
+          <p>CertLedger brings tamper-proof certificates to education, professional training, events, and government — verified in seconds by QR code.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="tl-year">Today</div>
+          <h4>Building the trust layer for Asia</h4>
+          <p>We're expanding the platform with AI-assisted verification, new industry ledgers, and partnerships across the region.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section class="section reveal" id="values">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">What We Stand For</div>
+        <h2>Principles we don't compromise on.</h2>
+      </div>
+      <div class="values-grid">
+        <div class="value-card">
+          <div class="v-icon">🔍</div>
+          <h4>Verifiable by Anyone</h4>
+          <p>Trust shouldn't require an account, a phone call, or a favour. Anything we put on-chain can be checked by anyone, anywhere, in seconds.</p>
+        </div>
+        <div class="value-card">
+          <div class="v-icon">🛡️</div>
+          <h4>Tamper-Proof by Design</h4>
+          <p>Security is not a feature we add — it's the substrate we build on. Immutability, cryptographic proofs, and auditable history come standard.</p>
+        </div>
+        <div class="value-card">
+          <div class="v-icon">🤝</div>
+          <h4>Built With Regulators</h4>
+          <p>We design alongside compliance teams and public bodies, not around them. Real adoption means meeting real regulatory requirements.</p>
+        </div>
+        <div class="value-card">
+          <div class="v-icon">⚡</div>
+          <h4>AI With Receipts</h4>
+          <p>Our AI works on verified data, so its outputs come with provenance. Intelligence you can act on, because you can trace it.</p>
+        </div>
+        <div class="value-card">
+          <div class="v-icon">🌱</div>
+          <h4>Impact You Can Measure</h4>
+          <p>From recycling chains to green finance, we make sustainability claims provable — because measured impact is the only kind that counts.</p>
+        </div>
+        <div class="value-card">
+          <div class="v-icon">🏙️</div>
+          <h4>Hong Kong Roots, Global Reach</h4>
+          <p>We build from one of the world's great financial centres, for problems that cross every border.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HONG KONG -->
+  <section class="section section-alt reveal">
+    <div class="container">
+      <div class="hk-split">
+        <div>
+          <div class="section-eyebrow">Where We Work</div>
+          <h2>Made at Cyberport, Hong Kong.</h2>
+          <p>OneChain is headquartered at Cyberport, Hong Kong's digital-technology hub and home to one of Asia's densest Web3 communities. Being here puts us alongside the banks, regulators, and public bodies our products are built for.</p>
+          <p>We exhibit regularly across the region — most recently showcasing the OneChain ecosystem and our recycling-chain work for Hong Kong's circular economy.</p>
+          <a href="index.html#exhibition" class="btn-primary-lg" style="margin-top: 8px;">See Us in Action</a>
+        </div>
+        <div class="hk-card">
+          <h3>Cyberport 3, Pok Fu Lam</h3>
+          <p>Our home base — where engineering, product, and partnerships live under one roof, ten minutes from Central.</p>
+          <div class="hk-tags">
+            <span class="hk-tag">Cyberport Incubatee</span>
+            <span class="hk-tag">Web3 Hub</span>
+            <span class="hk-tag">GreenTech</span>
+            <span class="hk-tag">Enterprise Blockchain</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section reveal">
+    <div class="container">
+      <h2>Let's build trust together</h2>
+      <p>Whether you're an enterprise, an institution, or a partner — we'd love to hear from you.</p>
+      <form class="cta-form" onsubmit="event.preventDefault()">
+        <input class="cta-input" type="email" placeholder="you@company.com" aria-label="Email address" />
+        <button type="submit" class="btn-primary-lg">Get in Touch</button>
+      </form>
+      <div class="hero-ctas" style="justify-content: flex-start;">
+        <a href="mailto:enquiries@onechain.hk" class="btn-outline">enquiries@onechain.hk</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="nav-logo"><img src="onchain-logo.png" alt="OneChain" /></div>
+          <p>Full-stack blockchain company. Hong Kong. Cyberport-incubated.</p>
+        </div>
+        <div class="footer-col"><h5>Company</h5><ul><li><a href="about.html">About</a></li><li><a href="infrastructure.html">Infrastructure</a></li><li><a href="mailto:enquiries@onechain.hk">Contact</a></li></ul></div>
+        <div class="footer-col"><h5>Products</h5><ul><li><a href="esgledger.html">ESGLedger</a></li><li><a href="certledger.html">CertLedger</a></li></ul></div>
+        <div class="footer-col"><h5>Resources</h5><ul><li><a href="#">API Docs</a></li><li><a href="#">Explorer</a></li><li><a href="#">FAQ</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><p>© 2026 OneChain Ltd. · Cyberport 3, Pok Fu Lam, Hong Kong</p></div>
+    </div>
+  </footer>
+
+  <script>
+    /* reveal-on-scroll */
+    document.querySelectorAll('.reveal').forEach(el => {
+      new IntersectionObserver((entries, obs) => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+      }, { threshold: 0.15 }).observe(el);
+    });
+
+    /* ===== SCROLL-STORY ENGINE (vanilla, no libraries) ===== */
+    (function () {
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const story = document.getElementById('story');
+      const railItems = [...document.querySelectorAll('#rail li')];
+      const headlines = [...document.querySelectorAll('.headline')];
+      const hint = document.getElementById('hint');
+      const N = railItems.length;
+
+      let progress = 0;
+      let activeIdx = -1;
+
+      function computeProgress() {
+        const rect = story.getBoundingClientRect();
+        const total = story.offsetHeight - window.innerHeight;
+        const scrolled = -rect.top;
+        return Math.max(0, Math.min(1, total > 0 ? scrolled / total : 0));
+      }
+
+      function setActive(idx) {
+        if (idx === activeIdx) return;
+        activeIdx = idx;
+        railItems.forEach((li, i) => li.classList.toggle('active', i === idx));
+        headlines.forEach((h, i) => h.classList.toggle('active', i === idx));
+      }
+
+      /* canvas scene */
+      const canvas = document.getElementById('scene');
+      const ctx = canvas.getContext('2d');
+      let W = 0, H = 0, dpr = 1;
+      let renderP = 0;
+      let blocks = [], trails = [];
+      const CY = '0,180,216', PR = '1,98,130', PU = '127,119,221';
+
+      function resize() {
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        W = canvas.clientWidth; H = canvas.clientHeight;
+        canvas.width = W * dpr; canvas.height = H * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        buildScene();
+      }
+
+      function buildScene() {
+        blocks = [];
+        const count = 7;
+        for (let i = 0; i < count; i++) {
+          blocks.push({
+            track: i / (count - 1),
+            yJit: (Math.random() * 0.18 - 0.09),
+            size: 60 + Math.random() * 70,
+            phase: Math.random() * Math.PI * 2,
+            hue: i % 3 === 0 ? CY : i % 3 === 1 ? PR : PU
+          });
+        }
+        trails = [];
+        const tCount = reduce ? 0 : 90;
+        for (let i = 0; i < tCount; i++) trails.push(spawnTrail());
+      }
+
+      function spawnTrail() {
+        return {
+          x: Math.random() * W,
+          y: H * 0.55 + Math.random() * H * 0.45,
+          len: 16 + Math.random() * 46,
+          speed: 0.6 + Math.random() * 1.8,
+          sway: Math.random() * Math.PI * 2,
+          swayAmp: 0.3 + Math.random() * 0.9,
+          life: 0, max: 120 + Math.random() * 160,
+          hue: Math.random() < 0.7 ? CY : PU
+        };
+      }
+
+      function drawBlock(cx, cy, r, h, hue, glow) {
+        const top = [[cx, cy - r * 0.5], [cx + r, cy], [cx, cy + r * 0.5], [cx - r, cy]];
+        const left = [[cx - r, cy], [cx, cy + r * 0.5], [cx, cy + r * 0.5 + h], [cx - r, cy + h]];
+        const right = [[cx + r, cy], [cx, cy + r * 0.5], [cx, cy + r * 0.5 + h], [cx + r, cy + h]];
+        const face = (pts, a) => {
+          ctx.beginPath(); ctx.moveTo(pts[0][0], pts[0][1]);
+          for (let i = 1; i < pts.length; i++) ctx.lineTo(pts[i][0], pts[i][1]);
+          ctx.closePath(); ctx.fillStyle = `rgba(${hue},${a})`; ctx.fill();
+        };
+        ctx.save();
+        ctx.shadowColor = `rgba(${hue},${0.5 * glow})`;
+        ctx.shadowBlur = 40 * glow;
+        face(left, 0.10 + 0.10 * glow);
+        face(right, 0.16 + 0.16 * glow);
+        face(top, 0.30 + 0.35 * glow);
+        ctx.restore();
+        ctx.strokeStyle = `rgba(${hue},${0.35 + 0.45 * glow})`;
+        ctx.lineWidth = 1.2;
+        [top, left, right].forEach(pts => {
+          ctx.beginPath(); ctx.moveTo(pts[0][0], pts[0][1]);
+          for (let i = 1; i < pts.length; i++) ctx.lineTo(pts[i][0], pts[i][1]);
+          ctx.closePath(); ctx.stroke();
+        });
+        ctx.strokeStyle = `rgba(${hue},${0.5 * glow})`;
+        ctx.beginPath(); ctx.moveTo(cx - r * 0.4, cy); ctx.lineTo(cx + r * 0.4, cy); ctx.stroke();
+      }
+
+      function drawScene(t) {
+        const g = ctx.createLinearGradient(0, 0, 0, H);
+        g.addColorStop(0, '#070b14'); g.addColorStop(0.5, '#05080f'); g.addColorStop(1, '#04060c');
+        ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+
+        const hx = W * (0.5 + (renderP - 0.5) * 0.3);
+        const hg = ctx.createRadialGradient(hx, H * 0.5, 0, hx, H * 0.5, H * 0.7);
+        hg.addColorStop(0, `rgba(${CY},0.10)`); hg.addColorStop(1, 'rgba(0,0,0,0)');
+        ctx.fillStyle = hg; ctx.fillRect(0, 0, W, H);
+
+        if (!reduce) {
+          ctx.globalCompositeOperation = 'lighter';
+          for (const p of trails) {
+            p.life++;
+            p.sway += 0.03;
+            p.x += Math.sin(p.sway) * p.swayAmp;
+            p.y -= p.speed;
+            const a = Math.sin(Math.min(1, p.life / p.max) * Math.PI) * 0.6;
+            const grad = ctx.createLinearGradient(p.x, p.y, p.x, p.y + p.len);
+            grad.addColorStop(0, `rgba(${p.hue},${a})`);
+            grad.addColorStop(1, `rgba(${p.hue},0)`);
+            ctx.strokeStyle = grad; ctx.lineWidth = 1.6;
+            ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(p.x, p.y + p.len); ctx.stroke();
+            ctx.fillStyle = `rgba(${p.hue},${a * 0.5})`;
+            ctx.beginPath(); ctx.arc(p.x, p.y, 1.6, 0, Math.PI * 2); ctx.fill();
+            if (p.life > p.max || p.y < -p.len) Object.assign(p, spawnTrail());
+          }
+          ctx.globalCompositeOperation = 'source-over';
+        }
+
+        const camera = renderP;
+        const spread = 2.2;
+        blocks.forEach((b) => {
+          const rel = (b.track - camera);
+          const cx = W * 0.5 + rel * W * spread;
+          if (cx < -200 || cx > W + 200) return;
+          const cy = H * 0.46 + b.yJit * H + Math.sin(t * 0.0009 + b.phase) * 10;
+          const glow = Math.max(0.15, 1 - Math.abs(rel) * 3.2);
+          const s = b.size * (0.7 + glow * 0.5);
+          drawBlock(cx, cy, s, s * 1.15, b.hue, glow);
+        });
+
+        ctx.fillStyle = 'rgba(0,180,216,0.03)';
+        ctx.fillRect(0, H * 0.7, W, 2);
+      }
+
+      function loop(t) {
+        renderP += (progress - renderP) * 0.08;
+        drawScene(t);
+        requestAnimationFrame(loop);
+      }
+
+      let ticking = false;
+      function onScroll() {
+        if (ticking) return; ticking = true;
+        requestAnimationFrame(() => {
+          progress = computeProgress();
+          setActive(Math.max(0, Math.min(N - 1, Math.floor(progress * N + 0.0001))));
+          hint.style.opacity = progress > 0.03 ? '0' : '1';
+          ticking = false;
+        });
+      }
+
+      resize();
+      setActive(0);
+      if (reduce) { renderP = 0; drawScene(0); }
+      else { requestAnimationFrame(loop); }
+      onScroll();
+      window.addEventListener('scroll', onScroll, { passive: true });
+      let rt; window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(resize, 150); });
+    })();
+  </script>
+</body>
+</html>

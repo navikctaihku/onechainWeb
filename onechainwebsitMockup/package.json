@@ -1,0 +1,11 @@
+{
+  "name": "onechain-website",
+  "private": true,
+  "scripts": {
+    "dev": "serve .",
+    "deploy": "vercel --prod"
+  },
+  "devDependencies": {
+    "serve": "^14.2.4"
+  }
+}

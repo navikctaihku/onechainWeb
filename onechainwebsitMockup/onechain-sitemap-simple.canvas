@@ -1,0 +1,35 @@
+{
+	"nodes":[
+		{"id":"title","type":"text","text":"# OneChain Website\n## Architecture Overview (for review)\n\nOne company site, two hero products, one developer platform.\nVercel-style clarity + Apple-style product-family navigation.","x":-1480,"y":-1040,"width":640,"height":220,"color":"1"},
+		{"id":"concept","type":"text","text":"## Overall Design Direction\n\n- **Message:** \"We built the blockchain. Then we built what runs on it.\" — full-stack, problem-led story\n- **Look:** dark, modern, product-first (Vercel/Apple reference)\n- **Dynamic logo:** brand color shifts per context (OneChain / ESGLedger / CertLedger / API)\n- **Bilingual:** EN + 繁體中文\n- **Scope decision:** ArtLedger removed; API Platform promoted to a core service","x":-760,"y":-1040,"width":860,"height":280,"color":"2"},
+		{"id":"arch-heading","type":"text","text":"# A. Site Architecture\n10 destinations, grouped into 4 clear lanes. Every page is reachable from the sticky header.","x":-1480,"y":-720,"width":640,"height":140,"color":"1"},
+		{"id":"home","type":"text","text":"## Home  `/`\nThe front door.\n\nHero message → live stats → ESGLedger / CertLedger / API spotlight cards → partners → contact CTA","x":-1480,"y":-500,"width":400,"height":260,"color":"1"},
+		{"id":"lane-company","type":"text","text":"## 1 · Company & AI\n\n- **About** `/about` — HK & Cyberport story, team, partners\n- **AI + Services** `/ai-services` — AI as intelligence layer, BaaS, white-label, consulting","x":-960,"y":-780,"width":440,"height":220,"color":"6"},
+		{"id":"lane-products","type":"text","text":"## 2 · Hero Products\n\n- **ESGLedger** `/esgledger` — plastic credit lifecycle, ESG trust\n- **CertLedger** `/certledger` — issue, hold, verify certificates","x":-960,"y":-520,"width":440,"height":210,"color":"4"},
+		{"id":"lane-platform","type":"text","text":"## 3 · Platform & Developers\n\n- **Infrastructure** `/infrastructure` — Hyperledger Fabric, PoA, 3-layer stack\n- **API Platform** `api.one-chain.io` — keys, endpoints, analytics, free account","x":-960,"y":-270,"width":440,"height":220,"color":"5"},
+		{"id":"lane-proof","type":"text","text":"## 4 · Proof & Conversion\n\n- **Green Tech** `/green-tech` — sustainability proof, real projects\n- **Why OneChain** `/why-onechain` — pillars, comparison, cases\n- **Contact** `/contact` — demo booking, all subjects","x":-960,"y":-10,"width":440,"height":240,"color":"3"},
+		{"id":"flow-heading","type":"text","text":"# B. User Flow\nOne journey shape for every visitor: arrive → self-select → believe → act.","x":-420,"y":-720,"width":600,"height":140,"color":"1"},
+		{"id":"flow-1","type":"text","text":"## 1. Land\n`/`\n\nVisitor hits the hero: one killer sentence, live proof stats, three product cards.","x":-420,"y":-520,"width":300,"height":250,"color":"1"},
+		{"id":"flow-2","type":"text","text":"## 2. Explore\nNavigation\n\nSelf-select a lane: company story, a hero product, or the developer platform.","x":-60,"y":-520,"width":300,"height":250,"color":"6"},
+		{"id":"flow-3","type":"text","text":"## 3. Trust\n`/infrastructure` `/green-tech` `/why-onechain`\n\nCredibility pages: real tech, real green projects, real comparisons.","x":300,"y":-520,"width":300,"height":250,"color":"4"},
+		{"id":"flow-4","type":"text","text":"## 4. Convert\n`/contact` + platforms\n\nBook a demo · enter ESGLedger / CertLedger · create a free API account.","x":660,"y":-520,"width":300,"height":250,"color":"3"},
+		{"id":"wf-heading","type":"text","text":"# C. Key Screens (draft wireframes)\nLayout intent for the four most important destinations — visual design comes later.","x":-1480,"y":420,"width":700,"height":140,"color":"1"},
+		{"id":"wf-home","type":"file","file":"sitemap-assets/wf-home.png","x":-1480,"y":620,"width":420,"height":558},
+		{"id":"wf-esg","type":"file","file":"sitemap-assets/wf-esgledger.png","x":-1000,"y":620,"width":420,"height":516},
+		{"id":"wf-cert","type":"file","file":"sitemap-assets/wf-certledger.png","x":-520,"y":620,"width":420,"height":497},
+		{"id":"wf-api","type":"file","file":"sitemap-assets/wf-api-platform.png","x":-40,"y":620,"width":420,"height":479}
+	],
+	"edges":[
+		{"id":"e-arch-home","fromNode":"arch-heading","fromSide":"bottom","toNode":"home","toSide":"top"},
+		{"id":"e-home-company","fromNode":"home","fromSide":"right","toNode":"lane-company","toSide":"left"},
+		{"id":"e-home-products","fromNode":"home","fromSide":"right","toNode":"lane-products","toSide":"left"},
+		{"id":"e-home-platform","fromNode":"home","fromSide":"right","toNode":"lane-platform","toSide":"left"},
+		{"id":"e-home-proof","fromNode":"home","fromSide":"right","toNode":"lane-proof","toSide":"left"},
+		{"id":"e-flow-head","fromNode":"flow-heading","fromSide":"bottom","toNode":"flow-1","toSide":"top"},
+		{"id":"e-f1","fromNode":"flow-1","fromSide":"right","toNode":"flow-2","toSide":"left","label":"choose a lane"},
+		{"id":"e-f2","fromNode":"flow-2","fromSide":"right","toNode":"flow-3","toSide":"left","label":"see the proof"},
+		{"id":"e-f3","fromNode":"flow-3","fromSide":"right","toNode":"flow-4","toSide":"left","label":"take action"},
+		{"id":"e-wf1","fromNode":"wf-heading","fromSide":"bottom","toNode":"wf-home","toSide":"top"}
+	],
+	"metadata":{"version":"1.0-1.0","frontmatter":{}}
+}
