@@ -24,15 +24,26 @@ Open **http://localhost:5173**
 
 ## Live site
 
-**https://navikctaihku.github.io/onechainWeb/**
+**https://navikctaihku.github.io/**
 
-Pushing to `main` automatically rebuilds and deploys via GitHub Actions.
+Deploy from your machine:
 
-### First-time GitHub Pages setup
+```bash
+./deploy-website.sh
+```
 
-1. Open **https://github.com/navikctaihku/onechainWeb/settings/pages**
-2. Under **Build and deployment**, set **Source** to **GitHub Actions**
-3. Push to `main` (or run the workflow manually under **Actions**)
+Source code is also stored at **https://github.com/navikctaihku/onechainWeb**
+
+### GitHub Actions (optional)
+
+To enable automatic deploys on push, grant the `workflow` scope and push:
+
+```bash
+gh auth refresh -s workflow
+git push origin main
+```
+
+Then set **Settings → Pages → Source** to **GitHub Actions** on the onechainWeb repo.
 
 ## Build for production
 

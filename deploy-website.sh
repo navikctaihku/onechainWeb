@@ -5,7 +5,7 @@ ROOT="$(cd "$(dirname "$0")" && pwd)"
 GH="$ROOT/.tools/gh_2.96.0_macOS_arm64/bin/gh"
 SITE_REPO="navikctaihku/navikctaihku.github.io"
 LIVE_URL="https://navikctaihku.github.io/"
-SOURCE_DIR="$ROOT/onechainwebsitMockup"
+WEBSITE_DIR="$ROOT/onechain_website"
 
 if [[ ! -x "$GH" ]]; then
   echo "GitHub CLI not found at $GH"
@@ -38,7 +38,16 @@ else
 fi
 echo ""
 
-# ── 3. Deploy mockup to navikctaihku.github.io ───────────────────────────────
+# ── 3. Build production site ───────────────────────────────────────────────────
+echo "Building onechain_website..."
+cd "$WEBSITE_DIR"
+npm ci --silent
+npm run build
+BUILD_DIR="$WEBSITE_DIR/dist"
+echo "✓ Build complete: $BUILD_DIR"
+echo ""
+
+# ── 4. Deploy to navikctaihku.github.io ──────────────────────────────────────
 echo "Deploying to $SITE_REPO ..."
 DEPLOY_DIR="$(mktemp -d)"
 
@@ -50,12 +59,8 @@ else
 fi
 
 find "$DEPLOY_DIR" -mindepth 1 -maxdepth 1 ! -name '.git' -exec rm -rf {} +
-rsync -a \
-  --exclude 'node_modules' \
-  --exclude '.DS_Store' \
-  --exclude 'prompting-guide-dynamic-effects.md' \
-  --exclude '*.canvas' \
-  "$SOURCE_DIR/" "$DEPLOY_DIR/"
+rsync -a "$BUILD_DIR/" "$DEPLOY_DIR/"
+touch "$DEPLOY_DIR/.nojekyll"
 
 cd "$DEPLOY_DIR"
 git add -A
