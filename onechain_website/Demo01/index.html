@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OneChain — Trusted Verification and Intelligence</title>
+    <meta name="description" content="OneChain is Hong Kong's full-stack blockchain company. Verify credentials, trace ESG impact, and integrate through API without crypto complexity." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+
+    <!-- ═══════════════════════════════════════════════════════
+         SECTION 1: Announcement Bar
+    ═══════════════════════════════════════════════════════ -->
+    <div class="announcement" id="announcement">
+      <p>
+        <span class="badge">NEW</span>
+        OneChain API Platform is live. Free endpoints for developers building trusted applications.
+        <a href="https://api.one-chain.io" target="_blank" rel="noopener">Claim yours now</a>
+      </p>
+      <button class="announcement-close" id="announcementClose" aria-label="Dismiss">×</button>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════
+         SECTION 2: Header / Navigation
+    ═══════════════════════════════════════════════════════ -->
+    <header class="header" id="header">
+      <div class="container header-inner">
+        <a href="#" class="logo" aria-label="OneChain home">
+          <img src="/logo.png" alt="OneChain" class="logo-img" />
+        </a>
+        <nav class="nav" id="nav">
+          <a href="#hero">Products</a>
+          <a href="#trust">Solutions</a>
+          <a href="#consortium">About</a>
+          <a href="#products">Resources</a>
+        </nav>
+        <a href="#contact" class="btn btn-header">Contact us</a>
+        <button class="nav-toggle" id="navToggle" aria-label="Menu">
+          <span></span><span></span>
+        </button>
+      </div>
+    </header>
+
+    <main>
+
+      <!-- ═══════════════════════════════════════════════════════
+           SECTION 3: Hero (Dark, Terminal 3 style)
+      ═══════════════════════════════════════════════════════ -->
+      <section class="hero" id="hero">
+        <div class="container hero-content">
+          <h1>
+            Connect Enterprise Data with<br />
+            <span class="hero-accent">Trusted</span><br />
+            Verification & Intelligence
+          </h1>
+          <p class="hero-sub">
+            Secure your enterprise applications with blockchain-verified data, and elevate your business
+            with OneChain's AI-powered analysis and smart credentials.
+          </p>
+          <a href="#contact" class="btn btn-primary">Get in touch</a>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════════════════════
+           SECTION 4: Fan Cards (expand on scroll like Terminal 3)
+      ═══════════════════════════════════════════════════════ -->
+      <section class="fan-section" id="fan">
+        <div class="fan-track">
+          <div class="fan-card" data-index="0">
+            <span class="fan-badge">Verified</span>
+            <span class="fan-label">ESG Credit</span>
+            <span class="fan-date">ISSUED 2026</span>
+          </div>
+          <div class="fan-card" data-index="1">
+            <span class="fan-badge">Verified</span>
+            <span class="fan-label">API Access</span>
+            <span class="fan-date">ISSUED 2026</span>
+          </div>
+          <div class="fan-card" data-index="2">
+            <span class="fan-badge">Verified</span>
+            <span class="fan-label">Certified Credential</span>
+            <span class="fan-date">ISSUED 2026</span>
+          </div>
+          <div class="fan-card" data-index="3">
+            <span class="fan-badge">Verified</span>
+            <span class="fan-label">Green Tech</span>
+            <span class="fan-date">ISSUED 2026</span>
+          </div>
+          <div class="fan-card" data-index="4">
+            <span class="fan-badge">Verified</span>
+            <span class="fan-label">Infrastructure</span>
+            <span class="fan-date">ISSUED 2026</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════════════════════
+           SECTION 5: Trust Pillar 1 — Isometric blockchain illustration
+           (Anne's favourite — image 3 style)
+           Categories: Green Tech, Blockchain Infrastructure, Credential, AI Application
+      ═══════════════════════════════════════════════════════ -->
+      <section class="trust-section" id="trust">
+        <div class="container trust-grid">
+          <div class="trust-visual" aria-hidden="true">
+            <svg viewBox="0 0 480 400" class="iso-svg" xmlns="http://www.w3.org/2000/svg">
+              <!-- Central platform -->
+              <polygon points="240,280 120,220 240,160 360,220" fill="#1a2744" stroke="#2a4a7f" stroke-width="1"/>
+              <polygon points="240,280 240,310 120,250 120,220" fill="#0f1b30" stroke="#2a4a7f" stroke-width="0.5"/>
+              <polygon points="240,280 240,310 360,250 360,220" fill="#162240" stroke="#2a4a7f" stroke-width="0.5"/>
+              <!-- OneChain logo center -->
+              <polygon points="240,230 210,215 240,200 270,215" fill="#2a7ab5" stroke="#4db8ff" stroke-width="0.8"/>
+              <polygon points="240,230 240,245 210,230 210,215" fill="#1c5a8a" stroke="#4db8ff" stroke-width="0.5"/>
+              <polygon points="240,230 240,245 270,230 270,215" fill="#236999" stroke="#4db8ff" stroke-width="0.5"/>
+              <!-- Node: Green Tech (top-left) -->
+              <line x1="175" y1="190" x2="130" y2="130" stroke="#2a4a7f" stroke-width="1" stroke-dasharray="3,3"/>
+              <rect x="100" y="90" width="60" height="50" rx="6" fill="#1a2744" stroke="#2ecc71" stroke-width="1.2"/>
+              <text x="130" y="120" text-anchor="middle" fill="#2ecc71" font-size="9" font-weight="600">Green</text>
+              <text x="130" y="132" text-anchor="middle" fill="#2ecc71" font-size="9" font-weight="600">Tech</text>
+              <!-- Node: Blockchain Infrastructure (top-right) -->
+              <line x1="305" y1="190" x2="350" y2="130" stroke="#2a4a7f" stroke-width="1" stroke-dasharray="3,3"/>
+              <rect x="320" y="90" width="60" height="50" rx="6" fill="#1a2744" stroke="#4db8ff" stroke-width="1.2"/>
+              <text x="350" y="115" text-anchor="middle" fill="#4db8ff" font-size="8" font-weight="600">Blockchain</text>
+              <text x="350" y="127" text-anchor="middle" fill="#4db8ff" font-size="8" font-weight="600">Infra</text>
+              <!-- Node: Credential (bottom-left) -->
+              <line x1="175" y1="250" x2="100" y2="300" stroke="#2a4a7f" stroke-width="1" stroke-dasharray="3,3"/>
+              <rect x="70" y="280" width="60" height="50" rx="6" fill="#1a2744" stroke="#f0b429" stroke-width="1.2"/>
+              <text x="100" y="310" text-anchor="middle" fill="#f0b429" font-size="9" font-weight="600">Credential</text>
+              <!-- Node: AI Application (bottom-right) -->
+              <line x1="305" y1="250" x2="380" y2="300" stroke="#2a4a7f" stroke-width="1" stroke-dasharray="3,3"/>
+              <rect x="350" y="280" width="60" height="50" rx="6" fill="#1a2744" stroke="#7f77dd" stroke-width="1.2"/>
+              <text x="380" y="305" text-anchor="middle" fill="#7f77dd" font-size="8" font-weight="600">AI</text>
+              <text x="380" y="317" text-anchor="middle" fill="#7f77dd" font-size="8" font-weight="600">Application</text>
+            </svg>
+          </div>
+          <div class="trust-copy">
+            <h2>Verification without compromise</h2>
+            <p>
+              OneChain Consortium is secured by Hyperledger Fabric with Proof-of-Authority consensus,
+              enabling enterprise data and credentials to be freely composable across platforms and
+              applications without compromising privacy or auditability.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════════════════════
+           SECTION 6: Trust Pillar 2
+      ═══════════════════════════════════════════════════════ -->
+      <section class="trust-section trust-reverse">
+        <div class="container trust-grid trust-grid-reverse">
+          <div class="trust-copy">
+            <h2>Trusted by enterprises & institutions</h2>
+            <p>
+              From plastic credit traceability to academic credential verification, OneChain powers
+              real applications used by partners across Hong Kong and APAC. Zero gas fees. No crypto
+              required. Enterprise-ready from day one.
+            </p>
+          </div>
+          <div class="trust-visual trust-visual-city" aria-hidden="true">
+            <svg viewBox="0 0 400 320" class="iso-svg" xmlns="http://www.w3.org/2000/svg">
+              <!-- Grid platform -->
+              <polygon points="200,260 60,190 200,120 340,190" fill="none" stroke="#2a4a7f" stroke-width="0.8"/>
+              <polygon points="200,240 80,180 200,140 320,180" fill="none" stroke="#1e3a5f" stroke-width="0.5"/>
+              <!-- Buildings -->
+              <rect x="140" y="140" width="30" height="80" rx="2" fill="#1a2744" stroke="#4db8ff" stroke-width="0.8"/>
+              <rect x="180" y="120" width="40" height="100" rx="2" fill="#1a2744" stroke="#4db8ff" stroke-width="0.8"/>
+              <rect x="230" y="150" width="30" height="70" rx="2" fill="#1a2744" stroke="#4db8ff" stroke-width="0.8"/>
+              <rect x="155" y="160" width="6" height="8" rx="1" fill="#4db8ff" opacity="0.5"/>
+              <rect x="155" y="175" width="6" height="8" rx="1" fill="#4db8ff" opacity="0.5"/>
+              <rect x="195" y="135" width="8" height="10" rx="1" fill="#4db8ff" opacity="0.4"/>
+              <rect x="195" y="155" width="8" height="10" rx="1" fill="#4db8ff" opacity="0.4"/>
+              <rect x="195" y="175" width="8" height="10" rx="1" fill="#4db8ff" opacity="0.4"/>
+              <rect x="240" y="165" width="6" height="8" rx="1" fill="#4db8ff" opacity="0.5"/>
+              <rect x="240" y="180" width="6" height="8" rx="1" fill="#4db8ff" opacity="0.5"/>
+            </svg>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════════════════════
+           SECTION 7: Stats
+      ═══════════════════════════════════════════════════════ -->
+      <section class="stats-section">
+        <div class="container stats-row">
+          <div class="stat-item">
+            <span class="stat-number" data-count="1000">0</span><span class="stat-suffix">+</span>
+            <span class="stat-label">TPS capacity</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" data-count="0">0</span>
+            <span class="stat-label">gas fees</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" data-count="3">0</span>
+            <span class="stat-label">production apps</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════════════════════
+           SECTION 8: Built on OneChain Consortium (Product cards — image 5 style)
+      ═══════════════════════════════════════════════════════ -->
+      <section class="consortium-section" id="consortium">
+        <div class="container">
+          <p class="section-tag">PRODUCTS</p>
+          <h2 class="section-title">Built on OneChain Consortium</h2>
+          <p class="section-desc">
+            OneChain Consortium is the trust layer for all OneChain products, storing and processing
+            data on a permissioned Hyperledger Fabric chain, ensuring that all enterprise applications
+            inherit OneChain's native privacy and security.
+          </p>
+
+          <div class="product-cards" id="products">
+            <article class="p-card">
+              <div class="p-card-icon p-icon-esg"></div>
+              <h3>ESGLedger</h3>
+              <p class="p-card-tagline"><strong>Trace</strong> plastic credits and ESG data with tamper-proof blockchain integrity</p>
+              <p class="p-card-body">
+                Blockchain-verified ESG data platform and plastic credit marketplace. Every step of
+                the credit lifecycle — from collection to retirement — is documented on-chain with
+                AI anomaly detection.
+              </p>
+            </article>
+            <article class="p-card">
+              <div class="p-card-icon p-icon-cert"></div>
+              <h3>CertLedger</h3>
+              <p class="p-card-tagline"><strong>Certify</strong> credentials with blockchain and verify with instant ease</p>
+              <p class="p-card-body">
+                Tamper-proof credential issuance and verification for education, professional
+                training, events, and government documents. QR code verification — no account needed.
+              </p>
+            </article>
+            <article class="p-card">
+              <div class="p-card-icon p-icon-api"></div>
+              <h3>API Platform</h3>
+              <p class="p-card-tagline"><strong>Build</strong> on OneChain with managed endpoints and traffic analytics</p>
+              <p class="p-card-body">
+                The OneChain API Platform lets developers and partners manage endpoints, API keys,
+                and traffic analytics — with free account creation to get started immediately.
+              </p>
+            </article>
+            <article class="p-card">
+              <div class="p-card-icon p-icon-green"></div>
+              <h3>Green Tech</h3>
+              <p class="p-card-tagline"><strong>Monitor</strong> environmental impact with IoT sensors and on-chain proof</p>
+              <p class="p-card-body">
+                PoA low-energy consensus powering tree monitoring, upcycled product traceability,
+                recycled timber tracking, and plastic credit ecosystems across Hong Kong.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════════════════════
+           SECTION 9: Partners
+      ═══════════════════════════════════════════════════════ -->
+      <section class="partners-section">
+        <div class="container">
+          <p class="section-tag">ECOSYSTEM</p>
+          <h2 class="section-title">Trusted by partners building on OneChain</h2>
+          <div class="partner-logos">
+            <span>Kibo Eco</span>
+            <span>HK Timberbank</span>
+            <span>LeafIoT</span>
+            <span>Revive Tech Asia</span>
+            <span>Watsons</span>
+            <span>PolyU</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════════════════════
+           SECTION 10: Final CTA
+      ═══════════════════════════════════════════════════════ -->
+      <section class="cta-section" id="contact">
+        <div class="container cta-inner">
+          <h2>Ready to get started?</h2>
+          <p>Get in touch today to see OneChain in action.</p>
+          <a href="mailto:info@one-chain.io" class="btn btn-primary">Contact us</a>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- ═══════════════════════════════════════════════════════
+         Footer
+    ═══════════════════════════════════════════════════════ -->
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div class="footer-brand">
+          <span class="logo"><img src="/logo.png" alt="OneChain" class="logo-img" /></span>
+          <p>© 2026 OneChain Limited. All rights reserved.</p>
+        </div>
+        <div>
+          <h4>Company</h4>
+          <a href="#">About</a>
+          <a href="#">Infrastructure</a>
+          <a href="#">AI + Services</a>
+          <a href="#">Green Tech</a>
+        </div>
+        <div>
+          <h4>Products</h4>
+          <a href="#">ESGLedger</a>
+          <a href="#">CertLedger</a>
+          <a href="https://api.one-chain.io" target="_blank" rel="noopener">API Platform</a>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <p>Level 9, Core F, Cyberport 3<br>100 Cyberport Rd, Pok Fu Lam, HK</p>
+          <p>(852) 2571 4301</p>
+          <a href="mailto:info@one-chain.io">info@one-chain.io</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="/main.js"></script>
+  </body>
+</html>
