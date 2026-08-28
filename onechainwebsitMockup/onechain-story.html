@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>OneChain — Scroll Story (Hubtown-style demo)</title>
+  <meta name="description" content="A scrolling walkthrough of how OneChain turns physical activity into verifiable on-chain records.">
 
 <!--
   ============================================================================
@@ -32,10 +33,10 @@
 <style>
   *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
   :root{
-    --cyan:#00B4D8; --primary:#016282; --purple:#7F77DD;
+    --cyan:#14a4bc; --primary:#14a4bc; --purple:#14a4bc;
     --bg:#05080f; --ink:#eaf2f7; --muted:rgba(234,242,247,.45);
     --font:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
-    --mono:'JetBrains Mono',ui-monospace,monospace;
+    --mono:'Inter',-apple-system,sans-serif;
   }
   html{scroll-behavior:smooth;}
   body{background:var(--bg);color:var(--ink);font-family:var(--font);-webkit-font-smoothing:antialiased;}
@@ -136,6 +137,11 @@
     .hint .arrow{animation:none;}
   }
 </style>
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="global.css?v=202607141820">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta name="theme-color" content="#14a4bc">
+  <link rel="stylesheet" href="site-base.css?v=202607280950">
 </head>
 <body>
 
@@ -241,7 +247,7 @@ let renderP = 0;                 // smoothed (lerped) progress for buttery motio
 let blocks = [];
 let trails = [];
 
-const CY='0,180,216', PR='1,98,130', PU='127,119,221';
+const CY='20,164,188', PR='13,125,145', PU='1,98,130';
 
 function resize(){
   dpr = Math.min(window.devicePixelRatio||1, 2);
@@ -361,7 +367,7 @@ function drawScene(t){
   });
 
   // subtle reflection band
-  ctx.fillStyle='rgba(0,180,216,0.03)';
+  ctx.fillStyle='rgba(20,164,188,0.03)';
   ctx.fillRect(0,H*0.7,W,2);
 }
 

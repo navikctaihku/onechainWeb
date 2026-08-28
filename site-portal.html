@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OneChain — Website Versions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      body {
+        font-family: Inter, system-ui, sans-serif;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 48px 24px;
+        background: linear-gradient(180deg, #f7fafb 0%, #eef6fa 100%);
+        color: #0a1628;
+      }
+      .wrap { max-width: 720px; width: 100%; text-align: center; }
+      .logo { height: 40px; margin-bottom: 32px; }
+      h1 { font-size: clamp(1.8rem, 4vw, 2.4rem); font-weight: 800; margin-bottom: 12px; }
+      p { color: #5a6f87; margin-bottom: 40px; font-size: 1.05rem; }
+      .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+      .card {
+        display: block;
+        padding: 32px 24px;
+        border-radius: 16px;
+        border: 1px solid rgba(10, 22, 40, 0.08);
+        background: #fff;
+        box-shadow: 0 8px 32px rgba(10, 22, 40, 0.06);
+        text-decoration: none;
+        color: inherit;
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+      }
+      .card:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(10, 22, 40, 0.1); }
+      .badge {
+        display: inline-block;
+        margin-bottom: 14px;
+        padding: 4px 12px;
+        border-radius: 999px;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+      .badge--new { background: rgba(1, 98, 130, 0.1); color: #016282; }
+      .badge--classic { background: rgba(127, 119, 221, 0.12); color: #5b54b8; }
+      .card h2 { font-size: 1.2rem; font-weight: 700; margin-bottom: 8px; }
+      .card span { font-size: 0.9rem; color: #5a6f87; }
+      .url { display: block; margin-top: 16px; font-size: 0.78rem; color: #016282; word-break: break-all; }
+      @media (max-width: 600px) { .cards { grid-template-columns: 1fr; } }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <img src="new/logo.png" alt="OneChain" class="logo" onerror="this.style.display='none'" />
+      <h1>OneChain Websites</h1>
+      <p>Two independent designs — share either link directly.</p>
+      <div class="cards">
+        <a class="card" href="new/">
+          <span class="badge badge--new">New</span>
+          <h2>Terminal-style design</h2>
+          <span>Light mode landing page with fan cards, industries grid, and product pages.</span>
+          <span class="url">navikctaihku.github.io/new/</span>
+        </a>
+        <a class="card" href="classic/">
+          <span class="badge badge--classic">Classic</span>
+          <h2>Original mockup</h2>
+          <span>Full enterprise site with exhibition video, scroll story, and product spotlights.</span>
+          <span class="url">navikctaihku.github.io/classic/</span>
+        </a>
+      </div>
+    </div>
+  </body>
+</html>

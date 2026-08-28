@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us | OneChain</title>
+  <meta name="description" content="Contact OneChain — talk to our team about enterprise blockchain, ESGLedger, CertLedger, and collaboration opportunities.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="chrome.css">
+  <script src="site-chrome.js?v=202607301530" defer></script>
+  <style>
+    :root {
+      --ink: #2f3a45;
+      --muted: #64748B;
+      --muted-2: #94A3B8;
+      --border: rgba(10, 22, 40, 0.07);
+      --border-2: rgba(10, 22, 40, 0.1);
+      --primary: #14a4bc;
+      --primary-deep: #0c7a8d;
+      --primary-light: #3cbdd2;
+      --bg-page: #e8f1f5;
+      --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-cjk: 'Noto Sans TC', sans-serif;
+    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body {
+      font-family: var(--font), var(--font-cjk), sans-serif;
+      color: var(--ink);
+      background: var(--bg-page);
+      line-height: 1.6;
+    }
+    a { text-decoration: none; color: inherit; }
+    .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+    /* Hero — OneChainScan signature dark→teal 漸變 */
+    .contact-hero {
+      position: relative;
+      overflow: hidden;
+      padding: 128px 0 108px;
+      text-align: center;
+      background: linear-gradient(90deg, #0a2a32 0%, #0f8fa5 55%, #14a4bc 100%);
+    }
+    .contact-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse 55% 80% at 78% 40%, rgba(255,255,255,0.14), transparent 60%),
+        radial-gradient(ellipse 40% 70% at 12% 60%, rgba(0,0,0,0.18), transparent 55%);
+    }
+    .contact-hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.18;
+      background-image: radial-gradient(rgba(255,255,255,0.7) 1px, transparent 1px);
+      background-size: 24px 24px;
+      mask-image: linear-gradient(90deg, transparent 0%, #000 35%, #000 100%);
+      -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 35%, #000 100%);
+    }
+    .contact-hero .container { position: relative; z-index: 1; }
+    .contact-hero h1 {
+      font-size: clamp(42px, 6.5vw, 56px);
+      font-weight: 700;
+      letter-spacing: -0.035em;
+      line-height: 1.08;
+      margin-bottom: 16px;
+      color: #ffffff !important;
+    }
+    .contact-hero p {
+      font-size: 16px;
+      line-height: 1.7;
+      max-width: 680px;
+      margin: 0 auto;
+      color: rgba(255, 255, 255, 0.82);
+    }
+
+    /* Overlap cards into hero */
+    .contact-main {
+      position: relative;
+      z-index: 2;
+      margin-top: -64px;
+      padding: 0 0 96px;
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.9fr);
+      gap: 22px;
+      align-items: stretch;
+    }
+    @media (max-width: 900px) {
+      .contact-hero { padding: 120px 0 96px; }
+      .contact-main { margin-top: -48px; }
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.7);
+      box-shadow:
+        0 1px 2px rgba(10, 22, 40, 0.04),
+        0 12px 36px rgba(10, 22, 40, 0.08);
+    }
+
+    /* Form */
+    .form-card {
+      padding: 40px 44px 44px;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    .form-card h2 {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+    .form-card .form-lede {
+      font-size: 15px;
+      color: var(--muted);
+      margin-bottom: 32px;
+    }
+    #contact-form { display: flex; flex-direction: column; flex: 1; }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    @media (max-width: 640px) {
+      .form-card { padding: 28px 22px 32px; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+    .field { display: flex; flex-direction: column; gap: 8px; }
+    .field--full { margin-bottom: 28px; flex: 1; display: flex; flex-direction: column; }
+    .field label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--muted-2);
+    }
+    .field input,
+    .field textarea {
+      width: 100%;
+      font: 400 15px/1.5 var(--font);
+      color: var(--ink);
+      background: #f4f8fa;
+      border: 1.5px solid transparent;
+      border-radius: 12px;
+      padding: 15px 16px;
+      outline: none;
+      transition: border-color .18s, box-shadow .18s, background .18s;
+      resize: vertical;
+    }
+    .field input::placeholder,
+    .field textarea::placeholder { color: #a8b4c0; }
+    .field input:hover,
+    .field textarea:hover { background: #eef4f7; }
+    .field input:focus,
+    .field textarea:focus {
+      border-color: var(--primary);
+      background: #fff;
+      box-shadow: 0 0 0 4px rgba(20, 164, 188, 0.14);
+    }
+    .field textarea { min-height: 180px; flex: 1; }
+    .btn-send {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      align-self: flex-start;
+      font: 600 15px/1 var(--font);
+      color: #fff;
+      background: linear-gradient(180deg, #1ab0c8 0%, #1298ae 100%);
+      border: none;
+      border-radius: 12px;
+      padding: 15px 26px;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(20, 164, 188, 0.28);
+      transition: transform .18s, box-shadow .18s, filter .18s;
+    }
+    .btn-send:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.04);
+      box-shadow: 0 10px 24px rgba(20, 164, 188, 0.34);
+    }
+    .btn-send:active { transform: translateY(0); }
+    .btn-send svg { width: 16px; height: 16px; }
+
+    /* Sidebar */
+    .contact-side {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      min-height: 100%;
+    }
+    .touch-card { padding: 30px 28px 28px; }
+    .touch-card h3 {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 24px;
+    }
+    .touch-item {
+      display: grid;
+      grid-template-columns: 46px 1fr;
+      gap: 14px;
+      align-items: start;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .touch-item:first-of-type { padding-top: 0; }
+    .touch-item:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+    .touch-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: linear-gradient(160deg, rgba(20,164,188,0.14), rgba(20,164,188,0.06));
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .touch-icon svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .touch-meta span {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      color: var(--muted-2);
+      margin-bottom: 4px;
+    }
+    .touch-meta a,
+    .touch-meta p {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--ink);
+      line-height: 1.5;
+    }
+    .touch-meta a {
+      transition: color .15s;
+    }
+    .touch-meta a:hover { color: var(--primary); }
+
+    .map-card {
+      overflow: hidden;
+      position: relative;
+      flex: 1;
+      min-height: 260px;
+    }
+    .map-card iframe {
+      display: block;
+      width: 100%;
+      height: 100%;
+      min-height: 260px;
+      border: 0;
+    }
+    .map-open {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font: 600 12px/1 var(--font);
+      color: var(--ink);
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(10,22,40,0.08);
+      border-radius: 999px;
+      padding: 9px 13px;
+      box-shadow: 0 6px 18px rgba(10, 22, 40, 0.12);
+      transition: background .15s, color .15s, transform .15s;
+    }
+    .map-open:hover {
+      color: var(--primary);
+      transform: translateY(-1px);
+    }
+    .map-open svg { width: 12px; height: 12px; }
+
+    .form-status {
+      display: none;
+      margin-top: 14px;
+      font-size: 14px;
+      color: var(--primary-deep);
+      font-weight: 500;
+    }
+    .form-status.is-visible { display: block; }
+  </style>
+</head>
+<body>
+  <div id="site-nav"></div>
+
+  <header class="contact-hero">
+    <div class="container">
+      <h1>Contact Us</h1>
+      <p>Join us in embracing the blockchain revolution of the Web3 era. We invite businesses and brands to collaborate with us in building a thriving distributed ledger ecosystem.</p>
+    </div>
+  </header>
+
+  <main class="contact-main">
+    <div class="container contact-grid">
+      <section class="card form-card" aria-labelledby="form-title">
+        <h2 id="form-title">Send us a message</h2>
+        <p class="form-lede">We usually reply within one business day.</p>
+        <form id="contact-form" action="mailto:info@one-chain.io" method="get" enctype="text/plain">
+          <div class="form-row">
+            <div class="field">
+              <label for="name">Your name</label>
+              <input id="name" name="name" type="text" autocomplete="name" placeholder="Jane Chan" required>
+            </div>
+            <div class="field">
+              <label for="email">Your email</label>
+              <input id="email" name="email" type="email" autocomplete="email" placeholder="jane@company.com" required>
+            </div>
+          </div>
+          <div class="field field--full">
+            <label for="message">Message</label>
+            <textarea id="message" name="body" placeholder="What's on your mind?" required></textarea>
+          </div>
+          <button class="btn-send" type="submit">
+            Send Message
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M22 2 11 13"/><path d="M22 2 15 22 11 13 2 9l20-7z"/>
+            </svg>
+          </button>
+          <p class="form-status" id="form-status" role="status"></p>
+        </form>
+      </section>
+
+      <aside class="contact-side">
+        <div class="card touch-card">
+          <h3>Get in Touch</h3>
+          <div class="touch-item">
+            <div class="touch-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.81.36 1.6.68 2.34a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.74.32 1.53.55 2.34.68A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <div class="touch-meta">
+              <span>Phone</span>
+              <a href="tel:+85225714301">(852) 2571 4301</a>
+            </div>
+          </div>
+          <div class="touch-item">
+            <div class="touch-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="m22 6-10 7L2 6"/></svg>
+            </div>
+            <div class="touch-meta">
+              <span>Email</span>
+              <a href="mailto:info@one-chain.io">info@one-chain.io</a>
+            </div>
+          </div>
+          <div class="touch-item">
+            <div class="touch-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div class="touch-meta">
+              <span>Address</span>
+              <p>Level 9, Core C, Cyberport 3, 100 Cyberport Rd, Pok Fu Lam, Hong Kong</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card map-card">
+          <a class="map-open"
+             href="https://www.google.com/maps/search/?api=1&query=Cyberport+3,+100+Cyberport+Road,+Pok+Fu+Lam,+Hong+Kong"
+             target="_blank" rel="noopener">
+            Open in Maps
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/>
+            </svg>
+          </a>
+          <iframe
+            title="OneChain office at Cyberport, Hong Kong"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            src="https://maps.google.com/maps?q=Cyberport%203%2C%20100%20Cyberport%20Road%2C%20Pok%20Fu%20Lam%2C%20Hong%20Kong&z=15&output=embed">
+          </iframe>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script>
+    (function () {
+      var form = document.getElementById('contact-form');
+      var status = document.getElementById('form-status');
+      if (!form) return;
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var name = document.getElementById('name').value.trim();
+        var email = document.getElementById('email').value.trim();
+        var message = document.getElementById('message').value.trim();
+        var subject = encodeURIComponent('OneChain enquiry from ' + name);
+        var body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\n' + message);
+        window.location.href = 'mailto:info@one-chain.io?subject=' + subject + '&body=' + body;
+        status.textContent = 'Opening your email app…';
+        status.classList.add('is-visible');
+      });
+    })();
+  </script>
+</body>
+</html>

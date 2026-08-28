@@ -1,8 +1,8 @@
 import { defineConfig } from "vite";
 import { resolve } from "path";
 
-// GitHub Pages project site: https://navikctaihku.github.io/onechainWeb/
-const base = process.env.GITHUB_PAGES === "true" ? "/onechainWeb/" : "/";
+// Set SITE_BASE=/new/ when deploying as a subfolder on GitHub Pages
+const base = process.env.SITE_BASE || "/";
 
 export default defineConfig({
   base,

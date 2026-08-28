@@ -1,0 +1,90 @@
+/**
+ * OneChain shared baseline — loaded last on every page so it wins over
+ * page-local <style> blocks. Additive polish only: accessibility, heading
+ * rag, anchor offset. No page layout or colour is redefined here.
+ */
+
+/* One content measure for the whole site, so text edges don't shift between
+   pages. The home page pads at section level instead, and documentation keeps a
+   narrower measure for readability. */
+.container {
+  max-width: 1280px;
+  margin-inline: auto;
+}
+
+html:not([data-layout="home"]) .container {
+  padding-inline: 64px;
+}
+
+[data-layout="docs"] .container {
+  max-width: 900px;
+}
+
+@media (max-width: 768px) {
+  html:not([data-layout="home"]) .container {
+    padding-inline: 24px;
+  }
+}
+
+/* Keyboard focus must always be visible. Pages that style :focus keep theirs;
+   this covers everything else. */
+:where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--oc-primary, #14a4bc);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Mouse users don't get the ring, keyboard users always do. */
+:where(a, button):focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Headings break on meaning rather than at the container edge. */
+:where(h1, h2, h3, h4) {
+  text-wrap: balance;
+}
+
+/* Lead paragraphs avoid single-word last lines. */
+:where(.lede, .hero-sub, .section-header p, .lead-intro p) {
+  text-wrap: pretty;
+}
+
+/* Fixed 64px nav would otherwise cover the target of every #anchor link. */
+:where([id]) {
+  scroll-margin-top: 88px;
+}
+
+/* Numbers in stats and tables stay column-aligned. */
+:where(.stat b, .dash-stat b, .impact-item h3, .outcome b, .price-amt) {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Icon set. Icons scale with their container's font-size so existing tile sizes
+   stay intact; badges get a slightly larger glyph so they don't read as specks. */
+.oc-sprite {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.oc-ico {
+  width: 1em;
+  height: 1em;
+  flex: none;
+  vertical-align: -0.125em;
+}
+
+:where(.ai-badge, .api-badge, .hero-badge, .f-ico) .oc-ico {
+  width: 1.2em;
+  height: 1.2em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

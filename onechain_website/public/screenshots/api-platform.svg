@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" fill="none">
+  <defs>
+    <linearGradient id="chartFill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#14a4bc" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="#14a4bc" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="headerGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#14a4bc"/>
+      <stop offset="100%" stop-color="#0d7d91"/>
+    </linearGradient>
+    <filter id="cardShadow" x="-4%" y="-4%" width="108%" height="112%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#0a1628" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  <!-- outer frame -->
+  <rect width="800" height="500" rx="16" fill="#f7fafb"/>
+  <rect x="12" y="12" width="776" height="476" rx="14" fill="#fff" stroke="#e2f0f5" stroke-width="1.5" filter="url(#cardShadow)"/>
+
+  <!-- top bar -->
+  <rect x="12" y="12" width="776" height="52" rx="14" fill="url(#headerGrad)"/>
+  <rect x="12" y="48" width="776" height="16" fill="url(#headerGrad)"/>
+  <circle cx="44" cy="38" r="6" fill="#fff" fill-opacity="0.9"/>
+  <circle cx="64" cy="38" r="6" fill="#fff" fill-opacity="0.45"/>
+  <circle cx="84" cy="38" r="6" fill="#fff" fill-opacity="0.45"/>
+  <text x="400" y="42" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="12" fill="#fff" fill-opacity="0.95">api.one-chain.io/dashboard</text>
+
+  <!-- sidebar -->
+  <rect x="28" y="80" width="148" height="392" rx="10" fill="#f4fafb"/>
+  <text x="44" y="112" font-family="Inter,sans-serif" font-size="11" font-weight="700" fill="#64748b" letter-spacing="0.08em">MENU</text>
+  <rect x="36" y="124" width="132" height="32" rx="8" fill="#fff"/>
+  <text x="52" y="145" font-family="Inter,sans-serif" font-size="12" fill="#475569">Overview</text>
+  <rect x="36" y="164" width="132" height="32" rx="8" fill="rgba(20,164,188,0.12)"/>
+  <text x="52" y="185" font-family="Inter,sans-serif" font-size="12" font-weight="600" fill="#14a4bc">Analytics</text>
+  <rect x="36" y="204" width="132" height="32" rx="8" fill="#fff"/>
+  <text x="52" y="225" font-family="Inter,sans-serif" font-size="12" fill="#475569">API Keys</text>
+  <rect x="36" y="244" width="132" height="32" rx="8" fill="#fff"/>
+  <text x="52" y="265" font-family="Inter,sans-serif" font-size="12" fill="#475569">Endpoints</text>
+
+  <!-- stat cards -->
+  <rect x="192" y="80" width="178" height="72" rx="10" fill="#fff" stroke="#e8f4f7"/>
+  <text x="208" y="104" font-family="Inter,sans-serif" font-size="11" fill="#64748b">Requests (24h)</text>
+  <text x="208" y="132" font-family="Inter,sans-serif" font-size="22" font-weight="800" fill="#0a1628">24.8K</text>
+  <text x="318" y="132" font-family="Inter,sans-serif" font-size="11" font-weight="600" fill="#24a07e">+12%</text>
+
+  <rect x="382" y="80" width="178" height="72" rx="10" fill="#fff" stroke="#e8f4f7"/>
+  <text x="398" y="104" font-family="Inter,sans-serif" font-size="11" fill="#64748b">Success rate</text>
+  <text x="398" y="132" font-family="Inter,sans-serif" font-size="22" font-weight="800" fill="#0a1628">99.7%</text>
+
+  <rect x="572" y="80" width="200" height="72" rx="10" fill="#fff" stroke="#e8f4f7"/>
+  <text x="588" y="104" font-family="Inter,sans-serif" font-size="11" fill="#64748b">Avg latency</text>
+  <text x="588" y="132" font-family="Inter,sans-serif" font-size="22" font-weight="800" fill="#0a1628">42ms</text>
+
+  <!-- traffic chart -->
+  <rect x="192" y="168" width="580" height="168" rx="10" fill="#fff" stroke="#e8f4f7"/>
+  <text x="208" y="192" font-family="Inter,sans-serif" font-size="12" font-weight="700" fill="#0a1628">API traffic</text>
+  <text x="720" y="192" text-anchor="end" font-family="Inter,sans-serif" font-size="10" fill="#94a3b8">Last 7 days</text>
+
+  <!-- grid -->
+  <line x1="208" y1="220" x2="756" y2="220" stroke="#eef4f7" stroke-width="1"/>
+  <line x1="208" y1="250" x2="756" y2="250" stroke="#eef4f7" stroke-width="1"/>
+  <line x1="208" y1="280" x2="756" y2="280" stroke="#eef4f7" stroke-width="1"/>
+  <line x1="208" y1="310" x2="756" y2="310" stroke="#eef4f7" stroke-width="1"/>
+
+  <!-- chart area + line -->
+  <path d="M208 310 L268 285 L328 292 L388 255 L448 268 L508 230 L568 242 L628 205 L688 218 L748 195 L748 318 L208 318 Z" fill="url(#chartFill)"/>
+  <polyline points="208,310 268,285 328,292 388,255 448,268 508,230 568,242 628,205 688,218 748,195" stroke="#14a4bc" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <circle cx="748" cy="195" r="4" fill="#14a4bc"/>
+  <circle cx="748" cy="195" r="7" fill="#14a4bc" fill-opacity="0.2"/>
+
+  <text x="228" y="328" font-family="Inter,sans-serif" font-size="9" fill="#94a3b8">Mon</text>
+  <text x="318" y="328" font-family="Inter,sans-serif" font-size="9" fill="#94a3b8">Tue</text>
+  <text x="408" y="328" font-family="Inter,sans-serif" font-size="9" fill="#94a3b8">Wed</text>
+  <text x="498" y="328" font-family="Inter,sans-serif" font-size="9" fill="#94a3b8">Thu</text>
+  <text x="588" y="328" font-family="Inter,sans-serif" font-size="9" fill="#94a3b8">Fri</text>
+  <text x="678" y="328" font-family="Inter,sans-serif" font-size="9" fill="#94a3b8">Sat</text>
+  <text x="738" y="328" font-family="Inter,sans-serif" font-size="9" fill="#94a3b8">Sun</text>
+
+  <!-- endpoints table -->
+  <rect x="192" y="352" width="580" height="120" rx="10" fill="#fff" stroke="#e8f4f7"/>
+  <text x="208" y="376" font-family="Inter,sans-serif" font-size="12" font-weight="700" fill="#0a1628">API endpoints</text>
+
+  <!-- row 1 -->
+  <rect x="208" y="388" width="36" height="20" rx="4" fill="rgba(36,160,126,0.15)"/>
+  <text x="226" y="402" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" font-weight="700" fill="#24a07e">GET</text>
+  <text x="254" y="402" font-family="JetBrains Mono,monospace" font-size="10" fill="#334155">/v1/esg/credits</text>
+  <circle cx="730" cy="398" r="4" fill="#24a07e"/>
+  <text x="742" y="402" font-family="Inter,sans-serif" font-size="10" fill="#64748b">200 OK</text>
+
+  <!-- row 2 -->
+  <rect x="208" y="416" width="36" height="20" rx="4" fill="rgba(20,164,188,0.15)"/>
+  <text x="226" y="430" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" font-weight="700" fill="#14a4bc">POST</text>
+  <text x="254" y="430" font-family="JetBrains Mono,monospace" font-size="10" fill="#334155">/v1/cert/verify</text>
+  <circle cx="730" cy="426" r="4" fill="#24a07e"/>
+  <text x="742" y="430" font-family="Inter,sans-serif" font-size="10" fill="#64748b">200 OK</text>
+
+  <!-- row 3 -->
+  <rect x="208" y="444" width="36" height="20" rx="4" fill="rgba(36,160,126,0.15)"/>
+  <text x="226" y="458" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" font-weight="700" fill="#24a07e">GET</text>
+  <text x="254" y="458" font-family="JetBrains Mono,monospace" font-size="10" fill="#334155">/v1/health</text>
+  <circle cx="730" cy="454" r="4" fill="#24a07e"/>
+  <text x="742" y="458" font-family="Inter,sans-serif" font-size="10" fill="#64748b">200 OK</text>
+</svg>

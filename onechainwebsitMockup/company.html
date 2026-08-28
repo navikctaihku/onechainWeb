@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Company — Blockchain Services, Infrastructure, Applications & Green Tech | OneChain</title>
+  <meta name="description" content="What OneChain builds: blockchain services from network design to launched products, enterprise infrastructure, production applications, and green technology for the circular economy.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="chrome.css">
+  <script src="site-chrome.js?v=202607271607" defer></script>
+  <style>
+    :root {
+      --ink: #545454; --muted: #64748B; --muted-2: #94A3B8;
+      --border: rgba(10,22,40,0.08); --border-2: rgba(10,22,40,0.12);
+      --primary: #14a4bc; --primary-light: #3cbdd2; --cyan: #14a4bc;
+      --green: #007771; --gold: #016282; --purple: #14a4bc;
+      --bg-alt: #F7FAFB;
+      --font: 'Inter', -apple-system, sans-serif;
+      --font-display: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-cjk: 'Noto Sans TC', sans-serif;
+      --mono: 'Inter', -apple-system, sans-serif;
+    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body { font-family: var(--font), var(--font-cjk), sans-serif; color: var(--ink); background: #fff; line-height: 1.6; }
+    a { text-decoration: none; color: inherit; }
+
+    /* HERO — big statement, Vercel-security style, with aurora + dot grid */
+    .hero { padding: 168px 0 96px; text-align: center; position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; inset: 0; pointer-events: none;
+      background-image: radial-gradient(rgba(10,22,40,0.13) 1px, transparent 1px);
+      background-size: 26px 26px;
+      -webkit-mask-image: radial-gradient(ellipse 75% 65% at 50% 0%, #000 25%, transparent 75%);
+      mask-image: radial-gradient(ellipse 75% 65% at 50% 0%, #000 25%, transparent 75%); }
+    .hero-aurora { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+    .hero-aurora span { position: absolute; border-radius: 50%; filter: blur(80px); opacity: .5; will-change: transform; }
+    .hero-aurora span:nth-child(1) { width: 480px; height: 480px; top: -12%; left: 8%;
+      background: radial-gradient(circle, rgba(20,164,188,0.35), transparent 70%);
+      animation: aur-1 16s ease-in-out infinite; }
+    .hero-aurora span:nth-child(2) { width: 420px; height: 420px; top: 4%; right: 6%;
+      background: radial-gradient(circle, rgba(20,164,188,0.22), transparent 70%);
+      animation: aur-2 20s ease-in-out infinite; }
+    .hero-aurora span:nth-child(3) { width: 360px; height: 360px; top: 30%; left: 40%;
+      background: radial-gradient(circle, rgba(20,164,188,0.18), transparent 70%);
+      animation: aur-3 24s ease-in-out infinite; }
+    @keyframes aur-1 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(50px,30px) scale(1.1); } }
+    @keyframes aur-2 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-40px,25px) scale(1.06); } }
+    @keyframes aur-3 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(30px,-25px) scale(1.12); } }
+    @media (prefers-reduced-motion: reduce) { .hero-aurora span { animation: none; } }
+    .hero .container { position: relative; }
+    .hero h1 { font-family: var(--font-display); font-size: clamp(44px, 7vw, 76px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.05; }
+    .hero h1 .dim { color: var(--muted-2); }
+    .hero p { font-size: 19px; color: var(--muted); max-width: 620px; margin: 24px auto 36px; }
+    .hero-ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn-dark { display: inline-flex; align-items: center; gap: 8px; font: 600 15px/1 var(--font);
+      color: #fff; background: var(--ink); padding: 13px 24px; border-radius: 8px; transition: transform .2s, box-shadow .2s, border-color .2s, background-color .2s, color .2s; }
+    .btn-dark:hover { background: #1a2a40; transform: translateY(-1px); }
+    .btn-line { display: inline-flex; align-items: center; gap: 8px; font: 600 15px/1 var(--font);
+      color: var(--ink); border: 1px solid var(--border-2); padding: 13px 24px; border-radius: 8px; transition: transform .2s, box-shadow .2s, border-color .2s, background-color .2s, color .2s; }
+    .btn-line:hover { background: var(--bg-alt); }
+
+    /* pillar quick-links (like Vercel's 3 feature chips under hero) */
+    .pillars { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; max-width: 1080px; margin: 64px auto 0; }
+    @media (max-width: 1023px) { .pillars { grid-template-columns: repeat(2, 1fr); } }
+    .pillar { border: 1px solid var(--border-2); border-radius: 12px; padding: 22px 24px; text-align: left;
+      display: flex; flex-direction: column; gap: 4px; transition: transform .2s, box-shadow .2s, border-color .2s, background-color .2s, color .2s; background: #fff; }
+    .pillar:hover { border-color: var(--primary-light); box-shadow: 0 8px 28px rgba(10,22,40,0.08); transform: translateY(-2px); }
+    .pillar b { font-size: 15px; font-weight: 600; }
+    .pillar span { font-size: 13px; color: var(--muted); }
+    @media (max-width: 767px) { .pillars { grid-template-columns: 1fr; } }
+
+    /* section scaffolding */
+    section[id] { scroll-margin-top: 88px; }
+    .section { padding: 96px 0; }
+    .section-alt { background: var(--bg-alt); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .eyebrow { font: 600 12px/1 var(--font); letter-spacing: 2px; text-transform: uppercase; color: var(--primary); margin-bottom: 14px; }
+    .section h2 { font-family: var(--font-display); font-size: clamp(30px, 4vw, 44px); font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; max-width: 640px; }
+    .section .lede { font-size: 17px; color: var(--muted); max-width: 600px; margin-top: 16px; }
+
+    /* blockchain services: 3-step journey + credential explainer */
+    .svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 56px; }
+    .svc-card { border: 1px solid var(--border-2); border-radius: 14px; padding: 28px; background: #fff; transition: transform .2s, box-shadow .2s, border-color .2s, background-color .2s, color .2s; }
+    .svc-card:hover { border-color: var(--primary-light); box-shadow: 0 8px 28px rgba(10,22,40,0.07); transform: translateY(-2px); }
+    .svc-step { font: 600 11px/1 var(--font); letter-spacing: 1.5px; text-transform: uppercase; color: var(--primary); margin-bottom: 14px; }
+    .svc-card h4 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+    .svc-card > p { font-size: 14px; color: var(--muted); }
+    .svc-card ul { list-style: none; margin-top: 14px; }
+    .svc-card li { font-size: 14px; color: var(--muted); padding: 5px 0 5px 24px; position: relative; }
+    .svc-card li::before { content: '✓'; position: absolute; left: 0; font-weight: 700; color: var(--primary); }
+    @media (max-width: 860px) { .svc-grid { grid-template-columns: 1fr; } }
+    .cred-note {
+      margin-top: 40px; border: 1px solid rgba(20,164,188,0.25); background: rgba(20,164,188,0.05);
+      border-radius: 14px; padding: 28px 32px;
+    }
+    .cred-note h4 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+    .cred-note p { font-size: 15px; color: var(--muted); max-width: 820px; }
+
+    /* infrastructure: 3-layer diagram cards */
+    .layers { margin-top: 56px; display: flex; flex-direction: column; gap: 14px; }
+    .layer { display: grid; grid-template-columns: 200px 1fr auto; gap: 24px; align-items: center;
+      border: 1px solid var(--border-2); border-radius: 14px; padding: 26px 28px; background: #fff; transition: transform .2s, box-shadow .2s, border-color .2s, background-color .2s, color .2s; }
+    .layer:hover { border-color: var(--primary-light); box-shadow: 0 8px 28px rgba(10,22,40,0.07); }
+    .layer .l-tag { font: 500 11px/1 var(--mono); letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted-2); }
+    .layer .l-name { font-size: 19px; font-weight: 700; margin-top: 6px; }
+    .layer .l-desc { font-size: 15px; color: var(--muted); }
+    .layer .l-chips { display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+    .chip { font: 500 12px/1 var(--mono); color: var(--primary); background: rgba(1,98,130,0.07);
+      border: 1px solid rgba(1,98,130,0.15); padding: 6px 12px; border-radius: 999px; white-space: nowrap; }
+    @media (max-width: 900px) { .layer { grid-template-columns: 1fr; gap: 12px; } .layer .l-chips { justify-content: flex-start; } }
+
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 40px; }
+    .stat { border: 1px solid var(--border); border-radius: 12px; padding: 24px; background: #fff; }
+    .stat b { display: block; font-size: 34px; font-weight: 700; letter-spacing: -0.02em; color: var(--primary); }
+    .stat span { font-size: 14px; color: var(--muted); }
+    @media (max-width: 767px) { .stats { grid-template-columns: 1fr; } }
+
+    /* applications: two large product cards */
+    .apps { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 56px; }
+    .app { border: 1px solid var(--border-2); border-radius: 16px; overflow: hidden; background: #fff;
+      display: flex; flex-direction: column; transition: transform .2s, box-shadow .2s, border-color .2s, background-color .2s, color .2s; }
+    .app:hover { box-shadow: 0 16px 48px rgba(10,22,40,0.10); transform: translateY(-3px); }
+    .app-top { padding: 32px 32px 0; }
+    .app-badge { display: inline-block; font: 600 11px/1 var(--font); letter-spacing: 1.5px; text-transform: uppercase;
+      padding: 6px 12px; border-radius: 999px; margin-bottom: 16px; }
+    .app h3 { font-size: 24px; font-weight: 700; letter-spacing: -0.01em; }
+    .app p { font-size: 15px; color: var(--muted); margin-top: 10px; }
+    .app ul { list-style: none; margin: 18px 0 0; }
+    .app li { font-size: 14px; color: var(--muted); padding: 7px 0 7px 26px; position: relative; }
+    .app li::before { content: '✓'; position: absolute; left: 0; font-weight: 700; }
+    .app.esg li::before { color: var(--green); }
+    .app.cert li::before { color: var(--gold); }
+    .app-cta { margin: 24px 32px 32px; }
+    .app.esg .app-badge { color: #007771; background: rgba(0,119,113,0.12); }
+    .app.cert .app-badge { color: #8a6410; background: rgba(240,180,41,0.14); }
+    @media (max-width: 860px) { .apps { grid-template-columns: 1fr; } }
+
+    /* green tech: light band on global --oc-bg-alt */
+    .green-band { background: var(--oc-bg-alt, #e2f6f9); color: var(--ink); padding: 104px 0; position: relative; overflow: hidden;
+      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .green-band::before { content: ''; position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(ellipse 60% 50% at 80% 10%, rgba(0,119,113,0.10), transparent 60%),
+                  radial-gradient(ellipse 50% 45% at 10% 90%, rgba(20,164,188,0.08), transparent 60%); }
+    .green-band .container { position: relative; }
+    .green-band .eyebrow { color: var(--green); }
+    .green-band h2 { color: var(--ink); }
+    .green-band .lede { color: var(--muted); }
+    .green-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 56px; }
+    .green-card { border: 1px solid var(--border-2); border-radius: 14px; padding: 28px;
+      background: #fff; transition: transform .2s, box-shadow .2s, border-color .2s, background-color .2s, color .2s; }
+    .green-card:hover { border-color: rgba(0,119,113,0.35); box-shadow: 0 8px 28px rgba(0,119,113,0.10); transform: translateY(-2px); }
+    .green-card .g-icon { font-size: 22px; color: var(--primary); }
+    .green-card h4 { font-size: 16.5px; font-weight: 700; margin: 14px 0 8px; color: var(--ink); }
+    .green-card p { font-size: 14px; color: var(--muted); }
+    @media (max-width: 860px) { .green-grid { grid-template-columns: 1fr; } }
+
+    /* CTA */
+    .cta { padding: 112px 0; text-align: center; }
+    .cta h2 { font-family: var(--font-display); font-size: clamp(30px, 4vw, 44px); font-weight: 700; letter-spacing: -0.02em; }
+    .cta p { font-size: 17px; color: var(--muted); margin: 14px auto 32px; max-width: 480px; }
+
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s cubic-bezier(.16,1,.3,1); }
+    .reveal.visible { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+  </style>
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="global.css?v=202607141820">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta name="theme-color" content="#14a4bc">
+  <link rel="stylesheet" href="site-base.css?v=202607280950">
+</head>
+<body>
+<svg class="oc-sprite" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="ic-bank" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M4.5 21V9.5L12 4l7.5 5.5V21"/><path d="M9.5 21v-6h5v6"/><path d="M9 11h.01"/><path d="M15 11h.01"/></symbol>
+    <symbol id="ic-bolt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14h7l-1 8 10-12h-7l1-8Z"/></symbol>
+    <symbol id="ic-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M7 21v-6"/><path d="M12 21V8"/><path d="M17 21v-9"/></symbol>
+    <symbol id="ic-coin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7.5v9"/><path d="M9.6 10c.5-1 1.4-1.5 2.5-1.5 1.5 0 2.4.8 2.4 1.8 0 2.2-4.9 1.3-4.9 3.5 0 1 .9 1.8 2.5 1.8 1.1 0 2-.4 2.5-1.2"/></symbol>
+    <symbol id="ic-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a15 15 0 0 1 0 18 15 15 0 0 1 0-18Z"/></symbol>
+    <symbol id="ic-recycle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 19H4.8a1.8 1.8 0 0 1-1.55-2.66L7.2 9.5"/><path d="M11 19h8.2a1.8 1.8 0 0 0 1.55-2.66L19.5 14.2"/><path d="M14 16l-3 3 3 3"/><path d="M8.3 13.6 7.2 9.5 3.1 10.6"/><path d="M9.35 5.8 10.5 3.8a1.83 1.83 0 0 1 3.16 0l1.11 2"/><path d="M13.4 9.6l4.1 1.1 1.1-4.1"/></symbol>
+  </defs>
+</svg>
+  <div id="site-nav"></div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-aurora" aria-hidden="true"><span></span><span></span><span></span></div>
+    <div class="container">
+      <div class="eyebrow">Company</div>
+      <h1>Trust that<br><span class="dim">scales with you.</span></h1>
+      <p>OneChain builds the full stack of digital trust — from enterprise blockchain infrastructure, to production applications, to green technology for the circular economy.</p>
+      <div class="hero-ctas">
+        <a class="btn-line" href="infrastructure.html">View Infrastructure</a>
+      </div>
+      <div class="pillars">
+        <a class="pillar" href="#services"><b>Blockchain Services</b><span>From your first block to a working product</span></a>
+        <a class="pillar" href="#infrastructure"><b>Infrastructure</b><span>Three-layer enterprise blockchain platform</span></a>
+        <a class="pillar" href="#applications"><b>Applications</b><span>ESGLedger &amp; CertLedger, in production</span></a>
+        <a class="pillar" href="#greentech"><b>Green Tech</b><span>Verified impact for the circular economy</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOCKCHAIN SERVICES -->
+  <section class="section reveal" id="services">
+    <div class="container">
+      <div class="eyebrow">Blockchain Services</div>
+      <h2>From your first block to a working product.</h2>
+      <p class="lede">We help enterprises design the right network, anchor trust-critical data on-chain, and turn that foundation into applications people actually use — the same journey behind ESGLedger and CertLedger.</p>
+
+      <div class="svc-grid">
+        <div class="svc-card">
+          <div class="svc-step">01 · Foundation</div>
+          <h4>Build Your Chain</h4>
+          <p>We design and deploy permissioned enterprise networks on Hyperledger Fabric — private channels, governance, and an architecture shaped around your operating model.</p>
+          <ul>
+            <li>Network and governance design</li>
+            <li>Private, enterprise-ready infrastructure</li>
+          </ul>
+        </div>
+        <div class="svc-card">
+          <div class="svc-step">02 · Trusted Data</div>
+          <h4>Bring Trust On-Chain</h4>
+          <p>We anchor credentials, ESG data, and critical business records on-chain, so every claim carries a tamper-proof audit trail that can be verified in seconds.</p>
+          <ul>
+            <li>Data and credential anchoring</li>
+            <li>Smart contracts and verification flows</li>
+          </ul>
+        </div>
+        <div class="svc-card">
+          <div class="svc-step">03 · Applications</div>
+          <h4>Launch Real Products</h4>
+          <p>We turn that on-chain foundation into products people use every day — dashboards, marketplaces, verification portals, and white-label platforms.</p>
+          <ul>
+            <li>Product design and delivery</li>
+            <li>White-label and API integration</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="cred-note">
+        <h4>What is a verifiable credential?</h4>
+        <p>A verifiable credential is a digital certificate — a degree, a licence, a compliance attestation — whose fingerprint is anchored on a blockchain the moment it's issued. Because that record can never be altered, anyone can confirm the certificate is genuine in seconds by scanning a QR code: no phone calls, no emails, no accounts. A forged or edited document simply won't match its on-chain fingerprint. This is the foundation CertLedger is built on, and one of the core things we help organisations put on-chain.</p>
+      </div>
+
+      <div style="margin-top: 36px;">
+        <a class="btn-dark" href="mailto:enquiries@onechain.hk?subject=Blockchain%20and%20AI%20project%20consultation">Discuss your Blockchain and AI project</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- INFRASTRUCTURE -->
+  <section class="section section-alt reveal" id="infrastructure">
+    <div class="container">
+      <div class="eyebrow">Infrastructure</div>
+      <h2>Three layers. One platform.</h2>
+      <p class="lede">A composable enterprise blockchain stack built on Hyperledger Fabric. Deploy once, scale everywhere — each layer works independently, or together as a unified platform.</p>
+
+      <div class="layers">
+        <div class="layer">
+          <div><div class="l-tag">Layer 03</div><div class="l-name">Application</div></div>
+          <div class="l-desc">Products your users touch. ESGLedger, CertLedger, and white-label solutions built on the platform underneath.</div>
+          <div class="l-chips"><span class="chip">ESGLedger</span><span class="chip">CertLedger</span></div>
+        </div>
+        <div class="layer">
+          <div><div class="l-tag">Layer 02</div><div class="l-name">Service</div></div>
+          <div class="l-desc">Identity, smart contracts, AI verification, and APIs — plug-and-play services you compose into your own stack.</div>
+          <div class="l-chips"><span class="chip">Identity</span><span class="chip">Smart Contracts</span><span class="chip">AI Verify</span></div>
+        </div>
+        <div class="layer">
+          <div><div class="l-tag">Layer 01</div><div class="l-name">Infrastructure</div></div>
+          <div class="l-desc">Permissioned blockchain built for enterprise compliance — not crypto speculation. Energy-efficient consensus, regulatory-grade audit trails.</div>
+          <div class="l-chips"><span class="chip">Hyperledger Fabric</span><span class="chip">Consensus</span></div>
+        </div>
+      </div>
+
+      <div class="stats">
+        <div class="stat"><b>3,000+</b><span>TPS throughput</span></div>
+        <div class="stat"><b>&lt;1s</b><span>Transaction finality</span></div>
+        <div class="stat"><b>99.9%</b><span>Uptime SLA</span></div>
+      </div>
+      <div style="margin-top: 36px;"><a class="btn-line" href="infrastructure.html">Deep-dive the Infrastructure →</a></div>
+    </div>
+  </section>
+
+  <!-- APPLICATIONS -->
+  <section class="section reveal" id="applications">
+    <div class="container">
+      <div class="eyebrow">Applications</div>
+      <h2>Built on OneChain.<br>Running in production.</h2>
+      <p class="lede">Two flagship products proving the platform works — each solving a real-world trust problem for enterprises, institutions, and regulators.</p>
+
+      <div class="apps">
+        <div class="app esg">
+          <div class="app-top">
+            <span class="app-badge">ESGLedger</span>
+            <h3>Unlocking ESG trust</h3>
+            <p>Blockchain-verified ESG data platform and plastic credit marketplace. Anti-greenwashing technology for companies that mean what they claim.</p>
+            <ul>
+              <li>AI-powered anomaly detection on credit submissions</li>
+              <li>Full lifecycle: Collect → Verify → Mint → Trade → Retire</li>
+              <li>Auto-generated GRI, SASB &amp; TCFD compliance reports</li>
+            </ul>
+          </div>
+          <div class="app-cta"><a class="btn-dark" href="esgledger.html" style="background: var(--green);">Explore ESGLedger</a></div>
+        </div>
+        <div class="app cert">
+          <div class="app-top">
+            <span class="app-badge">CertLedger</span>
+            <h3>Certify with blockchain</h3>
+            <p>Tamper-proof credential issuance and identity verification. Paperless, instant, and verifiable by anyone with a QR code.</p>
+            <ul>
+              <li>Issue → Hold → Verify in three simple steps</li>
+              <li>AI fraud pattern detection</li>
+              <li>White-label &amp; API integration for LMS and HR systems</li>
+            </ul>
+          </div>
+          <div class="app-cta"><a class="btn-dark" href="certledger.html" style="background: var(--gold); color: var(--ink);">Explore CertLedger</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GREEN TECH -->
+  <section class="green-band reveal" id="greentech">
+    <div class="container">
+      <div class="eyebrow">Green Tech</div>
+      <h2>Sustainability claims,<br>backed by cryptography.</h2>
+      <p class="lede">We make environmental impact provable. From recycling chains across Hong Kong to green finance instruments, OneChain anchors every claim on-chain — because measured impact is the only kind that counts.</p>
+
+      <div class="green-grid">
+        <div class="green-card">
+          <div class="g-icon"><svg class="oc-ico" aria-hidden="true"><use href="#ic-recycle"></use></svg></div>
+          <h4>Circular Economy</h4>
+          <p>Blockchain-verified recycling coverage across Hong Kong. Every collection, sortation, and reprocessing step recorded immutably.</p>
+        </div>
+        <div class="green-card">
+          <div class="g-icon"><svg class="oc-ico" aria-hidden="true"><use href="#ic-coin"></use></svg></div>
+          <h4>Plastic Credits</h4>
+          <p>A verified marketplace where plastic credits are minted from real, auditable recovery — and retired transparently.</p>
+        </div>
+        <div class="green-card">
+          <div class="g-icon"><svg class="oc-ico" aria-hidden="true"><use href="#ic-chart"></use></svg></div>
+          <h4>Anti-Greenwashing</h4>
+          <p>AI anomaly detection plus on-chain provenance means ESG reports regulators and investors can actually trust.</p>
+        </div>
+        <div class="green-card">
+          <div class="g-icon"><svg class="oc-ico" aria-hidden="true"><use href="#ic-globe"></use></svg></div>
+          <h4>SDG Alignment</h4>
+          <p>Built around UN Sustainable Development Goals 12 &amp; 14 — responsible consumption and life below water.</p>
+        </div>
+        <div class="green-card">
+          <div class="g-icon"><svg class="oc-ico" aria-hidden="true"><use href="#ic-bank"></use></svg></div>
+          <h4>Green Finance</h4>
+          <p>Provable impact data that unlocks sustainable capital, green bonds, and ESG-linked lending.</p>
+        </div>
+        <div class="green-card">
+          <div class="g-icon"><svg class="oc-ico" aria-hidden="true"><use href="#ic-bolt"></use></svg></div>
+          <h4>Efficient by Design</h4>
+          <p>Energy-efficient consensus — enterprise blockchain without the environmental cost of proof-of-work.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="site-footer"></div>
+
+  <script>
+    document.querySelectorAll('.reveal').forEach(el => {
+      new IntersectionObserver((entries, obs) => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+      }, { threshold: 0.12 }).observe(el);
+    });
+  </script>
+</body>
+</html>

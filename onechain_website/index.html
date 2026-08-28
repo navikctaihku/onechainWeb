@@ -8,8 +8,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="/styles.css" />
-    <link rel="stylesheet" href="/pages.css" />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./pages.css" />
     <script>document.documentElement.classList.add("js-enabled");</script>
   </head>
   <body>
@@ -34,14 +34,137 @@
         <a href="index.html" class="logo" aria-label="OneChain home">
           <img src="logo.png" alt="OneChain" class="logo-img" />
         </a>
-        <nav class="nav" id="nav">
-          <a href="#products">Products</a>
-          <a href="#industries">Solutions</a>
-          <a href="about.html">About</a>
-          <a href="https://api.one-chain.io" target="_blank" rel="noopener">Resources</a>
+
+        <nav class="nav nav-mega" id="nav" aria-label="Main navigation">
+          <ul class="nav-list">
+            <li class="nav-item nav-item--dropdown">
+              <button type="button" class="nav-trigger" aria-expanded="false" aria-haspopup="true">
+                Products
+                <svg class="nav-chevron" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+              </button>
+              <div class="nav-panel">
+                <div class="nav-panel-grid nav-panel-grid--2">
+                  <div class="nav-panel-col">
+                    <p class="nav-panel-label">Applications</p>
+                    <a href="esgledger.html" class="nav-link-card">
+                      <span class="nav-link-icon nav-link-icon--green" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none"><path d="M12 20V8M12 8l-4 4M12 8l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                      </span>
+                      <span class="nav-link-text">
+                        <strong>ESGLedger</strong>
+                        <small>Trace plastic credits and ESG data on-chain</small>
+                      </span>
+                    </a>
+                    <a href="certledger.html" class="nav-link-card">
+                      <span class="nav-link-icon nav-link-icon--gold" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none"><rect x="5" y="4" width="14" height="16" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M9 10h6M9 14h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                      </span>
+                      <span class="nav-link-text">
+                        <strong>CertLedger</strong>
+                        <small>Tamper-proof credentials with QR verification</small>
+                      </span>
+                    </a>
+                  </div>
+                  <div class="nav-panel-col">
+                    <p class="nav-panel-label">Platform</p>
+                    <a href="infrastructure.html" class="nav-link-card">
+                      <span class="nav-link-icon nav-link-icon--teal" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none"><rect x="4" y="6" width="16" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M8 10h8M8 14h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                      </span>
+                      <span class="nav-link-text">
+                        <strong>Infrastructure</strong>
+                        <small>Hyperledger Fabric consortium &amp; PoA consensus</small>
+                      </span>
+                    </a>
+                    <a href="https://api.one-chain.io" class="nav-link-card" target="_blank" rel="noopener">
+                      <span class="nav-link-icon nav-link-icon--blue" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none"><path d="M8 6h8M6 12h12M9 18h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                      </span>
+                      <span class="nav-link-text">
+                        <strong>API Platform</strong>
+                        <small>Managed endpoints, keys &amp; traffic analytics</small>
+                      </span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <li class="nav-item nav-item--dropdown">
+              <button type="button" class="nav-trigger" aria-expanded="false" aria-haspopup="true">
+                Solutions
+                <svg class="nav-chevron" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+              </button>
+              <div class="nav-panel nav-panel--wide">
+                <div class="nav-panel-grid nav-panel-grid--3">
+                  <div class="nav-panel-col">
+                    <p class="nav-panel-label">Public sector</p>
+                    <a href="index.html#industries" class="nav-link-simple">Government</a>
+                    <a href="index.html#industries" class="nav-link-simple">Education</a>
+                    <a href="certledger.html" class="nav-link-simple">Healthcare credentials</a>
+                  </div>
+                  <div class="nav-panel-col">
+                    <p class="nav-panel-label">Enterprise</p>
+                    <a href="esgledger.html" class="nav-link-simple">ESG &amp; Recycling</a>
+                    <a href="index.html#industries" class="nav-link-simple">Supply Chain</a>
+                    <a href="index.html#industries" class="nav-link-simple">Retail &amp; FMCG</a>
+                  </div>
+                  <div class="nav-panel-col">
+                    <p class="nav-panel-label">Sustainability</p>
+                    <a href="esgledger.html" class="nav-link-simple">Green Tech</a>
+                    <a href="index.html#industries" class="nav-link-simple">Forestry &amp; Timber</a>
+                    <a href="https://api.one-chain.io" class="nav-link-simple" target="_blank" rel="noopener">Developers</a>
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <li class="nav-item nav-item--dropdown">
+              <button type="button" class="nav-trigger" aria-expanded="false" aria-haspopup="true">
+                About
+                <svg class="nav-chevron" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+              </button>
+              <div class="nav-panel">
+                <div class="nav-panel-grid nav-panel-grid--1">
+                  <div class="nav-panel-col">
+                    <p class="nav-panel-label">Company</p>
+                    <a href="about.html" class="nav-link-card">
+                      <span class="nav-link-icon nav-link-icon--teal" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M5 20c0-4 3.5-6 7-6s7 2 7 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                      </span>
+                      <span class="nav-link-text">
+                        <strong>About us</strong>
+                        <small>Hong Kong's full-stack blockchain company</small>
+                      </span>
+                    </a>
+                    <a href="infrastructure.html" class="nav-link-simple">Infrastructure &amp; AI services</a>
+                    <a href="index.html#contact" class="nav-link-simple">Contact</a>
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <li class="nav-item nav-item--dropdown">
+              <button type="button" class="nav-trigger" aria-expanded="false" aria-haspopup="true">
+                Resources
+                <svg class="nav-chevron" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+              </button>
+              <div class="nav-panel">
+                <div class="nav-panel-grid nav-panel-grid--1">
+                  <div class="nav-panel-col">
+                    <p class="nav-panel-label">Learn</p>
+                    <a href="index.html#insights" class="nav-link-simple">Insights &amp; news</a>
+                    <a href="https://api.one-chain.io" class="nav-link-simple" target="_blank" rel="noopener">API documentation</a>
+                    <a href="infrastructure.html" class="nav-link-simple">Architecture overview</a>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
         </nav>
-        <a href="#contact" class="btn btn-header">Contact us</a>
-        <button class="nav-toggle" id="navToggle" aria-label="Menu">
+
+        <a href="index.html#contact" class="btn btn-header">Contact us</a>
+        <button type="button" class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
           <span></span><span></span>
         </button>
       </div>
@@ -52,25 +175,19 @@
       <!-- ═══════════════════════════════════════════════════════
            SECTION 3: Hero (Dark, Terminal 3 style)
       ═══════════════════════════════════════════════════════ -->
-      <section class="hero" id="hero">
-        <div class="gradient-mesh" aria-hidden="true">
-          <span class="gradient-blob gradient-blob--teal"></span>
-          <span class="gradient-blob gradient-blob--blue"></span>
-          <span class="gradient-blob gradient-blob--green"></span>
-        </div>
-        <canvas class="hero-network hero-network--center" aria-hidden="true"></canvas>
-        <div class="container hero-content reveal">
-          <h1>
-            Connect Enterprise Data with<br />
-            <span class="hero-accent">Trusted</span><br />
-            Verification & Intelligence
-          </h1>
-          <p class="hero-sub">
-            Secure your enterprise applications with blockchain-verified data, and elevate your business
-            with OneChain's AI-powered analysis and smart credentials.
-          </p>
-          <a href="#contact" class="btn btn-primary">Get in touch</a>
-        </div>
+      <section class="hero hero--video" id="hero">
+        <video
+          class="hero-video"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="auto"
+          aria-hidden="true"
+        >
+          <source src="./videos/hero-blockchain-cubes-seamless.mp4" type="video/mp4" />
+        </video>
+        <div class="hero-spacer" aria-hidden="true"></div>
       </section>
 
       <!-- ═══════════════════════════════════════════════════════
@@ -111,20 +228,63 @@
       </section>
 
       <!-- ═══════════════════════════════════════════════════════
+           SECTION 4b: How it works — 3-step pipeline
+      ═══════════════════════════════════════════════════════ -->
+      <section class="pipeline-section section--surface" id="how-it-works">
+        <div class="container">
+          <header class="pipeline-header reveal">
+            <p class="section-tag">HOW IT WORKS</p>
+            <h2 class="section-title">From data to verified proof in three steps</h2>
+            <p class="section-desc">
+              OneChain anchors enterprise data on a permissioned Hyperledger Fabric chain —
+              so partners, regulators, and end users can verify without crypto complexity.
+            </p>
+          </header>
+          <div class="pipeline-track" id="pipelineTrack">
+            <div class="pipeline-line" aria-hidden="true"><span class="pipeline-line-fill" id="pipelineLineFill"></span></div>
+            <article class="pipeline-step reveal" data-step="0">
+              <div class="pipeline-icon" aria-hidden="true">
+                <svg viewBox="0 0 48 48" fill="none"><rect x="8" y="12" width="32" height="24" rx="4" stroke="currentColor" stroke-width="2"/><path d="M16 20h16M16 26h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </div>
+              <span class="pipeline-num">01</span>
+              <h3>Collect &amp; sign</h3>
+              <p>Enterprise apps, IoT sensors, and RVMs submit signed data through OneChain APIs or consortium channels.</p>
+            </article>
+            <article class="pipeline-step reveal" data-step="1">
+              <div class="pipeline-icon" aria-hidden="true">
+                <svg viewBox="0 0 48 48" fill="none"><rect x="10" y="10" width="12" height="12" rx="2" stroke="currentColor" stroke-width="2"/><rect x="26" y="10" width="12" height="12" rx="2" stroke="currentColor" stroke-width="2"/><rect x="10" y="26" width="12" height="12" rx="2" stroke="currentColor" stroke-width="2"/><rect x="26" y="26" width="12" height="12" rx="2" stroke="currentColor" stroke-width="2"/></svg>
+              </div>
+              <span class="pipeline-num">02</span>
+              <h3>Anchor on-chain</h3>
+              <p>Data is hashed and recorded on the OneChain Consortium with PoA consensus — immutable, auditable, zero gas fees.</p>
+            </article>
+            <article class="pipeline-step reveal" data-step="2">
+              <div class="pipeline-icon" aria-hidden="true">
+                <svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="16" stroke="currentColor" stroke-width="2"/><path d="M16 24l6 6 12-14" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <span class="pipeline-num">03</span>
+              <h3>Verify anywhere</h3>
+              <p>Anyone can verify credentials, credits, or records via QR scan, API call, or dashboard — no wallet required.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════════════════════
            SECTION 5: Trust Pillar 1 — Isometric blockchain illustration
            (Anne's favourite — image 3 style)
            Categories: Green Tech, Blockchain Infrastructure, Credential, AI Application
       ═══════════════════════════════════════════════════════ -->
-      <section class="trust-section" id="trust">
+      <section class="trust-section section--tint" id="trust">
         <div class="container trust-grid">
           <div class="trust-visual" aria-hidden="true">
             <img
               src="trust-ecosystem.png?v=2"
-              alt=""
+              alt="OneChain trust ecosystem illustration"
               class="trust-ecosystem-img"
               width="1024"
               height="571"
-              loading="lazy"
+              loading="eager"
             />
           </div>
           <div class="trust-copy">
@@ -141,7 +301,7 @@
       <!-- ═══════════════════════════════════════════════════════
            SECTION 6: Trust Pillar 2
       ═══════════════════════════════════════════════════════ -->
-      <section class="trust-section trust-reverse">
+      <section class="trust-section trust-reverse section--surface">
         <div class="container trust-grid trust-grid-reverse">
           <div class="trust-copy">
             <h2>Trusted by enterprises & institutions</h2>
@@ -154,20 +314,58 @@
           <div class="trust-visual trust-visual-city" aria-hidden="true">
             <img
               src="trust-city-network.png"
-              alt=""
+              alt="Hong Kong enterprise network illustration"
               class="trust-city-img"
               width="1024"
               height="571"
-              loading="lazy"
+              loading="eager"
             />
           </div>
         </div>
       </section>
 
-      <!-- ═══════════════════════════════════════════════════════
-           SECTION 6b: Industries grid (Terminal 3 style)
-      ═══════════════════════════════════════════════════════ -->
-      <section class="industries-section" id="industries">
+      <section class="proof-section section--mint" id="case-studies">
+        <div class="container">
+          <header class="proof-header reveal">
+            <p class="section-tag">CUSTOMER STORIES</p>
+            <h2 class="section-title">Trusted by enterprises across Hong Kong</h2>
+          </header>
+          <div class="proof-grid">
+            <blockquote class="testimonial-card reveal">
+              <div class="testimonial-stars" aria-hidden="true">★★★★★</div>
+              <p class="testimonial-quote">"OneChain gave us a verifiable plastic credit trail from reverse-vending machines to retirement — regulators can audit every step without us exposing proprietary data."</p>
+              <footer class="testimonial-author">
+                <div class="testimonial-avatar" aria-hidden="true">WS</div>
+                <div><cite>Sustainability Lead</cite><span>Watsons · Retail &amp; FMCG pilot</span></div>
+              </footer>
+            </blockquote>
+            <article class="case-study-card reveal">
+              <div class="case-study-badge">ESG</div>
+              <h3>Watsons reverse-vending pilot</h3>
+              <p>ESGLedger traces plastic credits from 40+ RVM locations across Hong Kong with geo-spatial reporting.</p>
+              <dl class="case-study-metrics">
+                <div><dt>847K+</dt><dd>credits traced</dd></div>
+                <div><dt>40+</dt><dd>RVM sites</dd></div>
+                <div><dt>0</dt><dd>gas fees</dd></div>
+              </dl>
+              <a href="esgledger.html" class="case-study-link">Read case study →</a>
+            </article>
+            <article class="case-study-card reveal">
+              <div class="case-study-badge case-study-badge--gold">Education</div>
+              <h3>PolyU credential verification</h3>
+              <p>CertLedger issues tamper-proof academic credentials with instant QR verification — no wallet, no crypto.</p>
+              <dl class="case-study-metrics">
+                <div><dt>12K+</dt><dd>credentials issued</dd></div>
+                <div><dt>&lt;2s</dt><dd>verify time</dd></div>
+                <div><dt>100%</dt><dd>on-chain audit</dd></div>
+              </dl>
+              <a href="certledger.html" class="case-study-link">Read case study →</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="industries-section section--surface" id="industries">
         <div class="container industries-grid">
           <div class="industry-cards" id="industryCards" aria-label="Industries served by OneChain">
             <article class="industry-card" data-industry tabindex="0" role="button" aria-pressed="false">
@@ -175,7 +373,7 @@
                 <svg class="industry-icon" viewBox="0 0 64 64" aria-hidden="true"><rect x="18" y="28" width="28" height="22" rx="2" fill="#dce8f0" stroke="#016282" stroke-width="1.5"/><polygon points="32,14 14,26 50,26" fill="#e8f0f6" stroke="#016282" stroke-width="1.5"/><rect x="28" y="34" width="8" height="16" fill="#016282" opacity="0.3"/></svg>
                 <span class="industry-label">Government</span>
               </div>
-              <div class="industry-card-detail" hidden>
+              <div class="industry-card-detail">
                 <h3>Government</h3>
                 <p>Enable regulatory oversight with blockchain-verified recycling data, district coverage analytics, and CSDI-compliant geo-spatial reporting.</p>
                 <a href="esgledger.html" class="industry-link">Learn more</a>
@@ -186,7 +384,7 @@
                 <svg class="industry-icon" viewBox="0 0 64 64" aria-hidden="true"><rect x="16" y="22" width="14" height="14" rx="2" fill="#dce8f0" stroke="#016282" stroke-width="1.5"/><rect x="25" y="16" width="14" height="14" rx="2" fill="#e8f0f6" stroke="#016282" stroke-width="1.5"/><rect x="34" y="22" width="14" height="14" rx="2" fill="#dce8f0" stroke="#016282" stroke-width="1.5"/><rect x="20" y="38" width="24" height="10" rx="2" fill="#016282" opacity="0.2"/></svg>
                 <span class="industry-label">Education</span>
               </div>
-              <div class="industry-card-detail" hidden>
+              <div class="industry-card-detail">
                 <h3>Education</h3>
                 <p>Issue and verify academic credentials with CertLedger — tamper-proof certificates with instant QR verification, no account required.</p>
                 <a href="certledger.html" class="industry-link">Learn more</a>
@@ -197,7 +395,7 @@
                 <svg class="industry-icon" viewBox="0 0 64 64" aria-hidden="true"><rect x="26" y="18" width="12" height="28" rx="3" fill="#2ecc71" opacity="0.25" stroke="#016282" stroke-width="1.5"/><path d="M30 24h4M30 30h4M30 36h4" stroke="#016282" stroke-width="1.5"/><circle cx="32" cy="14" r="6" fill="none" stroke="#2ecc71" stroke-width="1.5"/></svg>
                 <span class="industry-label">ESG &amp; Recycling</span>
               </div>
-              <div class="industry-card-detail" hidden>
+              <div class="industry-card-detail">
                 <h3>ESG &amp; Recycling</h3>
                 <p>Trace plastic credits from collection to retirement with ESGLedger — immutable audit trails and live RVM geo-spatial intelligence.</p>
                 <a href="esgledger.html" class="industry-link">Learn more</a>
@@ -208,7 +406,7 @@
                 <svg class="industry-icon" viewBox="0 0 64 64" aria-hidden="true"><rect x="20" y="20" width="10" height="10" fill="#dce8f0" stroke="#016282" stroke-width="1.5"/><rect x="34" y="20" width="10" height="10" fill="#e8f0f6" stroke="#016282" stroke-width="1.5"/><rect x="20" y="34" width="10" height="10" fill="#e8f0f6" stroke="#016282" stroke-width="1.5"/><rect x="34" y="34" width="10" height="10" fill="#dce8f0" stroke="#016282" stroke-width="1.5"/><rect x="27" y="27" width="10" height="10" fill="#016282" opacity="0.35"/></svg>
                 <span class="industry-label">Healthcare</span>
               </div>
-              <div class="industry-card-detail" hidden>
+              <div class="industry-card-detail">
                 <h3>Healthcare</h3>
                 <p>Verify medical training credentials and institutional records with privacy-preserving blockchain verification and independent auditability.</p>
                 <a href="certledger.html" class="industry-link">Learn more</a>
@@ -219,7 +417,7 @@
                 <svg class="industry-icon" viewBox="0 0 64 64" aria-hidden="true"><rect x="14" y="30" width="36" height="16" rx="2" fill="#dce8f0" stroke="#016282" stroke-width="1.5"/><path d="M20 30 L32 18 L44 30" fill="#e8f0f6" stroke="#016282" stroke-width="1.5"/><circle cx="24" cy="38" r="3" fill="#016282" opacity="0.4"/><circle cx="40" cy="38" r="3" fill="#016282" opacity="0.4"/></svg>
                 <span class="industry-label">Supply Chain</span>
               </div>
-              <div class="industry-card-detail" hidden>
+              <div class="industry-card-detail">
                 <h3>Supply Chain</h3>
                 <p>Give suppliers, auditors, and enterprises a shared source of truth with tamper-proof traceability across every step of the value chain.</p>
                 <a href="esgledger.html" class="industry-link">Learn more</a>
@@ -230,7 +428,7 @@
                 <svg class="industry-icon" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="36" r="10" fill="#2ecc71" opacity="0.2" stroke="#016282" stroke-width="1.5"/><rect x="30" y="18" width="4" height="14" fill="#016282" opacity="0.5"/><circle cx="32" cy="16" r="8" fill="#e8f0f6" stroke="#2ecc71" stroke-width="1.5"/></svg>
                 <span class="industry-label">Green Tech</span>
               </div>
-              <div class="industry-card-detail" hidden>
+              <div class="industry-card-detail">
                 <h3>Green Tech</h3>
                 <p>Monitor trees, timber, and environmental sensors with IoT data anchored on-chain — low-energy PoA consensus built for sustainability.</p>
                 <a href="esgledger.html" class="industry-link">Learn more</a>
@@ -241,7 +439,7 @@
                 <svg class="industry-icon" viewBox="0 0 64 64" aria-hidden="true"><rect x="18" y="22" width="28" height="20" rx="3" fill="#dce8f0" stroke="#016282" stroke-width="1.5"/><rect x="22" y="26" width="8" height="6" rx="1" fill="#016282" opacity="0.3"/><rect x="34" y="26" width="8" height="6" rx="1" fill="#016282" opacity="0.3"/><rect x="26" y="42" width="12" height="6" rx="1" fill="#e8f0f6" stroke="#016282" stroke-width="1.5"/></svg>
                 <span class="industry-label">Retail &amp; FMCG</span>
               </div>
-              <div class="industry-card-detail" hidden>
+              <div class="industry-card-detail">
                 <h3>Retail &amp; FMCG</h3>
                 <p>Power reverse vending and plastic credit programs for retail partners — verified recycling impact without crypto complexity.</p>
                 <a href="esgledger.html" class="industry-link">Learn more</a>
@@ -252,7 +450,7 @@
                 <svg class="industry-icon" viewBox="0 0 64 64" aria-hidden="true"><rect x="28" y="36" width="8" height="14" fill="#016282" opacity="0.4"/><polygon points="32,14 20,36 44,36" fill="#2ecc71" opacity="0.25" stroke="#016282" stroke-width="1.5"/><rect x="16" y="40" width="32" height="8" rx="2" fill="#dce8f0" stroke="#016282" stroke-width="1.5"/></svg>
                 <span class="industry-label">Forestry &amp; Timber</span>
               </div>
-              <div class="industry-card-detail" hidden>
+              <div class="industry-card-detail">
                 <h3>Forestry &amp; Timber</h3>
                 <p>Track recycled timber and sustainable forestry with blockchain-verified green certificates and end-to-end material provenance.</p>
                 <a href="esgledger.html" class="industry-link">Learn more</a>
@@ -263,7 +461,7 @@
                 <svg class="industry-icon" viewBox="0 0 64 64" aria-hidden="true"><rect x="16" y="20" width="32" height="24" rx="4" fill="#e8f0f6" stroke="#016282" stroke-width="1.5"/><path d="M22 32h8M34 28h8M22 38h20" stroke="#016282" stroke-width="1.5" stroke-linecap="round"/><circle cx="44" cy="26" r="3" fill="#016282" opacity="0.5"/></svg>
                 <span class="industry-label">Developers</span>
               </div>
-              <div class="industry-card-detail" hidden>
+              <div class="industry-card-detail">
                 <h3>Developers</h3>
                 <p>Build trusted applications on the OneChain API Platform — managed endpoints, API keys, and traffic analytics from day one.</p>
                 <a href="https://api.one-chain.io" class="industry-link" target="_blank" rel="noopener">Learn more</a>
@@ -287,19 +485,15 @@
       <!-- ═══════════════════════════════════════════════════════
            SECTION 7: Stats
       ═══════════════════════════════════════════════════════ -->
-      <section class="stats-section">
-        <div class="container stats-row">
-          <div class="stat-item reveal">
-            <span class="stat-number" data-count="1000">0</span><span class="stat-suffix">+</span>
-            <span class="stat-label">TPS capacity</span>
-          </div>
-          <div class="stat-item reveal">
-            <span class="stat-number" data-count="0">0</span>
-            <span class="stat-label">gas fees</span>
-          </div>
-          <div class="stat-item reveal">
-            <span class="stat-number" data-count="3">0</span>
-            <span class="stat-label">production apps</span>
+      <section class="stats-section stats-section--band section--tint" id="stats">
+        <div class="container">
+          <p class="stats-band-label reveal">OneChain by the numbers</p>
+          <div class="stats-row stats-row--band">
+            <div class="stat-item reveal"><span class="stat-number" data-count="1000">0</span><span class="stat-suffix">+</span><span class="stat-label">TPS capacity</span></div>
+            <div class="stat-item reveal"><span class="stat-number" data-count="0">0</span><span class="stat-label">gas fees</span></div>
+            <div class="stat-item reveal"><span class="stat-number" data-count="3">0</span><span class="stat-label">production apps</span></div>
+            <div class="stat-item reveal"><span class="stat-number" data-count="12">0</span><span class="stat-suffix">+</span><span class="stat-label">ecosystem partners</span></div>
+            <div class="stat-item reveal"><span class="stat-number" data-count="847">0</span><span class="stat-suffix">K+</span><span class="stat-label">credits traced</span></div>
           </div>
         </div>
       </section>
@@ -307,7 +501,7 @@
       <!-- ═══════════════════════════════════════════════════════
            SECTION 8: Built on OneChain Consortium (Product cards — image 5 style)
       ═══════════════════════════════════════════════════════ -->
-      <section class="consortium-section" id="consortium">
+      <section class="consortium-section section--mint" id="consortium">
         <div class="container">
           <header class="consortium-header reveal">
             <p class="section-tag">PRODUCTS</p>
@@ -388,26 +582,215 @@
         </div>
       </section>
 
-      <!-- ═══════════════════════════════════════════════════════
-           SECTION 9: Partners
-      ═══════════════════════════════════════════════════════ -->
-      <section class="partners-section">
+      <section class="showcase-section section--surface" id="showcase">
+        <div class="container">
+          <header class="showcase-header reveal">
+            <p class="section-tag">IN ACTION</p>
+            <h2 class="section-title">See OneChain products in action</h2>
+            <p class="section-desc">Real dashboards powering ESG traceability, credential verification, and developer APIs.</p>
+          </header>
+          <div class="showcase-carousel" id="showcaseCarousel">
+            <div class="showcase-viewport">
+              <div class="showcase-track" id="showcaseTrack">
+                <figure class="showcase-slide is-active" data-slide="0">
+                  <div class="showcase-frame"><img src="screenshots/esg-dashboard.svg" alt="ESGLedger dashboard" width="800" height="500" loading="lazy" /></div>
+                  <figcaption><strong>ESGLedger</strong><span>Trace plastic credits from collection to retirement with live geo-spatial intelligence.</span></figcaption>
+                </figure>
+                <figure class="showcase-slide" data-slide="1">
+                  <div class="showcase-frame"><img src="screenshots/cert-verify.svg" alt="CertLedger verification" width="800" height="500" loading="lazy" /></div>
+                  <figcaption><strong>CertLedger</strong><span>Issue tamper-proof credentials and verify instantly with QR scan.</span></figcaption>
+                </figure>
+                <figure class="showcase-slide" data-slide="2">
+                  <div class="showcase-frame"><img src="screenshots/api-platform.svg" alt="API Platform dashboard" width="800" height="500" loading="lazy" /></div>
+                  <figcaption><strong>API Platform</strong><span>Managed endpoints, API keys, and traffic analytics for developers.</span></figcaption>
+                </figure>
+              </div>
+            </div>
+            <div class="showcase-controls">
+              <button type="button" class="showcase-btn showcase-btn--prev" id="showcasePrev" aria-label="Previous slide"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M12 4L6 10l6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg></button>
+              <div class="showcase-dots" id="showcaseDots" role="tablist" aria-label="Product slides">
+                <button type="button" class="showcase-dot is-active" data-slide="0" role="tab" aria-selected="true" aria-label="ESGLedger"></button>
+                <button type="button" class="showcase-dot" data-slide="1" role="tab" aria-selected="false" aria-label="CertLedger"></button>
+                <button type="button" class="showcase-dot" data-slide="2" role="tab" aria-selected="false" aria-label="API Platform"></button>
+              </div>
+              <button type="button" class="showcase-btn showcase-btn--next" id="showcaseNext" aria-label="Next slide"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M8 4l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg></button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="verify-section section--tint" id="verify-demo">
+        <div class="container verify-grid">
+          <div class="verify-copy reveal">
+            <p class="section-tag">TRY IT</p>
+            <h2 class="section-title">Verify a credential in seconds</h2>
+            <p class="section-desc">Enter a sample credential ID below to see CertLedger verification in action.</p>
+            <ul class="verify-hints">
+              <li><code>POLYU-2026-001</code> — Academic certificate</li>
+              <li><code>WATSONS-RVM-042</code> — Plastic credit batch</li>
+              <li><code>OC-DEV-2026</code> — API access credential</li>
+            </ul>
+          </div>
+          <div class="verify-widget reveal" id="verifyWidget">
+            <div class="verify-widget-header"><span class="verify-widget-dot verify-widget-dot--green"></span><span>CertLedger Verify</span></div>
+            <form class="verify-form" id="verifyForm">
+              <label for="verifyInput" class="verify-label">Credential ID</label>
+              <div class="verify-input-row">
+                <input type="text" id="verifyInput" class="verify-input" placeholder="e.g. POLYU-2026-001" autocomplete="off" spellcheck="false" />
+                <button type="submit" class="btn btn-primary verify-submit">Verify</button>
+              </div>
+            </form>
+            <div class="verify-result verify-result--idle" id="verifyResult" aria-live="polite">
+              <p class="verify-result-hint">Enter a credential ID above to verify on-chain.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="partners-section section--surface">
         <div class="container reveal">
           <p class="section-tag">ECOSYSTEM</p>
-          <h2 class="section-title">Trusted by partners building on OneChain</h2>
-          <div class="partner-logos">
-            <span>Kibo Eco</span>
-            <span>HK Timberbank</span>
-            <span>LeafIoT</span>
-            <span>Revive Tech Asia</span>
-            <span>Watsons</span>
-            <span>PolyU</span>
+          <h2 class="section-title">Trusted by partners building on OneChain<sup class="tm">®</sup></h2>
+        </div>
+
+        <div class="partner-marquee" aria-label="Partners building on OneChain">
+          <div class="partner-marquee-track">
+            <ul class="partner-marquee-group">
+              <li class="partner-marquee-item">
+                <img src="partners/kibo-eco.svg" alt="Kibo Eco" width="120" height="32" loading="lazy" />
+              </li>
+              <li class="partner-marquee-item">
+                <img src="partners/hk-timberbank.svg" alt="HK Timberbank" width="150" height="32" loading="lazy" />
+              </li>
+              <li class="partner-marquee-item">
+                <img src="partners/leafiot.svg" alt="LeafIoT" width="110" height="32" loading="lazy" />
+              </li>
+              <li class="partner-marquee-item">
+                <img src="partners/revive-tech.svg" alt="Revive Tech Asia" width="155" height="32" loading="lazy" />
+              </li>
+              <li class="partner-marquee-item">
+                <img src="partners/watsons.svg" alt="Watsons" width="115" height="32" loading="lazy" />
+              </li>
+              <li class="partner-marquee-item">
+                <img src="partners/polyu.svg" alt="PolyU" width="95" height="32" loading="lazy" />
+              </li>
+            </ul>
+            <ul class="partner-marquee-group" aria-hidden="true">
+              <li class="partner-marquee-item">
+                <img src="partners/kibo-eco.svg" alt="" width="120" height="32" loading="lazy" />
+              </li>
+              <li class="partner-marquee-item">
+                <img src="partners/hk-timberbank.svg" alt="" width="150" height="32" loading="lazy" />
+              </li>
+              <li class="partner-marquee-item">
+                <img src="partners/leafiot.svg" alt="" width="110" height="32" loading="lazy" />
+              </li>
+              <li class="partner-marquee-item">
+                <img src="partners/revive-tech.svg" alt="" width="155" height="32" loading="lazy" />
+              </li>
+              <li class="partner-marquee-item">
+                <img src="partners/watsons.svg" alt="" width="115" height="32" loading="lazy" />
+              </li>
+              <li class="partner-marquee-item">
+                <img src="partners/polyu.svg" alt="" width="95" height="32" loading="lazy" />
+              </li>
+            </ul>
           </div>
         </div>
       </section>
 
       <!-- ═══════════════════════════════════════════════════════
-           SECTION 10: Final CTA
+           SECTION 10: News & Insights
+      ═══════════════════════════════════════════════════════ -->
+      <section class="insights-section section--mint" id="insights">
+        <div class="container">
+          <div class="insights-header">
+            <div class="insights-header-copy">
+              <h2 class="insights-title">OneChain Insights</h2>
+              <p class="insights-desc">
+                Product announcements, partner news, and deep dives on enterprise blockchain,
+                verified credentials, and ESG traceability.
+              </p>
+            </div>
+            <a href="#insights" class="insights-view-all">
+              View all posts
+              <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+
+          <div class="insights-grid">
+            <a href="infrastructure.html" class="insight-card">
+              <div class="insight-thumb insight-thumb--api">
+                <span class="insight-thumb-brand">OneChain</span>
+                <p class="insight-thumb-title">API Platform launches with free developer tier</p>
+              </div>
+              <div class="insight-body">
+                <span class="insight-tag">PRODUCT</span>
+                <h3 class="insight-card-title">
+                  API Platform launches with free developer tier
+                  <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </h3>
+                <p class="insight-excerpt">
+                  OneChain opens its API Platform to developers — managed endpoints, API keys, and
+                  traffic analytics with zero gas fees. Build trusted apps on Hyperledger Fabric from day one...
+                </p>
+                <div class="insight-meta">
+                  <img src="logo.png" alt="" class="insight-meta-logo" width="24" height="24" />
+                  <time datetime="2026-07-01">Jul 01 2026</time>
+                </div>
+              </div>
+            </a>
+
+            <a href="esgledger.html" class="insight-card">
+              <div class="insight-thumb insight-thumb--partner">
+                <span class="insight-thumb-brand">OneChain × Watsons</span>
+                <p class="insight-thumb-title">Watsons joins reverse-vending plastic credit pilot</p>
+              </div>
+              <div class="insight-body">
+                <span class="insight-tag">PARTNER NEWS</span>
+                <h3 class="insight-card-title insight-card-title--accent">
+                  Watsons joins reverse-vending plastic credit pilot
+                  <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </h3>
+                <p class="insight-excerpt">
+                  ESGLedger now traces plastic credits from Watsons reverse-vending machines across Hong Kong —
+                  every collection event anchored on-chain with geo-spatial reporting for regulators...
+                </p>
+                <div class="insight-meta">
+                  <img src="logo.png" alt="" class="insight-meta-logo" width="24" height="24" />
+                  <time datetime="2026-06-18">Jun 18 2026</time>
+                </div>
+              </div>
+            </a>
+
+            <a href="certledger.html" class="insight-card">
+              <div class="insight-thumb insight-thumb--cert">
+                <span class="insight-thumb-badge">INSIGHTS</span>
+                <span class="insight-thumb-brand">OneChain</span>
+                <p class="insight-thumb-title">PolyU pilots instant QR credential verification</p>
+              </div>
+              <div class="insight-body">
+                <span class="insight-tag">EDUCATION</span>
+                <h3 class="insight-card-title">
+                  PolyU pilots instant QR credential verification
+                  <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </h3>
+                <p class="insight-excerpt">
+                  CertLedger enables PolyU to issue tamper-proof academic credentials with instant QR verification —
+                  no wallet, no crypto, and full auditability for employers and institutions...
+                </p>
+                <div class="insight-meta">
+                  <img src="logo.png" alt="" class="insight-meta-logo" width="24" height="24" />
+                  <time datetime="2026-05-22">May 22 2026</time>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════════════════════
+           SECTION 11: Final CTA
       ═══════════════════════════════════════════════════════ -->
       <section class="cta-section" id="contact">
         <div class="container">
@@ -430,35 +813,72 @@
     <!-- ═══════════════════════════════════════════════════════
          Footer
     ═══════════════════════════════════════════════════════ -->
-    <footer class="footer">
-      <div class="container footer-grid">
-        <div class="footer-brand">
-          <a href="index.html" class="logo"><img src="logo.png" alt="OneChain" class="logo-img" /></a>
-          <p>© 2026 OneChain Limited. All rights reserved.</p>
+    <footer class="site-footer">
+      <div class="container site-footer-main">
+        <div class="site-footer-brand">
+          <a href="index.html" class="logo site-footer-logo">
+            <span class="site-footer-logo-wrap">
+              <img src="logo.png" alt="OneChain" class="logo-img logo-img--footer" width="180" height="40" />
+            </span>
+          </a>
+          <p class="site-footer-tagline">Hong Kong's enterprise blockchain company.</p>
+          <div class="site-footer-badges" aria-label="Trust certifications">
+            <span class="trust-badge">Hyperledger Fabric</span>
+            <span class="trust-badge">PoA Consensus</span>
+            <span class="trust-badge">Enterprise Ready</span>
+          </div>
         </div>
-        <div>
-          <h4>Company</h4>
-          <a href="about.html">About</a>
-          <a href="infrastructure.html">Infrastructure</a>
-          <a href="infrastructure.html#ai">AI + Services</a>
-          <a href="esgledger.html">Green Tech</a>
-        </div>
-        <div>
+
+        <div class="site-footer-col">
           <h4>Products</h4>
           <a href="esgledger.html">ESGLedger</a>
           <a href="certledger.html">CertLedger</a>
+          <a href="infrastructure.html">Infrastructure</a>
           <a href="https://api.one-chain.io" target="_blank" rel="noopener">API Platform</a>
         </div>
-        <div>
-          <h4>Contact</h4>
-          <p>Level 9, Core F, Cyberport 3<br>100 Cyberport Rd, Pok Fu Lam, HK</p>
-          <p>(852) 2571 4301</p>
+
+        <div class="site-footer-col">
+          <h4>Solutions</h4>
+          <a href="esgledger.html">ESG &amp; Recycling</a>
+          <a href="certledger.html">Education &amp; Credentials</a>
+          <a href="index.html#industries">Government</a>
+          <a href="index.html#industries">Supply Chain</a>
+          <a href="index.html#industries">Green Tech</a>
+        </div>
+
+        <div class="site-footer-col">
+          <h4>About</h4>
+          <a href="about.html">About us</a>
+          <a href="infrastructure.html">Infrastructure</a>
+          <a href="index.html#contact">Contact</a>
+        </div>
+
+        <div class="site-footer-col">
+          <h4>Resources</h4>
+          <a href="index.html#insights">Insights</a>
+          <a href="https://api.one-chain.io" target="_blank" rel="noopener">Documentation</a>
           <a href="mailto:info@one-chain.io">info@one-chain.io</a>
+        </div>
+      </div>
+
+      <div class="container site-footer-bottom">
+        <p class="site-footer-motto">Empower trusted enterprise data across Hong Kong and APAC.</p>
+        <div class="site-footer-legal">
+          <span>© 2026 OneChain Limited. All rights reserved.</span>
+          <a href="about.html">Privacy</a>
+          <a href="about.html">Terms</a>
+          <div class="site-footer-social">
+            <a href="https://www.linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.95v5.66H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+            </a>
+            <a href="https://twitter.com" target="_blank" rel="noopener" aria-label="X">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.9 2H22l-6.8 7.8L23.2 22h-6.7l-5.2-6.8L5.6 22H2.5l7.3-8.4L.8 2h6.9l4.7 6.2L18.9 2zm-1.2 18h1.9L7.1 4H5.1l12.6 16z"/></svg>
+            </a>
+          </div>
         </div>
       </div>
     </footer>
 
-    <script src="hero-network.js"></script>
-    <script src="main.js"></script>
+    <script type="module" src="./main.js"></script>
   </body>
 </html>

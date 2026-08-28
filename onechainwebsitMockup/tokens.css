@@ -1,0 +1,82 @@
+/**
+ * OneChain design tokens — synced with global.css / Brand Guideline PDF.
+ * Prefer loading global.css for full type utilities; tokens remain for :root vars.
+ */
+:root {
+  /* Brand colors */
+  --oc-primary: #14a4bc;
+  --oc-primary-deep: #0d7d91;
+  --oc-primary-light: #3cbdd2;
+  --oc-primary-brand: #14a4bc;
+  --oc-primary-glow: rgba(20, 164, 188, 0.1);
+
+  --oc-secondary: #545454;
+  --oc-secondary-alert: #eb6363;
+
+  --oc-supp: #e2f6f9;
+  --oc-supp-mint: #97eed7;
+  --oc-supp-soft: #eef9fb;
+  --oc-supp-alert: #f5b8b6;
+
+  --oc-dark: #0a1628;
+  --oc-dark-surface: #111827;
+  --oc-bg: #ffffff;
+  --oc-bg-alt: #e2f6f9;
+  --oc-border: rgba(10, 22, 40, 0.08);
+  --oc-border-strong: rgba(10, 22, 40, 0.12);
+  --oc-text: #545454;
+  --oc-text-secondary: #475569;
+  --oc-muted: #64748b;
+  --oc-muted-light: #94a3b8;
+
+  /* §07 CertLedger */
+  --cert-primary: #016282;
+  --cert-secondary: #8ad7e8;
+  --cert-supp: #545454;
+  --cert-alert: #eb6363;
+  --cert-alert-soft: #f5b8b6;
+  --cert-primary-glow: rgba(1, 98, 130, 0.12);
+  --oc-cert-teal: var(--cert-primary);
+  --oc-cert-secondary: var(--cert-secondary);
+  --oc-cert-teal-text: var(--cert-primary);
+  --oc-cert-teal-glow: var(--cert-primary-glow);
+
+  /* §09 ESGLedger */
+  --esg-primary: #007771;
+  --esg-secondary: #aededb;
+  --esg-supp: #545454;
+  --esg-alert: #eb6363;
+  --esg-alert-soft: #f5b8b6;
+  --esg-primary-glow: rgba(0, 119, 113, 0.12);
+  --esg-dark: #005c58;
+  --oc-esg-green: var(--esg-primary);
+  --oc-esg-secondary: var(--esg-secondary);
+  --oc-esg-dark: var(--esg-dark);
+
+  --oc-ai-purple: var(--oc-primary);
+
+  /* Typefaces — Inter Bold (brand) / Inter (body) / Inter Medium tracked (supporting) */
+  --font-brand: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-supporting: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-sub: var(--font-supporting);
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --font-cjk: 'Noto Sans TC', 'Inter', sans-serif;
+
+  --weight-body: 400;
+  --weight-medium: 500;
+  --weight-bold: 700;
+  --tracking-tight: -0.02em;
+  --tracking-sub: 0.08em;
+  --tracking-supporting: 0.08em;
+
+  --radius-xs: 6px;
+  --radius-sm: 8px;
+  --radius-md: 10px;
+  --radius-lg: 12px;
+  --radius-panel: 12px;
+  --radius-btn: 10px;
+  --radius-full: 999px;
+}

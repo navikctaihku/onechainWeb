@@ -2,14 +2,27 @@
 /*
 !/onechain_website/
 !/onechain_website/**
+!/onechainwebsitMockup/
+!/onechainwebsitMockup/site-chrome.js
+!/onechainwebsitMockup/home.css
+!/onechainwebsitMockup/home.js
+!/onechainwebsitMockup/chrome.css
+!/onechainwebsitMockup/tokens.css
+!/onechainwebsitMockup/global.css
 !/.github/
 !/.github/**
 !/README.md
 !/.gitignore
 !/deploy-website.sh
+!/deploy-stp.sh
+!/stp/
+!/stp/**
+!/site-portal.html
 
 .DS_Store
 node_modules/
 .vercel
 dist/
 *.mp4
+.stp.env
+.gstack/

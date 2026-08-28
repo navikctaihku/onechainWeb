@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog | OneChain Insights</title>
+  <meta name="description" content="OneChain blog — product announcements, partner news, and deep dives on enterprise blockchain, verified credentials, and ESG traceability.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="chrome.css">
+  <script src="site-chrome.js?v=202607301540" defer></script>
+  <style>
+    :root {
+      --ink: #2f3a45;
+      --muted: #64748B;
+      --muted-2: #94A3B8;
+      --border: rgba(10, 22, 40, 0.08);
+      --primary: #14a4bc;
+      --primary-deep: #0c7a8d;
+      --bg: #f4f8fa;
+      --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-cjk: 'Noto Sans TC', sans-serif;
+    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body {
+      font-family: var(--font), var(--font-cjk), sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.6;
+    }
+    a { text-decoration: none; color: inherit; }
+    .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+    .blog-hero {
+      position: relative;
+      overflow: hidden;
+      padding: 128px 0 108px;
+      text-align: center;
+      background: linear-gradient(90deg, #0a2a32 0%, #0f8fa5 55%, #14a4bc 100%);
+    }
+    .blog-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse 55% 80% at 78% 40%, rgba(255,255,255,0.14), transparent 60%),
+        radial-gradient(ellipse 40% 70% at 12% 60%, rgba(0,0,0,0.18), transparent 55%);
+    }
+    .blog-hero .container { position: relative; z-index: 1; }
+    .blog-hero .eyebrow {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 14px;
+    }
+    .blog-hero h1 {
+      font-size: clamp(40px, 6vw, 54px);
+      font-weight: 700;
+      letter-spacing: -0.035em;
+      line-height: 1.08;
+      margin-bottom: 16px;
+      color: #fff !important;
+    }
+    .blog-hero p {
+      font-size: 16px;
+      line-height: 1.7;
+      max-width: 640px;
+      margin: 0 auto;
+      color: rgba(255,255,255,0.82);
+    }
+
+    .blog-main {
+      position: relative;
+      z-index: 2;
+      margin-top: -56px;
+      padding: 0 0 96px;
+    }
+
+    .blog-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 28px;
+    }
+    .blog-filters button {
+      font: 600 13px/1 var(--font);
+      color: var(--muted);
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 10px 16px;
+      cursor: pointer;
+      transition: color .15s, background .15s, border-color .15s;
+    }
+    .blog-filters button:hover,
+    .blog-filters button.is-active {
+      color: #fff;
+      background: var(--primary);
+      border-color: var(--primary);
+    }
+
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+    @media (max-width: 960px) { .blog-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 640px) { .blog-grid { grid-template-columns: 1fr; } }
+
+    .blog-card {
+      display: flex;
+      flex-direction: column;
+      background: #fff;
+      border-radius: 16px;
+      border: 1px solid rgba(10,22,40,0.06);
+      box-shadow: 0 10px 30px rgba(10, 22, 40, 0.06);
+      overflow: hidden;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .blog-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 40px rgba(10, 22, 40, 0.1);
+    }
+    .blog-card.is-hidden { display: none; }
+
+    .blog-thumb {
+      position: relative;
+      min-height: 168px;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      color: #fff;
+    }
+    .blog-thumb--api {
+      background: linear-gradient(145deg, #0a2a32 0%, #0f8fa5 55%, #14a4bc 100%);
+    }
+    .blog-thumb--partner {
+      background: linear-gradient(145deg, #005c58 0%, #007771 50%, #14a4bc 100%);
+    }
+    .blog-thumb--cert {
+      background: linear-gradient(145deg, #013a4d 0%, #016282 55%, #3cbdd2 100%);
+    }
+    .blog-thumb--security {
+      background: linear-gradient(145deg, #1a2332 0%, #0d7d91 60%, #14a4bc 100%);
+    }
+    .blog-thumb-brand {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      opacity: 0.8;
+      margin-bottom: 8px;
+    }
+    .blog-thumb-title {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.3;
+    }
+
+    .blog-body {
+      padding: 22px 22px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex: 1;
+    }
+    .blog-tag {
+      display: inline-flex;
+      width: fit-content;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--primary);
+      background: rgba(20,164,188,0.1);
+      border-radius: 999px;
+      padding: 5px 10px;
+    }
+    .blog-card-title {
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+      line-height: 1.35;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .blog-card-title svg {
+      flex-shrink: 0;
+      margin-top: 3px;
+      color: var(--muted-2);
+      transition: color .15s, transform .15s;
+    }
+    .blog-card:hover .blog-card-title svg {
+      color: var(--primary);
+      transform: translate(1px, -1px);
+    }
+    .blog-excerpt {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.55;
+      flex: 1;
+    }
+    .blog-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 6px;
+      font-size: 13px;
+      color: var(--muted-2);
+    }
+    .blog-meta img {
+      width: 22px;
+      height: 22px;
+      object-fit: contain;
+    }
+
+    .blog-cta {
+      margin-top: 48px;
+      text-align: center;
+      padding: 36px 28px;
+      background: #fff;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      box-shadow: 0 8px 24px rgba(10,22,40,0.05);
+    }
+    .blog-cta h2 {
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+      color: var(--ink) !important;
+    }
+    .blog-cta p {
+      font-size: 15px;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+    .blog-cta a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font: 600 14px/1 var(--font);
+      color: #fff;
+      background: var(--primary);
+      border-radius: 10px;
+      padding: 13px 22px;
+      transition: background .15s, transform .15s;
+    }
+    .blog-cta a:hover { background: var(--primary-deep); transform: translateY(-1px); }
+  </style>
+</head>
+<body>
+  <div id="site-nav"></div>
+
+  <header class="blog-hero">
+    <div class="container">
+      <div class="eyebrow">OneChain Insights</div>
+      <h1>Blog</h1>
+      <p>Product announcements, partner news, and deep dives on enterprise blockchain, verified credentials, and ESG traceability.</p>
+    </div>
+  </header>
+
+  <main class="blog-main">
+    <div class="container">
+      <div class="blog-filters" role="tablist" aria-label="Filter posts">
+        <button type="button" class="is-active" data-filter="all">All</button>
+        <button type="button" data-filter="Product">Product</button>
+        <button type="button" data-filter="Partner News">Partner News</button>
+        <button type="button" data-filter="Education">Education</button>
+        <button type="button" data-filter="Security">Security</button>
+      </div>
+
+      <div class="blog-grid">
+        <a href="api-platform.html" class="blog-card" data-tag="Product">
+          <div class="blog-thumb blog-thumb--api">
+            <span class="blog-thumb-brand">OneChain</span>
+            <p class="blog-thumb-title">API Platform launches with free developer tier</p>
+          </div>
+          <div class="blog-body">
+            <span class="blog-tag">Product</span>
+            <h3 class="blog-card-title">
+              API Platform launches with free developer tier
+              <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+            </h3>
+            <p class="blog-excerpt">OneChain opens its API Platform to developers — managed endpoints, API keys, and traffic analytics with zero gas fees. Build trusted apps on Hyperledger Fabric from day one.</p>
+            <div class="blog-meta">
+              <img src="onchain-logo.png" alt="" width="22" height="22" loading="lazy">
+              <time datetime="2026-07-01">Jul 01 2026</time>
+            </div>
+          </div>
+        </a>
+
+        <a href="esgledger.html" class="blog-card" data-tag="Partner News">
+          <div class="blog-thumb blog-thumb--partner">
+            <span class="blog-thumb-brand">OneChain × Watsons</span>
+            <p class="blog-thumb-title">Watsons joins reverse-vending plastic credit pilot</p>
+          </div>
+          <div class="blog-body">
+            <span class="blog-tag">Partner News</span>
+            <h3 class="blog-card-title">
+              Watsons joins reverse-vending plastic credit pilot
+              <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+            </h3>
+            <p class="blog-excerpt">ESGLedger now traces plastic credits from Watsons reverse-vending machines across Hong Kong — every collection event anchored on-chain with geo-spatial reporting for regulators.</p>
+            <div class="blog-meta">
+              <img src="onchain-logo.png" alt="" width="22" height="22" loading="lazy">
+              <time datetime="2026-06-18">Jun 18 2026</time>
+            </div>
+          </div>
+        </a>
+
+        <a href="certledger.html" class="blog-card" data-tag="Education">
+          <div class="blog-thumb blog-thumb--cert">
+            <span class="blog-thumb-brand">OneChain</span>
+            <p class="blog-thumb-title">PolyU pilots instant QR credential verification</p>
+          </div>
+          <div class="blog-body">
+            <span class="blog-tag">Education</span>
+            <h3 class="blog-card-title">
+              PolyU pilots instant QR credential verification
+              <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+            </h3>
+            <p class="blog-excerpt">CertLedger enables PolyU to issue tamper-proof academic credentials with instant QR verification — no wallet, no crypto, and full auditability for employers and institutions.</p>
+            <div class="blog-meta">
+              <img src="onchain-logo.png" alt="" width="22" height="22" loading="lazy">
+              <time datetime="2026-05-22">May 22 2026</time>
+            </div>
+          </div>
+        </a>
+
+        <a href="about.html" class="blog-card" data-tag="Security">
+          <div class="blog-thumb blog-thumb--security">
+            <span class="blog-thumb-brand">OneChain</span>
+            <p class="blog-thumb-title">OneChain achieves ISO 27001 certification</p>
+          </div>
+          <div class="blog-body">
+            <span class="blog-tag">Security</span>
+            <h3 class="blog-card-title">
+              OneChain achieves ISO 27001 certification
+              <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+            </h3>
+            <p class="blog-excerpt">ISO 27001 certification reflects our commitment to the highest standards of information security — protecting enterprise data across ESGLedger, CertLedger, and the OneChain network.</p>
+            <div class="blog-meta">
+              <img src="onchain-logo.png" alt="" width="22" height="22" loading="lazy">
+              <time datetime="2026-05-23">May 23 2026</time>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="blog-cta">
+        <h2>Want to collaborate or share a story?</h2>
+        <p>Talk to the OneChain team about partnerships, product updates, or press enquiries.</p>
+        <a href="contact.html">Contact us</a>
+      </div>
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script>
+    (function () {
+      var buttons = document.querySelectorAll('.blog-filters button');
+      var cards = document.querySelectorAll('.blog-card');
+      buttons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          buttons.forEach(function (b) { b.classList.remove('is-active'); });
+          btn.classList.add('is-active');
+          var filter = btn.getAttribute('data-filter');
+          cards.forEach(function (card) {
+            var show = filter === 'all' || card.getAttribute('data-tag') === filter;
+            card.classList.toggle('is-hidden', !show);
+          });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

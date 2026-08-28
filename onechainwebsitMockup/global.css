@@ -1,0 +1,311 @@
+/**
+ * OneChain Global Design System
+ * Source: OneChain Brand Guideline (1).pdf
+ *
+ * § Color — OneChain brand
+ *   Primary:       #14a4bc
+ *   Secondary:     #545454, #eb6363
+ *   Supplementary: #97eed7, #e2f6f9, #f5b8b6 (alert)
+ *
+ * §07 Color Palette of CertLedger
+ *   Primary:        #016282
+ *   Secondary:      #8ad7e8
+ *   Supplementary:  #545454
+ *   Alert:          #eb6363, #f5b8b6
+ *
+ * §09 Color Palette of ESGLedger
+ *   Primary:        #007771
+ *   Secondary:      #aededb
+ *   Supplementary:  #545454
+ *   Alert:          #eb6363, #f5b8b6
+ *
+ * Typefaces
+ *   Brand / Headline / Sub-headline / Buttons / Tags → Inter Bold
+ *   Body text                                       → Inter
+ *   Supporting text (eyebrows / labels / tags)      → Inter Medium, uppercase, tracked
+ *   Supplementary / Sub (ticker style)              → Inter, uppercase, tracked, muted
+ *   CJK fallback                                    → Noto Sans TC
+ */
+
+:root {
+  /* ===== OneChain brand colors ===== */
+  --oc-primary: #14a4bc;
+  --oc-primary-deep: #0d7d91;
+  --oc-primary-light: #3cbdd2;
+  --oc-primary-brand: #14a4bc;
+  --oc-primary-glow: rgba(20, 164, 188, 0.1);
+
+  --oc-secondary: #545454;
+  --oc-secondary-alert: #eb6363;
+
+  --oc-supp: #e2f6f9;
+  --oc-supp-mint: #97eed7;
+  --oc-supp-soft: #eef9fb;
+  --oc-supp-alert: #f5b8b6;
+
+  /* Neutrals / surfaces */
+  --oc-dark: #0a1628;
+  --oc-dark-surface: #111827;
+  --oc-bg: #ffffff;
+  --oc-bg-alt: #e2f6f9;
+  --oc-border: rgba(10, 22, 40, 0.08);
+  --oc-border-strong: rgba(10, 22, 40, 0.12);
+  --oc-text: #545454;
+  --oc-text-secondary: #475569;
+  --oc-muted: #64748b;
+  --oc-muted-light: #94a3b8;
+
+  /* ===== §07 CertLedger palette ===== */
+  --cert-primary: #016282;
+  --cert-secondary: #8ad7e8;
+  --cert-supp: #545454;
+  --cert-alert: #eb6363;
+  --cert-alert-soft: #f5b8b6;
+  --cert-primary-glow: rgba(1, 98, 130, 0.12);
+
+  /* Legacy aliases used by existing pages */
+  --oc-cert-teal: var(--cert-primary);
+  --oc-cert-secondary: var(--cert-secondary);
+  --oc-cert-teal-text: var(--cert-primary);
+  --oc-cert-teal-glow: var(--cert-primary-glow);
+
+  /* ===== §09 ESGLedger palette ===== */
+  --esg-primary: #007771;
+  --esg-secondary: #aededb;
+  --esg-supp: #545454;
+  --esg-alert: #eb6363;
+  --esg-alert-soft: #f5b8b6;
+  --esg-primary-glow: rgba(0, 119, 113, 0.12);
+  --esg-dark: #005c58;
+
+  /* Legacy aliases used by existing pages */
+  --oc-esg-green: var(--esg-primary);
+  --oc-esg-secondary: var(--esg-secondary);
+  --oc-esg-dark: var(--esg-dark);
+
+  --oc-ai-purple: var(--oc-primary); /* remapped — purple not in brand PDF */
+
+  /* ===== Typefaces (Brand Guideline §05) ===== */
+  --font-brand: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  /* Supporting text — Inter Medium, uppercase, tracked (e.g. ENTERPRISE BLOCKCHAIN) */
+  --font-supporting: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-sub: var(--font-supporting);
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --font-cjk: 'Noto Sans TC', 'Inter', sans-serif;
+
+  --weight-body: 400;
+  --weight-medium: 500;
+  --weight-bold: 700;
+
+  --tracking-tight: -0.02em;
+  --tracking-sub: 0.08em;
+  --tracking-supporting: 0.08em;
+
+  /* Corners — sharper controls (not pills). Match CTA style ~8–10px */
+  --radius-xs: 6px;
+  --radius-sm: 8px;
+  --radius-md: 10px;
+  --radius-lg: 12px;
+  --radius-panel: 12px;
+  --radius-btn: 10px;
+  --radius-full: 999px; /* circles only — avatars, dots, icon buttons */
+
+  /* Footer — gray surface, reverse-white logo/text */
+  --oc-footer-bg: var(--oc-secondary); /* #545454 */
+  --oc-footer-text: rgba(255, 255, 255, 0.72);
+  --oc-footer-text-strong: #ffffff;
+  --oc-footer-muted: rgba(255, 255, 255, 0.48);
+  --oc-footer-border: rgba(255, 255, 255, 0.12);
+  --oc-footer-accent: var(--oc-primary-light);
+}
+
+/* ===== Base ===== */
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body), var(--font-cjk), sans-serif;
+  font-weight: var(--weight-body);
+  color: var(--oc-text);
+  background: var(--oc-bg);
+  line-height: 1.6;
+}
+
+/* Brand typeface — Inter Bold for headlines */
+h1, h2, h3, h4,
+.oc-type-brand,
+.oc-type-headline {
+  font-family: var(--font-brand), var(--font-cjk), sans-serif;
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-tight);
+  color: var(--oc-text);
+}
+
+/* Sub-headline / buttons / tags — Inter Bold */
+.oc-type-subhead,
+.oc-type-button,
+button,
+.btn-primary,
+.btn-outline,
+.btn-dark,
+.sc-btn-primary,
+.sc-btn-ghost,
+.hero-btn,
+.reclaim-cta,
+.reclaim-cta-outline,
+.product-showcase-cta,
+.blockchain-services-cta,
+.ai-cta {
+  font-family: var(--font-brand), var(--font-cjk), sans-serif;
+  font-weight: var(--weight-bold);
+}
+
+/* Body text — Inter */
+p, li, label, input, textarea, .oc-type-body {
+  font-family: var(--font-body), var(--font-cjk), sans-serif;
+  font-weight: var(--weight-body);
+}
+
+/* Supporting text typeface — Inter Medium, uppercase, tracked
+   Use for eyebrows, labels, tags (e.g. "ENTERPRISE BLOCKCHAIN") */
+.oc-type-supporting {
+  font-family: var(--font-supporting), var(--font-cjk), sans-serif;
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-supporting);
+  text-transform: uppercase;
+}
+
+/* Supplementary / sub typeface — ticker style
+   Inter, uppercase, tracked, muted bluish-gray */
+.oc-type-sub,
+.ticker-item {
+  font-family: var(--font-sub), var(--font-cjk), sans-serif;
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-sub);
+  text-transform: uppercase;
+  color: var(--oc-muted-light);
+}
+
+/* Section eyebrows / tags — supporting text, primary accent */
+.eyebrow,
+.blockchain-services-eyebrow,
+.reclaim-eyebrow,
+.ai-eyebrow,
+.glass-header .eyebrow,
+.quotes-head .eyebrow,
+.video-header .eyebrow,
+.section-eyebrow,
+.ecosystem-tag,
+.sc-col-title,
+.sc-fcol h5,
+.fig-label {
+  font-family: var(--font-supporting), var(--font-cjk), sans-serif;
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-supporting);
+  text-transform: uppercase;
+}
+
+/* Apply §07 CertLedger palette on product surfaces */
+[data-brand="certledger"] {
+  --oc-primary: var(--cert-primary);
+  --oc-primary-light: var(--cert-secondary);
+  --oc-primary-glow: var(--cert-primary-glow);
+  --oc-secondary: var(--cert-supp);
+  --oc-secondary-alert: var(--cert-alert);
+  --oc-supp: #e8f4f8;
+  --oc-supp-soft: #f0f9fb;
+  --oc-bg-alt: #e8f4f8;
+  --oc-supp-alert: var(--cert-alert-soft);
+}
+
+/* Apply §09 ESGLedger palette on product surfaces */
+[data-brand="esgledger"] {
+  --oc-primary: var(--esg-primary);
+  --oc-primary-deep: var(--esg-dark);
+  --oc-primary-light: var(--esg-secondary);
+  --oc-primary-brand: var(--esg-primary);
+  --oc-primary-glow: var(--esg-primary-glow);
+  --oc-secondary: var(--esg-supp);
+  --oc-secondary-alert: var(--esg-alert);
+  --oc-supp: #e8f5f4;
+  --oc-supp-soft: #f3faf9;
+  --oc-bg-alt: #e8f5f4;
+  --oc-supp-alert: var(--esg-alert-soft);
+}
+
+/* ===== Site footer (shared) — gray bg, reverse-white logo ===== */
+.sc-footer,
+.site-footer,
+footer.footer {
+  background: var(--oc-footer-bg);
+  color: var(--oc-footer-text);
+  border-top: none;
+}
+
+.sc-footer-brand img,
+.site-footer .logo-img--footer,
+.footer-brand img,
+.footer .logo-img {
+  /* Logo wordmark → white on gray footer */
+  filter: brightness(0) invert(1);
+}
+
+.sc-footer-brand p,
+.site-footer-tagline,
+.footer-brand p {
+  color: var(--oc-footer-text);
+}
+
+.sc-fcol h5,
+.site-footer-col h4,
+.footer-col h4,
+.footer-col h5 {
+  color: var(--oc-footer-muted);
+}
+
+.sc-fcol a,
+.site-footer-col a,
+.footer-col a {
+  color: var(--oc-footer-text);
+}
+
+.sc-fcol a:hover,
+.site-footer-col a:hover,
+.footer-col a:hover {
+  color: var(--oc-footer-text-strong);
+}
+
+.sc-footer-bottom,
+.site-footer-bottom,
+.footer-bottom {
+  border-top-color: var(--oc-footer-border);
+}
+
+.sc-footer-bottom p,
+.site-footer-legal,
+.footer-bottom,
+.footer-bottom p {
+  color: var(--oc-footer-muted);
+}
+
+.sc-footer-tagline,
+.site-footer-motto {
+  color: var(--oc-footer-accent);
+}
+
+.sc-footer-bottom a,
+.site-footer-legal a,
+.footer-bottom a {
+  color: var(--oc-footer-muted);
+}
+
+.sc-footer-bottom a:hover,
+.site-footer-legal a:hover,
+.footer-bottom a:hover {
+  color: var(--oc-footer-text-strong);
+}

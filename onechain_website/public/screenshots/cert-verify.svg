@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" fill="none">
+  <rect width="800" height="500" rx="12" fill="#f7fafb"/>
+  <rect x="200" y="40" width="400" height="420" rx="12" fill="#fff" stroke="#e8f0f6" stroke-width="2"/>
+  <text x="400" y="130" text-anchor="middle" font-family="Inter,sans-serif" font-size="18" font-weight="800" fill="#0a1628">Certificate of Completion</text>
+  <text x="400" y="210" text-anchor="middle" font-family="Inter,sans-serif" font-size="22" font-weight="700" fill="#016282">Alex Chen</text>
+  <rect x="340" y="300" width="120" height="120" rx="8" fill="#f7fafb" stroke="#dce8f0"/>
+  <rect x="560" y="80" width="200" height="160" rx="10" fill="#e8faf0" stroke="#2ecc71" stroke-width="2"/>
+  <text x="660" y="180" text-anchor="middle" font-family="Inter,sans-serif" font-size="14" font-weight="800" fill="#2ecc71">VERIFIED</text>
+</svg>
