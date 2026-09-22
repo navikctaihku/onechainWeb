@@ -1,126 +1,12 @@
 /**
- * OneChain Global Design System
- * Source: OneChain Brand Guideline (1).pdf
+ * OneChain Global Design System — element + utility layer.
  *
- * § Color — OneChain brand
- *   Primary:       #14a4bc
- *   Secondary:     #545454, #eb6363
- *   Supplementary: #97eed7, #e2f6f9, #f5b8b6 (alert)
- *
- * §07 Color Palette of CertLedger
- *   Primary:        #016282
- *   Secondary:      #8ad7e8
- *   Supplementary:  #545454
- *   Alert:          #eb6363, #f5b8b6
- *
- * §09 Color Palette of ESGLedger
- *   Primary:        #007771
- *   Secondary:      #aededb
- *   Supplementary:  #545454
- *   Alert:          #eb6363, #f5b8b6
- *
- * Typefaces
- *   Brand / Headline / Sub-headline / Buttons / Tags → Inter Bold
- *   Body text                                       → Inter
- *   Supporting text (eyebrows / labels / tags)      → Inter Medium, uppercase, tracked
- *   Supplementary / Sub (ticker style)              → Inter, uppercase, tracked, muted
- *   CJK fallback                                    → Noto Sans TC
+ * ALL colour, type and shape values live in tokens.css, which MUST be loaded
+ * immediately before this file:
+ *     <link rel="stylesheet" href="tokens.css">
+ *     <link rel="stylesheet" href="global.css">
+ * This file deliberately declares NO :root block — one source of truth only.
  */
-
-:root {
-  /* ===== OneChain brand colors ===== */
-  --oc-primary: #14a4bc;
-  --oc-primary-deep: #0d7d91;
-  --oc-primary-light: #3cbdd2;
-  --oc-primary-brand: #14a4bc;
-  --oc-primary-glow: rgba(20, 164, 188, 0.1);
-
-  --oc-secondary: #545454;
-  --oc-secondary-alert: #eb6363;
-
-  --oc-supp: #e2f6f9;
-  --oc-supp-mint: #97eed7;
-  --oc-supp-soft: #eef9fb;
-  --oc-supp-alert: #f5b8b6;
-
-  /* Neutrals / surfaces */
-  --oc-dark: #0a1628;
-  --oc-dark-surface: #111827;
-  --oc-bg: #ffffff;
-  --oc-bg-alt: #e2f6f9;
-  --oc-border: rgba(10, 22, 40, 0.08);
-  --oc-border-strong: rgba(10, 22, 40, 0.12);
-  --oc-text: #545454;
-  --oc-text-secondary: #475569;
-  --oc-muted: #64748b;
-  --oc-muted-light: #94a3b8;
-
-  /* ===== §07 CertLedger palette ===== */
-  --cert-primary: #016282;
-  --cert-secondary: #8ad7e8;
-  --cert-supp: #545454;
-  --cert-alert: #eb6363;
-  --cert-alert-soft: #f5b8b6;
-  --cert-primary-glow: rgba(1, 98, 130, 0.12);
-
-  /* Legacy aliases used by existing pages */
-  --oc-cert-teal: var(--cert-primary);
-  --oc-cert-secondary: var(--cert-secondary);
-  --oc-cert-teal-text: var(--cert-primary);
-  --oc-cert-teal-glow: var(--cert-primary-glow);
-
-  /* ===== §09 ESGLedger palette ===== */
-  --esg-primary: #007771;
-  --esg-secondary: #aededb;
-  --esg-supp: #545454;
-  --esg-alert: #eb6363;
-  --esg-alert-soft: #f5b8b6;
-  --esg-primary-glow: rgba(0, 119, 113, 0.12);
-  --esg-dark: #005c58;
-
-  /* Legacy aliases used by existing pages */
-  --oc-esg-green: var(--esg-primary);
-  --oc-esg-secondary: var(--esg-secondary);
-  --oc-esg-dark: var(--esg-dark);
-
-  --oc-ai-purple: var(--oc-primary); /* remapped — purple not in brand PDF */
-
-  /* ===== Typefaces (Brand Guideline §05) ===== */
-  --font-brand: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-display: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  /* Supporting text — Inter Medium, uppercase, tracked (e.g. ENTERPRISE BLOCKCHAIN) */
-  --font-supporting: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-sub: var(--font-supporting);
-  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
-  --font-cjk: 'Noto Sans TC', 'Inter', sans-serif;
-
-  --weight-body: 400;
-  --weight-medium: 500;
-  --weight-bold: 700;
-
-  --tracking-tight: -0.02em;
-  --tracking-sub: 0.08em;
-  --tracking-supporting: 0.08em;
-
-  /* Corners — sharper controls (not pills). Match CTA style ~8–10px */
-  --radius-xs: 6px;
-  --radius-sm: 8px;
-  --radius-md: 10px;
-  --radius-lg: 12px;
-  --radius-panel: 12px;
-  --radius-btn: 10px;
-  --radius-full: 999px; /* circles only — avatars, dots, icon buttons */
-
-  /* Footer — gray surface, reverse-white logo/text */
-  --oc-footer-bg: var(--oc-secondary); /* #545454 */
-  --oc-footer-text: rgba(255, 255, 255, 0.72);
-  --oc-footer-text-strong: #ffffff;
-  --oc-footer-muted: rgba(255, 255, 255, 0.48);
-  --oc-footer-border: rgba(255, 255, 255, 0.12);
-  --oc-footer-accent: var(--oc-primary-light);
-}
 
 /* ===== Base ===== */
 html {
@@ -143,7 +29,7 @@ h1, h2, h3, h4,
   font-family: var(--font-brand), var(--font-cjk), sans-serif;
   font-weight: var(--weight-bold);
   letter-spacing: var(--tracking-tight);
-  color: var(--oc-text);
+  color: var(--oc-heading);
 }
 
 /* Sub-headline / buttons / tags — Inter Bold */
@@ -153,16 +39,122 @@ button,
 .btn-primary,
 .btn-outline,
 .btn-dark,
+.btn-green,
+.btn-gold,
+.btn-ghost,
 .sc-btn-primary,
 .sc-btn-ghost,
 .hero-btn,
 .reclaim-cta,
 .reclaim-cta-outline,
-.product-showcase-cta,
+.product-row-cta,
 .blockchain-services-cta,
-.ai-cta {
+.ai-cta,
+.fp-chip,
+.fp-btn,
+.fp-tag,
+.lane-cta {
   font-family: var(--font-brand), var(--font-cjk), sans-serif;
-  font-weight: var(--weight-bold);
+  font-weight: var(--oc-btn-font-weight);
+}
+
+/* ===== Global button / chip shape (image 1 — not pills) ===== */
+.oc-btn,
+.btn,
+.btn-primary,
+.btn-outline,
+.btn-dark,
+.btn-green,
+.btn-gold,
+.btn-ghost,
+.sc-btn-primary,
+.sc-btn-ghost,
+.hero-btn,
+.hero-btn--primary,
+.hero-btn--ghost,
+.reclaim-cta,
+.reclaim-cta-outline,
+.product-row-cta,
+.blockchain-services-cta,
+.ai-cta,
+.fp-btn,
+.fp-chip,
+.fp-tag,
+.btn-line {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--oc-btn-gap);
+  padding: var(--oc-btn-pad-y) var(--oc-btn-pad-x);
+  min-height: 36px;
+  box-sizing: border-box;
+  border-radius: var(--radius-btn) !important; /* soft rectangle — never pill */
+  font-size: var(--oc-btn-font-size);
+  font-weight: var(--oc-btn-font-weight);
+  line-height: 1.25;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+/* Filled CTA — same as Create free account (#14a4bc)
+   (Product CTAs keep their own brand colours — ESG green / Cert teal / Wills blue) */
+.oc-btn,
+.oc-btn--secondary,
+.btn-primary,
+.btn-dark,
+.hero-btn--primary,
+.blockchain-services-cta,
+.sc-btn-primary,
+.reclaim-cta,
+.ai-cta,
+.fp-btn {
+  background: var(--oc-btn-bg, #14a4bc);
+  color: var(--oc-btn-text, #fff);
+  border: none;
+  box-shadow: 0 8px 24px rgba(20, 164, 188, 0.28);
+}
+.oc-btn:hover,
+.oc-btn--secondary:hover,
+.btn-primary:hover,
+.btn-dark:hover,
+.hero-btn--primary:hover,
+.blockchain-services-cta:hover,
+.sc-btn-primary:hover,
+.reclaim-cta:hover,
+.ai-cta:hover,
+.fp-btn:hover {
+  background: var(--oc-btn-bg-hover, #0d7d91);
+  color: var(--oc-btn-text, #fff);
+  transform: translateY(-1px);
+  box-shadow: 0 12px 28px rgba(20, 164, 188, 0.34);
+}
+
+/* Outline / ghost — same soft rectangle shape */
+.btn-outline,
+.btn-ghost,
+.btn-line,
+.hero-btn--ghost,
+.reclaim-cta-outline,
+.sc-btn-ghost,
+.fp-chip,
+.fp-tag {
+  background: var(--oc-surface);
+  color: var(--oc-text);
+  border: 1px solid var(--oc-border-strong);
+  box-shadow: none;
+}
+.btn-outline:hover,
+.btn-ghost:hover,
+.btn-line:hover,
+.hero-btn--ghost:hover,
+.reclaim-cta-outline:hover,
+.sc-btn-ghost:hover,
+.fp-chip:hover,
+.fp-tag:hover {
+  background: var(--oc-surface-alt);
+  border-color: var(--oc-btn-bg);
+  color: var(--oc-btn-bg);
 }
 
 /* Body text — Inter */
@@ -188,7 +180,10 @@ p, li, label, input, textarea, .oc-type-body {
   font-weight: var(--weight-medium);
   letter-spacing: var(--tracking-sub);
   text-transform: uppercase;
-  color: var(--oc-muted-light);
+}
+
+.ticker .ticker-item {
+  color: var(--oc-on-dark);
 }
 
 /* Section eyebrows / tags — supporting text, primary accent */
@@ -201,6 +196,7 @@ p, li, label, input, textarea, .oc-type-body {
 .video-header .eyebrow,
 .section-eyebrow,
 .ecosystem-tag,
+.backed-by .eyebrow,
 .sc-col-title,
 .sc-fcol h5,
 .fig-label {
@@ -210,32 +206,19 @@ p, li, label, input, textarea, .oc-type-body {
   text-transform: uppercase;
 }
 
-/* Apply §07 CertLedger palette on product surfaces */
-[data-brand="certledger"] {
-  --oc-primary: var(--cert-primary);
-  --oc-primary-light: var(--cert-secondary);
-  --oc-primary-glow: var(--cert-primary-glow);
-  --oc-secondary: var(--cert-supp);
-  --oc-secondary-alert: var(--cert-alert);
-  --oc-supp: #e8f4f8;
-  --oc-supp-soft: #f0f9fb;
-  --oc-bg-alt: #e8f4f8;
-  --oc-supp-alert: var(--cert-alert-soft);
+/* ===== Problem / Answer pattern (shared) =====
+   Brand Guideline §04: the red/pink pair (--oc-alert / --oc-alert-soft) is a
+   Supplementary Color reserved specifically "for alert content" — a problem
+   statement is exactly that, so its tag uses the brand alert red, not a
+   neutral grey. The paired answer/solution tag uses the brand accent blue.
+   Reusable across any page that ships this two-column contrast pattern. */
+.s-problem .s-tag,
+.oc-problem-tag {
+  color: var(--oc-alert);
 }
-
-/* Apply §09 ESGLedger palette on product surfaces */
-[data-brand="esgledger"] {
-  --oc-primary: var(--esg-primary);
-  --oc-primary-deep: var(--esg-dark);
-  --oc-primary-light: var(--esg-secondary);
-  --oc-primary-brand: var(--esg-primary);
-  --oc-primary-glow: var(--esg-primary-glow);
-  --oc-secondary: var(--esg-supp);
-  --oc-secondary-alert: var(--esg-alert);
-  --oc-supp: #e8f5f4;
-  --oc-supp-soft: #f3faf9;
-  --oc-bg-alt: #e8f5f4;
-  --oc-supp-alert: var(--esg-alert-soft);
+.s-solution .s-tag,
+.oc-answer-tag {
+  color: var(--oc-accent);
 }
 
 /* ===== Site footer (shared) — gray bg, reverse-white logo ===== */
@@ -251,8 +234,8 @@ footer.footer {
 .site-footer .logo-img--footer,
 .footer-brand img,
 .footer .logo-img {
-  /* Logo wordmark → white on gray footer */
-  filter: brightness(0) invert(1);
+  /* Footer uses onchain-logo-white.png (teal mark + reverse-white CHAIN) */
+  filter: none;
 }
 
 .sc-footer-brand p,
@@ -261,11 +244,12 @@ footer.footer {
   color: var(--oc-footer-text);
 }
 
+/* Footer column headings — brand blue */
 .sc-fcol h5,
 .site-footer-col h4,
 .footer-col h4,
 .footer-col h5 {
-  color: var(--oc-footer-muted);
+  color: var(--oc-blue-light, #3cbdd2);
 }
 
 .sc-fcol a,

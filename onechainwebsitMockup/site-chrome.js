@@ -13,46 +13,46 @@
       '⚡': '<path d="m13 2-8 12h7l-1 8 8-12h-7l1-8Z"/>',
       '📘': '<path d="M4 5.5A3.5 3.5 0 0 1 7.5 2H20v17H7.5A3.5 3.5 0 0 0 4 22V5.5Z"/><path d="M4 19a3.5 3.5 0 0 1 3.5-3.5H20"/>',
       '🔎': '<circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4 4"/>',
-      '⛓️': '<path d="m9.5 14.5 5-5"/><path d="M7.2 16.8 5.8 18.2a3.5 3.5 0 0 1-5-5l3.4-3.4a3.5 3.5 0 0 1 5 0"/><path d="m14.8 7.2 1.4-1.4a3.5 3.5 0 0 1 5 5l-3.4 3.4a3.5 3.5 0 0 1-5 0"/>'
+      '⛓️': '<path d="m9.5 14.5 5-5"/><path d="M7.2 16.8 5.8 18.2a3.5 3.5 0 0 1-5-5l3.4-3.4a3.5 3.5 0 0 1 5 0"/><path d="m14.8 7.2 1.4-1.4a3.5 3.5 0 0 1 5 5l-3.4 3.4a3.5 3.5 0 0 1-5 0"/>',
+      '🛒': '<circle cx="9" cy="20" r="1.4"/><circle cx="17" cy="20" r="1.4"/><path d="M2.5 3h2.4l2.1 11.3a2 2 0 0 0 2 1.7h7.6a2 2 0 0 0 2-1.6L20 7H6"/>',
+      '🖼️': '<rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="m21 15-5-5L5 21"/>'
     };
     var svg = paths[glyph] || '<path d="m3 7 9-4 9 4-9 4-9-4Z"/><path d="M3 7v10l9 4 9-4V7M12 11v10"/>';
     return '<span class="sc-item-icon" style="background:' + bg + '" aria-hidden="true"><svg viewBox="0 0 24 24">' + svg + '</svg></span>';
   };
-  var item = function (href, ic, name, desc) {
-    return '<a class="sc-item" href="' + href + '">' +
-      '<span><span class="sc-item-name">' + name + '</span>' +
-      '<span class="sc-item-desc" style="display:block">' + desc + '</span></span></a>';
+  var item = function (href, ic, name, desc, external) {
+    var attrs = external ? ' target="_blank" rel="noopener"' : '';
+    var descHtml = desc
+      ? '<span class="sc-item-desc" style="display:block">' + desc + '</span>'
+      : '';
+    return '<a class="sc-item" href="' + href + '"' + attrs + '>' +
+      (ic || '') +
+      '<span><span class="sc-item-name">' + name + '</span>' + descHtml + '</span></a>';
   };
   var caret = '<svg class="sc-caret" width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
   var MENUS = [
     { label: 'Products', cols: [
       { title: 'Flagship Products', items: [
-        item('esgledger.html', icon('rgba(46,204,113,0.12)', '🌱'), 'ESGLedger', 'Blockchain-verified ESG data & plastic credit marketplace'),
-        item('certledger.html', icon('rgba(240,180,41,0.14)', '🎓'), 'CertLedger', 'Tamper-proof credentials, verified in seconds'),
+        item('products.html#product-esg', icon('rgba(46,204,113,0.12)', '🌱'), 'ESGLedger', ''),
+        item('products.html#product-cert', icon('rgba(240,180,41,0.14)', '🎓'), 'CertLedger', ''),
+        item('products.html#product-wills', icon('rgba(20,58,83,0.12)', '📜'), 'WillsLedger', ''),
+        item('products.html#product-art', icon('rgba(208,168,128,0.12)', '🖼️'), 'ArtLedger', ''),
       ]},
       { title: 'Developer Platform', items: [
         item('api-platform.html', icon('rgba(0,180,216,0.12)', '⚡'), 'API Platform', 'REST APIs for documents, assets, and products'),
-        item('api-docs.html', icon('rgba(0,180,216,0.12)', '📄'), 'API Docs', 'Base URL, auth, and endpoint map'),
       ]},
     ]},
     { label: 'Solutions', cols: [
-      { title: 'Lead Use Cases', items: [
-        item('solutions.html#lead', icon('rgba(46,204,113,0.12)', '♻️'), 'Watsons & Timber', 'Recycling credits and timber provenance — one story'),
+      { title: 'What We Do', items: [
+        item('index.html#blockchain-services', icon('rgba(20,164,188,0.12)', '⛓️'), 'From Infrastructure to Applications', 'Build a chain, bring data on-chain, and launch real products'),
       ]},
-      { title: 'By Industry', items: [
-        item('solutions.html#esg', icon('rgba(46,204,113,0.12)', '🌱'), 'ESG & Sustainability', 'Anti-greenwashing data and plastic credits'),
-        item('solutions.html#credentials', icon('rgba(240,180,41,0.14)', '🪪'), 'Credentials & Identity', 'Issue, hold, and verify digital certificates'),
-        item('solutions.html#education', icon('rgba(1,98,130,0.10)', '🏫'), 'Education', 'Diplomas and transcripts anyone can verify'),
-        item('solutions.html#government', icon('rgba(1,98,130,0.10)', '🏛️'), 'Government', 'Regulatory-grade audit trails and licences'),
-      ]},
-    ]},
-    { label: 'Company', cols: [
-      { title: 'What We Build', items: [
-        item('company.html#services', icon('rgba(20,164,188,0.12)', '⛓️'), 'Blockchain Services', 'Build a chain, bring data on-chain, and launch real applications'),
-        item('infrastructure.html', icon('rgba(1,98,130,0.10)', '🗄️'), 'Infrastructure', 'Three-layer enterprise blockchain stack'),
-        item('company.html#applications', icon('rgba(127,119,221,0.12)', '📦'), 'Applications', 'Products in production on OneChain'),
-        item('company.html#greentech', icon('rgba(46,204,113,0.12)', '🌿'), 'Green Tech', 'Circular economy and climate technology'),
+      { title: 'By Industries', items: [
+        item('industries.html#esg', icon('rgba(46,204,113,0.12)', '🌱'), 'ESG & Sustainability', 'Anti-greenwashing data and plastic credits'),
+        item('industries.html#credentials', icon('rgba(240,180,41,0.14)', '🪪'), 'Credentials & Identity', 'Issue, hold, and verify digital certificates'),
+        item('industries.html#education', icon('rgba(1,98,130,0.10)', '🏫'), 'Education', 'Diplomas and transcripts anyone can verify'),
+        item('industries.html#fmcg', icon('rgba(46,204,113,0.12)', '🛒'), 'FMCG', 'Product provenance and recycling proof for consumer goods'),
+        item('industries.html#art', icon('rgba(208,168,128,0.12)', '🖼️'), 'Art & Collectibles', 'NFC-tagged artwork authenticity and provenance'),
       ]},
     ]},
     { label: 'About', cols: [
@@ -64,8 +64,9 @@
     ]},
     { label: 'Resources', cols: [
       { title: 'Explore', items: [
-        item('blog.html', icon('rgba(0,180,216,0.12)', '📘'), 'Blog', 'Insights, product news, and partner stories'),
-        item('contact.html', icon('rgba(240,180,41,0.14)', '💬'), 'Contact', 'Talk to the team'),
+        item('blog.html', icon('rgba(0,180,216,0.12)', '📘'), 'News & Articles', 'Insights, product news, and partner stories'),
+        item('api-docs.html', icon('rgba(0,180,216,0.12)', '📄'), 'API Documentation', 'Base URL, auth, and endpoint map'),
+        item('https://onechainscan.io/', icon('rgba(1,98,130,0.10)', '🔎'), 'Blockchain Explorer', 'Browse transactions and audit the chain on OneChainScan', true),
       ]},
     ]},
   ];
@@ -106,7 +107,10 @@
   function buildFooter() {
     var col = function (title, links) {
       return '<div class="sc-fcol"><h5>' + title + '</h5><ul>' +
-        links.map(function (l) { return '<li><a href="' + l[1] + '">' + l[0] + '</a></li>'; }).join('') +
+        links.map(function (l) {
+          var extra = l[1].indexOf('http') === 0 ? ' target="_blank" rel="noopener"' : '';
+          return '<li><a href="' + l[1] + '"' + extra + '>' + l[0] + '</a></li>';
+        }).join('') +
         '</ul></div>';
     };
     var contactCol =
@@ -127,19 +131,20 @@
       '<svg width="22" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3.02 3.02 0 0 0-2.12-2.14C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.38.56A3.02 3.02 0 0 0 .5 6.2 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.8 3.02 3.02 0 0 0 2.12 2.14C4.5 20.5 12 20.5 12 20.5s7.5 0 9.38-.56a3.02 3.02 0 0 0 2.12-2.14A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.8zM9.75 15.52V8.48L15.82 12l-6.07 3.52z"/></svg></a>' +
       '</div>';
     return '<footer class="sc-footer"><div class="sc-footer-inner"><div class="sc-footer-grid">' +
-      '<div class="sc-footer-brand"><img src="onchain-logo.png" alt="OneChain">' +
-      '<p>Full-stack blockchain company building the trust layer for Asia. Cyberport, Hong Kong.</p></div>' +
-      col('Products', [['ESGLedger', 'esgledger.html'], ['CertLedger', 'certledger.html'], ['API Platform', 'api-platform.html'], ['API Docs', 'api-docs.html']]) +
-      col('Solutions', [['Watsons & Timber', 'solutions.html#lead'], ['ESG & Sustainability', 'solutions.html#esg'], ['Credentials & Identity', 'solutions.html#credentials'], ['Education', 'solutions.html#education'], ['Government', 'solutions.html#government']]) +
-      col('Company', [['Blockchain Services', 'company.html#services'], ['Infrastructure', 'infrastructure.html'], ['Applications', 'company.html#applications'], ['Green Tech', 'company.html#greentech']]) +
-      col('About', [['About Us', 'about.html'], ['Vision & Mission', 'about.html#vision'], ['What We Solve', 'about.html#solving'], ['Blog', 'blog.html']]) +
+      '<div class="sc-footer-brand"><img src="onchain-logo-white.png?v=202609071808" alt="OneChain">' +
+      '<p>OneChain® is a startup leveraging blockchain and AI to deliver end-to-end solutions, making credentials tamper-proof, transparent, and trackable from infrastructure to application.</p>' +
+      '<img class="sc-footer-iso" src="images/recognition/iso-27001.svg?v=202609081725" alt="ISO 27001 Certified" width="72" height="72">' +
+      '</div>' +
+      col('Products', [['ESGLedger', 'products.html#product-esg'], ['CertLedger', 'products.html#product-cert'], ['WillsLedger', 'products.html#product-wills'], ['ArtLedger', 'products.html#product-art'], ['API Platform', 'api-platform.html']]) +
+      col('Solutions', [['From Infrastructure to Applications', 'index.html#blockchain-services'], ['ESG & Sustainability', 'industries.html#esg'], ['Credentials & Identity', 'industries.html#credentials'], ['Education', 'industries.html#education'], ['FMCG', 'industries.html#fmcg'], ['Art & Collectibles', 'industries.html#art']]) +
+      col('About', [['About Us', 'about.html'], ['Vision & Mission', 'about.html#vision'], ['What We Solve', 'about.html#solving']]) +
+      col('Resources', [['News & Articles', 'blog.html'], ['API Documentation', 'api-docs.html'], ['Blockchain Explorer', 'https://onechainscan.io/']]) +
       contactCol +
       '</div><div class="sc-footer-bottom">' +
       '<div class="sc-footer-bottom-left">' +
       social +
-      '<img class="sc-footer-iso" src="iso-27001.svg" alt="ISO 27001 Certified" width="52" height="52">' +
       '</div>' +
-      '<p>© 2026 OneChain Ltd. · Level 9, Core C, Cyberport 3, Pok Fu Lam, Hong Kong · <a href="mailto:info@one-chain.io?subject=Privacy%20Policy" style="color:inherit">Privacy Policy</a> · <a href="mailto:info@one-chain.io?subject=Terms%20of%20Use" style="color:inherit">Terms of Use</a></p>' +
+      '<p>© 2026 OneChain Ltd. · <a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms &amp; Conditions</a></p>' +
       '</div></div></footer>';
   }
 
@@ -154,13 +159,13 @@
     if (!document.querySelector('link[href*="global.css"]')) {
       var globalStyles = document.createElement('link');
       globalStyles.rel = 'stylesheet';
-      globalStyles.href = 'global.css';
+      globalStyles.href = 'global.css?v=202609141432';
       document.head.appendChild(globalStyles);
     }
     if (!document.querySelector('link[href*="chrome.css"]')) {
       var chromeStyles = document.createElement('link');
       chromeStyles.rel = 'stylesheet';
-      chromeStyles.href = 'chrome.css';
+      chromeStyles.href = 'chrome.css?v=202609141432';
       document.head.appendChild(chromeStyles);
     }
 

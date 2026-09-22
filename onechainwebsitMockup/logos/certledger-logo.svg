@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 40" role="img" aria-label="CertLedger">
+  <text x="0" y="28" font-family="Inter, -apple-system, BlinkMacSystemFont, sans-serif" font-size="26" font-weight="700" letter-spacing="-0.02em">
+    <tspan fill="#016282">Cert</tspan><tspan fill="#8ad7e8">&#39;Ledger</tspan>
+  </text>
+  <path d="M148 32.5 L151.2 34.8 L154.4 32.5 L151.2 36.2 Z" fill="#016282"/>
+</svg>

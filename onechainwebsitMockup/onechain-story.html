@@ -30,14 +30,10 @@
   ============================================================================
 -->
 
+  <link rel="stylesheet" href="tokens.css?v=202609211627">
+  <link rel="stylesheet" href="global.css?v=202609211725">
 <style>
   *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-  :root{
-    --cyan:#14a4bc; --primary:#14a4bc; --purple:#14a4bc;
-    --bg:#05080f; --ink:#eaf2f7; --muted:rgba(234,242,247,.45);
-    --font:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
-    --mono:'Inter',-apple-system,sans-serif;
-  }
   html{scroll-behavior:smooth;}
   body{background:var(--bg);color:var(--ink);font-family:var(--font);-webkit-font-smoothing:antialiased;}
 
@@ -126,7 +122,7 @@
   /* a normal section after the story so you can see the pin release */
   .after{
     min-height:80vh;display:flex;align-items:center;justify-content:center;
-    text-align:center;padding:80px 24px;background:linear-gradient(180deg,var(--bg),#0A1628);
+    text-align:center;padding:80px 24px;background:linear-gradient(180deg,var(--bg),var(--oc-blue-darkest));
   }
   .after h3{font-size:clamp(28px,4vw,44px);font-weight:300;letter-spacing:-.02em;max-width:760px;}
   .after p{color:var(--muted);margin-top:18px;font-size:16px;}
@@ -137,11 +133,9 @@
     .hint .arrow{animation:none;}
   }
 </style>
-  <link rel="stylesheet" href="tokens.css">
-  <link rel="stylesheet" href="global.css?v=202607141820">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <meta name="theme-color" content="#14a4bc">
-  <link rel="stylesheet" href="site-base.css?v=202607280950">
+  <link rel="stylesheet" href="site-base.css?v=202609151700">
 </head>
 <body>
 
@@ -320,7 +314,7 @@ function drawBlock(cx, cy, r, h, hue, glow){
 function drawScene(t){
   // background wash
   const g=ctx.createLinearGradient(0,0,0,H);
-  g.addColorStop(0,'#070b14'); g.addColorStop(0.5,'#05080f'); g.addColorStop(1,'#04060c');
+  g.addColorStop(0,'#101f26'); g.addColorStop(0.5,'#0d1b20'); g.addColorStop(1,'#0a171b');
   ctx.fillStyle=g; ctx.fillRect(0,0,W,H);
 
   // faint horizon glow that shifts with progress

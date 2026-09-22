@@ -7,19 +7,14 @@
   <meta name="description" content="OneChain solutions by industry: ESG & sustainability, credentials & identity, education, and government — plus lead use cases with Watsons and HK Timberbank.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css?v=202609211627">
+  <link rel="stylesheet" href="global.css?v=202609211725">
   <link rel="stylesheet" href="chrome.css">
-  <script src="site-chrome.js?v=202607271607" defer></script>
+  <script src="site-chrome.js?v=202609211627" defer></script>
   <style>
-    :root {
-      --oc-primary: #14a4bc; --oc-primary-deep: #0d7d91; --oc-primary-light: #3cbdd2;
-      --oc-esg: #007771; --oc-cert: #016282; --oc-muted: #64748B; --oc-dark: #0A1628;
-      --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      --font-cjk: 'Noto Sans TC', sans-serif;
-      --mono: 'JetBrains Mono', ui-monospace, monospace;
-    }
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
-    body { font-family: var(--font), var(--font-cjk), sans-serif; color: #545454; background: #fff; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    body { font-family: var(--font), var(--font-cjk), sans-serif; color: var(--oc-text); background: #fff; line-height: 1.6; -webkit-font-smoothing: antialiased; }
     a { text-decoration: none; color: inherit; }
 
     /* HERO */
@@ -28,7 +23,7 @@
       background:
         radial-gradient(ellipse 70% 80% at 15% 20%, rgba(20,164,188,0.30), transparent 55%),
         radial-gradient(ellipse 60% 70% at 90% 30%, rgba(60,189,210,0.22), transparent 50%),
-        linear-gradient(145deg, var(--oc-dark, #0a1628) 0%, var(--oc-primary-deep, #0d7d91) 75%, var(--oc-primary, #14a4bc) 115%);
+        linear-gradient(145deg, var(--oc-dark) 0%, var(--oc-primary-deep) 75%, var(--oc-primary) 115%);
     }
     .sol-hero::before {
       content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .35;
@@ -47,32 +42,23 @@
       font-size: clamp(34px, 5.5vw, 56px); font-weight: 700; letter-spacing: -0.02em;
       line-height: 1.12; max-width: 720px; margin-bottom: 18px; color: #fff;
     }
-    .sol-hero h1 em { font-style: normal; color: var(--oc-primary-light); }
+    .sol-hero h1 em { font-style: normal; color: var(--oc-accent); }
     .sol-hero > .container > p {
-      font-size: 18px; color: rgba(255,255,255,0.78); max-width: 560px; margin-bottom: 36px;
+      font-size: 18px; color: rgba(255,255,255,0.78); max-width: 560px; margin-bottom: 0;
     }
-    .sol-partners {
-      display: flex; align-items: center; gap: 28px; flex-wrap: wrap;
-      padding: 18px 22px; border-radius: 14px; max-width: 520px;
-      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.14);
-      backdrop-filter: blur(12px);
-    }
-    .sol-partners span { font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,0.55); }
-    .sol-partners img { height: 26px; width: auto; filter: brightness(0) invert(1); opacity: .95; }
-    .sol-partners .sep { width: 1px; height: 28px; background: rgba(255,255,255,0.25); }
 
     /* ONE COMBINED SECTION */
-    .lead-section { padding: 96px 0 110px; background: linear-gradient(180deg, #f4f9fc 0%, #fff 40%, #fff 100%); }
+    .lead-section { padding: 96px 0 110px; background: linear-gradient(180deg, var(--oc-surface-alt) 0%, #fff 40%, #fff 100%); }
     .lead-intro { text-align: center; max-width: 680px; margin: 0 auto 56px; }
     .lead-intro .eyebrow { color: var(--oc-primary); font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; }
-    .lead-intro h2 { font-size: clamp(28px, 4vw, 40px); font-weight: 700; letter-spacing: -0.02em; color: var(--oc-dark); margin-bottom: 14px; }
+    .lead-intro h2 { font-size: clamp(28px, 4vw, 40px); font-weight: 700; letter-spacing: -0.02em; color: var(--oc-heading); margin-bottom: 14px; }
     .lead-intro p { font-size: 17px; color: var(--oc-muted); }
 
     /* Shared story rail */
     .story-rail {
       position: relative; border-radius: 20px; overflow: hidden;
-      background: #fff; border: 1px solid rgba(10,22,40,0.08);
-      box-shadow: 0 24px 60px rgba(10,22,40,0.06);
+      background: #fff; border: 1px solid var(--oc-border);
+      box-shadow: 0 24px 60px var(--oc-border);
     }
     .story-rail::before {
       content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 6px;
@@ -81,39 +67,48 @@
 
     .story-head {
       display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;
-      padding: 28px 36px 24px 40px; border-bottom: 1px solid rgba(10,22,40,0.06);
-      background: linear-gradient(90deg, rgba(0,119,113,0.06), rgba(20,164,188,0.05), rgba(1,98,130,0.06));
+      padding: 28px 36px 24px 40px; border-bottom: 1px solid var(--oc-border);
+      background: linear-gradient(90deg, rgba(0,119,113,0.06), rgba(20,164,188,0.05), var(--oc-blue-glow));
     }
-    .story-head h3 { font-size: 22px; font-weight: 700; color: var(--oc-dark); letter-spacing: -0.01em; }
+    .story-head h3 { font-size: 22px; font-weight: 700; color: var(--oc-heading); letter-spacing: -0.01em; }
     .story-head p { font-size: 14px; color: var(--oc-muted); max-width: 420px; }
     .story-badges { display: flex; gap: 8px; flex-wrap: wrap; }
     .story-badge {
-      font-family: var(--mono); font-size: 12px; font-weight: 600; letter-spacing: 0.5px;
-      padding: 5px 12px; border-radius: 999px; background: #fff; border: 1px solid rgba(10,22,40,0.1); color: var(--oc-muted);
+      font-family: var(--font-body); font-size: var(--label-size); font-weight: var(--weight-medium);
+      letter-spacing: var(--tracking-supporting); text-transform: uppercase;
+      padding: 6px 12px; border-radius: 8px; background: var(--oc-border);
+      border: none; color: var(--oc-muted);
     }
 
     /* Two lanes in one visual */
     .story-lanes { display: grid; grid-template-columns: 1fr 1fr; }
     .lane { padding: 36px 32px 40px 40px; position: relative; }
-    .lane + .lane { border-left: 1px solid rgba(10,22,40,0.06); }
+    .lane + .lane { border-left: 1px solid var(--oc-border); }
     .lane-label {
       display: inline-flex; align-items: center; gap: 10px; margin-bottom: 18px;
     }
-    .lane-label img { height: 28px; width: auto; }
+    .lane-label img { height: 36px; width: auto; display: block; }
+    .lane--timber .lane-label img { height: 48px; }
     .lane-chip {
-      font-size: 12px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase;
-      padding: 3px 9px; border-radius: 999px;
+      font-size: 12px; font-weight: 700; letter-spacing: 0.02em; text-transform: none;
+      padding: 6px 12px; border-radius: 8px;
+      background: var(--oc-border);
+      color: var(--oc-muted);
+      border: none;
     }
-    .lane--watsons .lane-chip { background: rgba(0,119,113,0.12); color: var(--oc-esg); }
-    .lane--timber .lane-chip { background: rgba(1,98,130,0.12); color: var(--oc-cert); }
-    .lane h4 { font-size: 20px; font-weight: 700; color: var(--oc-dark); margin-bottom: 10px; letter-spacing: -0.01em; }
+    .lane--watsons .lane-chip,
+    .lane--timber .lane-chip {
+      background: var(--oc-border);
+      color: var(--oc-muted);
+    }
+    .lane h4 { font-size: 20px; font-weight: 700; color: var(--oc-heading); margin-bottom: 10px; letter-spacing: -0.01em; }
     .lane > p { font-size: 15px; color: var(--oc-muted); margin-bottom: 22px; }
 
     /* Visual flow steps */
     .flow { display: flex; align-items: stretch; gap: 0; margin-bottom: 22px; }
     .flow-step {
       flex: 1; text-align: center; padding: 14px 8px; position: relative;
-      background: #F7FAFB; border: 1px solid rgba(10,22,40,0.06);
+      background: var(--oc-surface-alt); border: 1px solid var(--oc-border);
     }
     .flow-step:first-child { border-radius: 12px 0 0 12px; }
     .flow-step:last-child { border-radius: 0 12px 12px 0; }
@@ -129,14 +124,14 @@
       display: flex; align-items: center; justify-content: center;
     }
     .lane--watsons .flow-ico { background: rgba(0,119,113,0.1); color: var(--oc-esg); }
-    .lane--timber .flow-ico { background: rgba(1,98,130,0.1); color: var(--oc-cert); }
+    .lane--timber .flow-ico { background: var(--oc-blue-soft); color: var(--oc-cert); }
     .flow-ico svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-    .flow-step b { display: block; font-size: 12px; font-weight: 700; color: var(--oc-dark); }
+    .flow-step b { display: block; font-size: 12px; font-weight: 700; color: var(--oc-heading); }
     .flow-step span { display: block; font-size: 12px; color: var(--oc-muted); margin-top: 2px; }
 
     .lane-points { list-style: none; margin-bottom: 20px; }
     .lane-points li {
-      position: relative; padding: 6px 0 6px 22px; font-size: 14px; color: #475569;
+      position: relative; padding: 6px 0 6px 22px; font-size: 14px; color: var(--oc-muted);
     }
     .lane-points li::before { content: '✓'; position: absolute; left: 0; font-weight: 700; }
     .lane--watsons .lane-points li::before { color: var(--oc-esg); }
@@ -151,65 +146,63 @@
     /* Shared outcomes strip */
     .story-outcomes {
       display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
-      background: rgba(10,22,40,0.06); border-top: 1px solid rgba(10,22,40,0.06);
+      background: var(--oc-border); border-top: 1px solid var(--oc-border);
     }
     .outcome {
-      background: #0A1628; color: rgba(255,255,255,0.78); padding: 22px 20px; text-align: center;
+      background: var(--oc-surface-dark); color: var(--oc-on-dark-muted); padding: 22px 20px; text-align: center;
     }
     .outcome b { display: block; font-size: 18px; font-weight: 700; color: #fff; margin-bottom: 4px; letter-spacing: -0.02em; }
     .outcome span { font-size: 12px; color: rgba(255,255,255,0.55); }
 
     @media (max-width: 900px) {
       .story-lanes { grid-template-columns: 1fr; }
-      .lane + .lane { border-left: none; border-top: 1px solid rgba(10,22,40,0.06); }
+      .lane + .lane { border-left: none; border-top: 1px solid var(--oc-border); }
       .story-outcomes { grid-template-columns: 1fr 1fr; }
       .lane { padding: 28px 24px 32px 28px; }
       .story-head { padding: 24px 24px 20px 28px; }
     }
     @media (max-width: 520px) {
       .flow { flex-direction: column; gap: 8px; }
-      .flow-step { border-radius: 12px !important; border: 1px solid rgba(10,22,40,0.06) !important; }
+      .flow-step { border-radius: 12px !important; border: 1px solid var(--oc-border) !important; }
       .flow-step + .flow-step::before { display: none; }
       .story-outcomes { grid-template-columns: 1fr; }
     }
 
     /* INDUSTRY SOLUTIONS */
     section[id], .ind-row[id] { scroll-margin-top: 88px; }
-    .industries { padding: 96px 0 110px; border-top: 1px solid rgba(10,22,40,0.06); }
+    .industries { padding: 96px 0 110px; border-top: 1px solid var(--oc-border); }
     .ind-row {
       display: grid; grid-template-columns: 1fr 340px; gap: 48px; align-items: start;
-      padding: 48px 0; border-bottom: 1px solid rgba(10,22,40,0.06);
+      padding: 48px 0; border-bottom: 1px solid var(--oc-border);
     }
     .ind-row:last-child { border-bottom: none; padding-bottom: 0; }
     .ind-chip {
       display: inline-flex; font-size: 12px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase;
       padding: 4px 11px; border-radius: 999px; margin-bottom: 14px;
     }
-    .ind-row h3 { font-size: 24px; font-weight: 700; color: var(--oc-dark); letter-spacing: -0.01em; margin-bottom: 10px; }
+    .ind-row h3 { font-size: 24px; font-weight: 700; color: var(--oc-heading); letter-spacing: -0.01em; margin-bottom: 10px; }
     .ind-row > div > p { font-size: 15px; color: var(--oc-muted); max-width: 560px; }
     .ind-points { list-style: none; margin-top: 18px; }
-    .ind-points li { position: relative; padding: 6px 0 6px 22px; font-size: 14px; color: #475569; }
+    .ind-points li { position: relative; padding: 6px 0 6px 22px; font-size: 14px; color: var(--oc-muted); }
     .ind-points li::before { content: '✓'; position: absolute; left: 0; font-weight: 700; }
     .ind-aside {
-      background: #F7FAFB; border: 1px solid rgba(10,22,40,0.08); border-radius: 14px; padding: 24px;
+      background: var(--oc-surface-alt); border: 1px solid var(--oc-border); border-radius: 14px; padding: 24px;
     }
     .ind-aside h5 { font-size: 12px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--oc-muted); margin-bottom: 8px; }
     .ind-aside p { font-size: 14px; color: var(--oc-muted); margin-bottom: 16px; }
     .ind-aside .lane-cta { font-size: 14px; }
     .ind--esg .ind-chip { background: rgba(0,119,113,0.1); color: var(--oc-esg); }
     .ind--esg .ind-points li::before, .ind--esg .lane-cta { color: var(--oc-esg); }
-    .ind--cert .ind-chip { background: rgba(1,98,130,0.1); color: var(--oc-cert); }
+    .ind--cert .ind-chip { background: var(--oc-blue-soft); color: var(--oc-cert); }
     .ind--cert .ind-points li::before, .ind--cert .lane-cta { color: var(--oc-cert); }
     @media (max-width: 900px) { .ind-row { grid-template-columns: 1fr; gap: 24px; } }
 
     .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s cubic-bezier(0.16,1,0.3,1); }
     .reveal.visible { opacity: 1; transform: none; }
   </style>
-  <link rel="stylesheet" href="tokens.css">
-  <link rel="stylesheet" href="global.css">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <meta name="theme-color" content="#14a4bc">
-  <link rel="stylesheet" href="site-base.css?v=202607280950">
+  <link rel="stylesheet" href="site-base.css?v=202609151700">
 </head>
 <body>
 
@@ -220,12 +213,6 @@
       <div class="sol-eyebrow">Solutions · Lead use cases</div>
       <h1>One chain. <em>Two clear stories.</em></h1>
       <p>Watsons recycling credits and timber provenance — the same permissioned trust layer, written for ordinary readers, proven in production.</p>
-      <div class="sol-partners" aria-label="Featured partners">
-        <span>Partners</span>
-        <img src="partners/watsons.svg" alt="Watsons" />
-        <span class="sep" aria-hidden="true"></span>
-        <img src="partners/hk-timberbank.svg" alt="HK Timberbank" />
-      </div>
     </div>
   </header>
 
@@ -253,7 +240,7 @@
         <div class="story-lanes">
           <div class="lane lane--watsons">
             <div class="lane-label">
-              <img src="partners/watsons.svg" alt="Watsons" width="120" height="28" />
+              <img src="partners/watsons-logo.png?v=3" alt="Watsons" width="160" height="38" />
               <span class="lane-chip">ESGLedger</span>
             </div>
             <h4>Reverse-vending plastic credits</h4>
@@ -284,7 +271,7 @@
 
           <div class="lane lane--timber">
             <div class="lane-label">
-              <img src="partners/hk-timberbank.svg" alt="HK Timberbank" width="150" height="28" />
+              <img src="partners/hk-timberbank-logo.png?v=3" alt="HK Timberbank" width="140" height="56" />
               <span class="lane-chip">Products API</span>
             </div>
             <h4>Timber chain-of-custody</h4>

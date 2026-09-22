@@ -1,82 +1,328 @@
-/**
- * OneChain design tokens — synced with global.css / Brand Guideline PDF.
- * Prefer loading global.css for full type utilities; tokens remain for :root vars.
- */
+/* ============================================================================
+   OneChain Design Tokens — THE single source of truth.
+
+   RULES (enforced by ./audit-design.sh)
+   1. No other file may declare a raw colour. Use var(--oc-*) only.
+   2. No black. Text and dark surfaces use the NEUTRAL GRAY RAMP below.
+   3. One blue: --oc-blue (#14a4bc). CertLedger's deep blue (#016282) is
+      allowed ONLY inside [data-brand="certledger"].
+   4. One typeface: Inter. --font-mono is for real code/hashes only, never
+      for labels, badges, eyebrows or numbers.
+
+   WHY THE GRAYS LOOKED INCONSISTENT
+   The site mixed pure-neutral gray (#545454, R=G=B) with blue-tinted slate
+   (#64748b, #475569, #94a3b8). Side by side the slate reads cooler and
+   "lighter/darker" even at the same luminance. The ramp below is pure
+   neutral end to end, anchored on the brand gray #545454.
+   ========================================================================= */
+
 :root {
-  /* Brand colors */
-  --oc-primary: #14a4bc;
-  --oc-primary-deep: #0d7d91;
-  --oc-primary-light: #3cbdd2;
-  --oc-primary-brand: #14a4bc;
-  --oc-primary-glow: rgba(20, 164, 188, 0.1);
+  /* ---------- 1 · BRAND BLUE (OneChain) ------------------------------ */
+  --oc-blue:        #14a4bc;  /* THE OneChain blue — fills, icons, display */
+  --oc-blue-deep:   #0d7d91;  /* 4.8:1 on white — use for small blue TEXT  */
+  --oc-blue-light:  #3cbdd2;
+  --oc-blue-tint:   #e2f6f9;  /* supplementary surface */
+  --oc-blue-wash:   #eef9fb;
+  --oc-blue-glow:   rgba(20, 164, 188, 0.10);
+  --oc-blue-soft:   rgba(20, 164, 188, 0.12);
+  --oc-blue-darkest: #0a4a57;  /* deep BRAND teal — gradient anchor, never black */
 
-  --oc-secondary: #545454;
-  --oc-secondary-alert: #eb6363;
+  /* One gradient recipe for the whole site */
+  --oc-gradient-brand: linear-gradient(135deg, var(--oc-blue-deep) 0%, var(--oc-blue) 55%, var(--oc-blue-light) 100%);
+  --oc-gradient-deep:  linear-gradient(145deg, var(--oc-blue-darkest) 0%, var(--oc-blue-deep) 60%, var(--oc-blue) 100%);
 
-  --oc-supp: #e2f6f9;
-  --oc-supp-mint: #97eed7;
-  --oc-supp-soft: #eef9fb;
-  --oc-supp-alert: #f5b8b6;
+  /* ---------- 2 · GREY — ONE VALUE FOR ALL TEXT -----------------------
+     Brand grey #545454. Headings, body, secondary text AND form
+     placeholders are ALL this colour; hierarchy comes from size and
+     weight, never from tone. Never reintroduce a second grey. */
+  --oc-gray:     #545454;  /* the grey — 7.6:1 on white */
+  --oc-gray-900: var(--oc-gray);
+  --oc-gray-700: var(--oc-gray);
+  --oc-gray-500: var(--oc-gray);
+  --oc-gray-400: var(--oc-gray);  /* placeholders + decorative icons — same grey */
+  --oc-gray-200: #d6d6d6;
+  --oc-gray-100: #e8e8e8;
+  --oc-gray-50:  #f5f6f7;
 
-  --oc-dark: #0a1628;
-  --oc-dark-surface: #111827;
-  --oc-bg: #ffffff;
-  --oc-bg-alt: #e2f6f9;
-  --oc-border: rgba(10, 22, 40, 0.08);
-  --oc-border-strong: rgba(10, 22, 40, 0.12);
-  --oc-text: #545454;
-  --oc-text-secondary: #475569;
-  --oc-muted: #64748b;
-  --oc-muted-light: #94a3b8;
+  /* ---------- 3 · SEMANTIC ROLES — reach for these, not the ramp ----- */
+  --oc-heading:       var(--oc-gray);
+  --oc-text:          var(--oc-gray);
+  --oc-muted:         var(--oc-gray);
+  --oc-muted-light:   var(--oc-gray);
+  --oc-accent:        var(--oc-blue);
+  --oc-accent-text:   var(--oc-blue);  /* was blue-deep — user asked for ONE blue everywhere */
 
-  /* §07 CertLedger */
-  --cert-primary: #016282;
-  --cert-secondary: #8ad7e8;
-  --cert-supp: #545454;
-  --cert-alert: #eb6363;
-  --cert-alert-soft: #f5b8b6;
-  --cert-primary-glow: rgba(1, 98, 130, 0.12);
-  --oc-cert-teal: var(--cert-primary);
-  --oc-cert-secondary: var(--cert-secondary);
-  --oc-cert-teal-text: var(--cert-primary);
-  --oc-cert-teal-glow: var(--cert-primary-glow);
+  --oc-surface:       #ffffff;
+  --oc-surface-alt:   #f5f8f9;  /* the ONE off-white (replaced 6 variants) */
+  --oc-surface-tint:  var(--oc-blue-tint);
+  --oc-surface-dark:  var(--oc-gray);  /* the ONE dark panel — matches the footer */
+  --oc-surface-media: var(--oc-gray);  /* backdrop behind video/images only  */
+  --oc-canvas-dark:   #0d1b20;  /* immersive dark story canvas ONLY        */
+  --oc-on-dark:            #ffffff;
+  --oc-on-dark-muted:      rgba(255, 255, 255, 0.72);
+  --oc-on-dark-faint:      rgba(255, 255, 255, 0.55);
 
-  /* §09 ESGLedger */
-  --esg-primary: #007771;
-  --esg-secondary: #aededb;
-  --esg-supp: #545454;
-  --esg-alert: #eb6363;
-  --esg-alert-soft: #f5b8b6;
-  --esg-primary-glow: rgba(0, 119, 113, 0.12);
-  --esg-dark: #005c58;
-  --oc-esg-green: var(--esg-primary);
-  --oc-esg-secondary: var(--esg-secondary);
-  --oc-esg-dark: var(--esg-dark);
+  --oc-border:        rgba(84, 84, 84, 0.14);
+  --oc-border-strong: rgba(84, 84, 84, 0.24);
+  --oc-border-hover:  rgba(84, 84, 84, 0.30);
+  --oc-card-bg:       var(--oc-surface);
 
-  --oc-ai-purple: var(--oc-primary);
+  --oc-alert:         #eb6363;
+  --oc-alert-soft:    #f5b8b6;
+  --oc-success:       #007771;
 
-  /* Typefaces — Inter Bold (brand) / Inter (body) / Inter Medium tracked (supporting) */
-  --font-brand: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-display: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-supporting: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-sub: var(--font-supporting);
-  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  /* ---------- 4 · PRODUCT PALETTES (scoped via [data-brand]) --------- */
+  --cert-primary: #016282;  --cert-secondary: #8ad7e8;
+  --cert-glow: rgba(1, 98, 130, 0.12);
+  --esg-primary:  #007771;  --esg-secondary:  #aededb;  --esg-dark: #005c58;
+  --esg-glow: rgba(0, 119, 113, 0.12);
+  --wills-primary: #143a53; --wills-secondary: #de9e3b;
+  --wills-primary-deep: #0f2f44; --wills-primary-light: #2a5670;
+  --wills-secondary-soft: #f5e6c8;
+  --wills-glow: rgba(20, 58, 83, 0.12);
+  --wills-secondary-glow: rgba(222, 158, 59, 0.16);
+  /* ArtLedger — brand tan from official wordmark (#d0a880) */
+  --art-tan: #d0a880;
+  --art-primary: #a67c52;
+  --art-primary-deep: #8a6640;
+  --art-primary-light: #d0a880;
+  --art-secondary: #d0a880;
+  --art-secondary-soft: #f6eee6;
+  --art-ink: #111111;
+  --art-glow: rgba(208, 168, 128, 0.18);
+  --art-secondary-glow: rgba(208, 168, 128, 0.24);
+
+  /* ---------- 5 · TYPE ----------------------------------------------- */
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Noto Sans TC', sans-serif;
+  --font-brand: var(--font-body);
+  --font-display: var(--font-body);
+  --font-sans: var(--font-body);
+  --font-supporting: var(--font-body);
+  --font-sub: var(--font-body);
   --font-cjk: 'Noto Sans TC', 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace; /* CODE ONLY */
 
   --weight-body: 400;
   --weight-medium: 500;
+  --weight-semibold: 600;
   --weight-bold: 700;
   --tracking-tight: -0.02em;
   --tracking-sub: 0.08em;
   --tracking-supporting: 0.08em;
 
-  --radius-xs: 6px;
-  --radius-sm: 8px;
-  --radius-md: 10px;
-  --radius-lg: 12px;
-  --radius-panel: 12px;
-  --radius-btn: 10px;
-  --radius-full: 999px;
+  /* Type scale — ONE scale for every page (was defined only in home.css) */
+  --title-hero:    clamp(34px, 5.5vw, 60px);
+  --title-section: clamp(32px, 3.2vw, 40px);
+  --title-card:    18px;
+  --lead-section:  17px;
+  --body-base:     15px;
+  --body-card:     14px;
+  --label-size:    12px;   /* eyebrows, badges, chips */
+
+  /* ---------- 6 · SHAPE ---------------------------------------------- */
+  --radius-xs: 6px;  --radius-sm: 8px;  --radius-md: 8px;  --radius-lg: 8px;
+  --radius-xl: 12px; --radius-panel: 12px; --radius-btn: 8px;
+  --radius-full: 999px;      /* circles only — avatars, dots, icon buttons */
+
+  /* ---------- 7 · BUTTONS -------------------------------------------- */
+  --oc-btn-bg: #14a4bc;
+  --oc-btn-bg-hover: #0d7d91;
+  --oc-btn-text: #ffffff;
+  --oc-btn-pad-y: 8px;  --oc-btn-pad-x: 16px;
+  --oc-btn-font-size: 14px;  --oc-btn-font-weight: 600;
+  --oc-btn-gap: 8px;  --oc-btn-height: auto;
+  --oc-secondary-btn: var(--oc-btn-bg);
+
+  /* ---------- 8 · FOOTER --------------------------------------------- */
+  --oc-footer-bg: var(--oc-surface-dark);
+  --oc-footer-text: var(--oc-on-dark-muted);
+  --oc-footer-text-strong: var(--oc-on-dark);
+  --oc-footer-muted: rgba(255, 255, 255, 0.48);
+  --oc-footer-border: rgba(255, 255, 255, 0.12);
+  --oc-footer-accent: var(--oc-blue-light);
+
+  /* ==========================================================================
+     9 · COMPATIBILITY ALIASES
+     Every short name the pages invented, re-pointed at the ramp above so one
+     edit here changes the whole site. Do not add new ones — use the semantic
+     roles in §3 instead.
+     ====================================================================== */
+  --oc-primary:        var(--oc-blue);
+  --oc-primary-deep:   var(--oc-blue-deep);
+  --oc-primary-light:  var(--oc-blue-light);
+  --oc-primary-brand:  var(--oc-blue);
+  --oc-primary-glow:   var(--oc-blue-glow);
+  --oc-secondary:      var(--oc-text);
+  --oc-secondary-alert: var(--oc-alert);
+  --oc-supp:           var(--oc-blue-tint);
+  --oc-supp-mint:      #97eed7;
+  --oc-supp-soft:      var(--oc-blue-wash);
+  --oc-supp-alert:     var(--oc-alert-soft);
+
+  --oc-ink:            var(--oc-heading);
+  --oc-text-secondary: var(--oc-muted);
+  --oc-bg:             var(--oc-surface);
+  --oc-bg-alt:         var(--oc-surface-alt);
+  --oc-white:          var(--oc-surface);
+  --oc-light-bg:       var(--oc-surface-alt);
+
+  /* Near-black aliases → neutral dark. Kills #0a1628 everywhere. */
+  --oc-dark:         var(--oc-surface-dark);
+  --oc-dark-surface: var(--oc-surface-dark);
+  --oc-dark-border:  var(--oc-border);
+
+  /* Off-brand product refs on NON-product pages → OneChain blue.
+     (CertLedger deep blue is re-enabled inside [data-brand="certledger"].) */
+  --oc-cert:          var(--oc-blue);
+  --oc-cert-teal:     var(--oc-blue);
+  --oc-cert-teal-text: var(--oc-blue-deep);
+  --oc-cert-secondary: var(--oc-blue-light);
+  --oc-cert-teal-glow: var(--oc-blue-glow);
+  --oc-ai-purple:     var(--oc-blue);
+  --oc-esg:           var(--esg-primary);
+  --oc-esg-green:     var(--esg-primary);
+  --oc-esg-secondary: var(--esg-secondary);
+  --oc-esg-dark:      var(--esg-dark);
+  --oc-wills-blue:    var(--wills-primary);
+  --oc-wills-navy:    var(--wills-primary);
+  --oc-wills-yellow:  var(--wills-secondary);
+  --oc-wills-secondary: var(--wills-secondary);
+  --oc-wills-glow:    var(--wills-glow);
+
+  --cert-supp: var(--oc-text);  --cert-alert: var(--oc-alert);
+  --cert-alert-soft: var(--oc-alert-soft); --cert-primary-glow: var(--cert-glow);
+  --esg-supp: var(--oc-text);   --esg-alert: var(--oc-alert);
+  --esg-alert-soft: var(--oc-alert-soft);  --esg-primary-glow: var(--esg-glow);
+  --wills-supp: var(--oc-text); --wills-alert: var(--oc-alert);
+  --wills-alert-soft: var(--oc-alert-soft); --wills-primary-glow: var(--wills-glow);
+  --art-supp: var(--oc-text);   --art-alert: var(--oc-alert);
+  --art-alert-soft: var(--oc-alert-soft);  --art-primary-glow: var(--art-glow);
+
+  /* Bare names invented by individual pages */
+  --ink:          var(--oc-heading);
+  --muted:        var(--oc-muted);
+  --muted-2:      var(--oc-muted);   /* pages use this for small meta TEXT — must pass AA */
+  --border:       var(--oc-border);
+  --border-2:     var(--oc-border-strong);
+  --primary:      var(--oc-blue);
+  --primary-deep: var(--oc-blue-deep);
+  --primary-light: var(--oc-blue-light);
+  --cyan:         var(--oc-blue);
+  --purple:       var(--oc-blue);
+  --gold:         var(--oc-blue);      /* was CertLedger #016282 — off-brand */
+  --green:        var(--esg-primary);
+  --bg:           var(--oc-surface);
+  --bg-alt:       var(--oc-surface-alt);
+  --bg-page:      var(--oc-surface-alt);
+  --font:         var(--font-body);
+  --mono:         var(--font-body);    /* labels are NOT code — Inter */
+
+  /* Shared chrome (nav/footer) */
+  --sc-ink: var(--oc-heading);    --sc-muted: var(--oc-muted);
+  --sc-muted-2: var(--oc-muted-light);
+  --sc-border: var(--oc-border);  --sc-border-2: var(--oc-border-strong);
+  --sc-primary: var(--oc-blue);   --sc-green: var(--esg-primary);
+  --sc-gold: var(--oc-blue);      --sc-purple: var(--oc-blue);
+  --sc-cyan: var(--oc-blue);
+}
+
+/* ==========================================================================
+   PRODUCT SURFACES — the ONLY places a non-OneChain palette may appear.
+   NOTE: custom properties resolve where they are DECLARED, so every derived
+   alias must be re-declared here; inheriting --oc-blue alone is not enough.
+   ========================================================================== */
+[data-brand="certledger"] {
+  --oc-blue:       var(--cert-primary);
+  --oc-blue-deep:  #014d66;
+  --oc-blue-light: var(--cert-secondary);
+  --oc-blue-glow:  var(--cert-glow);
+  --oc-blue-tint:  #e8f4f8;
+  --oc-blue-wash:  #f0f9fb;
+
+  --oc-accent:      var(--cert-primary);
+  --oc-accent-text: #014d66;
+  --oc-surface-alt: #eff7fa;
+  --oc-surface-tint: #e8f4f8;
+
+  --oc-primary:       var(--cert-primary);
+  --oc-primary-deep:  #014d66;
+  --oc-primary-light: var(--cert-secondary);
+  --oc-primary-brand: var(--cert-primary);
+  --oc-primary-glow:  var(--cert-glow);
+  --oc-supp:      #e8f4f8;
+  --oc-supp-soft: #f0f9fb;
+  --oc-bg-alt:    #eff7fa;
+
+  --oc-cert:           var(--cert-primary);
+  --oc-cert-teal:      var(--cert-primary);
+  --oc-cert-teal-text: var(--cert-primary);
+  --oc-cert-secondary: var(--cert-secondary);
+  --oc-cert-teal-glow: var(--cert-glow);
+
+  --primary:       var(--cert-primary);
+  --primary-deep:  #014d66;
+  --primary-light: var(--cert-secondary);
+  --cyan:          var(--cert-primary);
+  --gold:          var(--cert-primary);
+  --bg-alt:        #eff7fa;
+}
+
+[data-brand="esgledger"] {
+  --oc-blue:       var(--esg-primary);
+  --oc-blue-deep:  var(--esg-dark);
+  --oc-blue-light: var(--esg-secondary);
+  --oc-blue-glow:  var(--esg-glow);
+  --oc-blue-tint:  #e8f5f4;
+  --oc-blue-wash:  #f3faf9;
+
+  --oc-accent:      var(--esg-primary);
+  --oc-accent-text: var(--esg-dark);
+  --oc-surface-alt: #eff8f7;
+  --oc-surface-tint: #e8f5f4;
+
+  --oc-primary:       var(--esg-primary);
+  --oc-primary-deep:  var(--esg-dark);
+  --oc-primary-light: var(--esg-secondary);
+  --oc-primary-brand: var(--esg-primary);
+  --oc-primary-glow:  var(--esg-glow);
+  --oc-supp:      #e8f5f4;
+  --oc-supp-soft: #f3faf9;
+  --oc-bg-alt:    #eff8f7;
+
+  --primary:       var(--esg-primary);
+  --primary-deep:  var(--esg-dark);
+  --primary-light: var(--esg-secondary);
+  --cyan:          var(--esg-primary);
+  --green:         var(--esg-primary);
+  --bg-alt:        #eff8f7;
+}
+
+[data-brand="willsledger"] {
+  --oc-blue:       var(--wills-primary);
+  --oc-blue-deep:  var(--wills-primary-deep);
+  --oc-blue-light: var(--wills-primary-light);
+  --oc-blue-glow:  var(--wills-glow);
+  --oc-blue-tint:  var(--wills-secondary-soft);
+  --oc-blue-wash:  #faf4e8;
+
+  --oc-accent:      var(--wills-secondary);
+  --oc-accent-text: var(--wills-primary);
+  --oc-surface-alt: #faf6ef;
+  --oc-surface-tint: var(--wills-secondary-soft);
+
+  --oc-primary:       var(--wills-primary);
+  --oc-primary-deep:  var(--wills-primary-deep);
+  --oc-primary-light: var(--wills-primary-light);
+  --oc-primary-brand: var(--wills-primary);
+  --oc-primary-glow:  var(--wills-glow);
+  --oc-supp:      var(--wills-secondary-soft);
+  --oc-supp-soft: #faf4e8;
+  --oc-bg-alt:    #faf6ef;
+
+  --primary:       var(--wills-primary);
+  --primary-deep:  var(--wills-primary-deep);
+  --primary-light: var(--wills-primary-light);
+  --cyan:          var(--wills-primary);
+  --gold:          var(--wills-secondary);
+  --bg-alt:        #faf6ef;
 }

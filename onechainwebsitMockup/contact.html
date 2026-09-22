@@ -7,22 +7,11 @@
   <meta name="description" content="Contact OneChain — talk to our team about enterprise blockchain, ESGLedger, CertLedger, and collaboration opportunities.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="chrome.css">
-  <script src="site-chrome.js?v=202607301530" defer></script>
+  <link rel="stylesheet" href="tokens.css?v=202609211627">
+  <link rel="stylesheet" href="global.css?v=202609211725">
+  <link rel="stylesheet" href="chrome.css?v=202609211725">
+  <script src="site-chrome.js?v=202609211627" defer></script>
   <style>
-    :root {
-      --ink: #2f3a45;
-      --muted: #64748B;
-      --muted-2: #94A3B8;
-      --border: rgba(10, 22, 40, 0.07);
-      --border-2: rgba(10, 22, 40, 0.1);
-      --primary: #14a4bc;
-      --primary-deep: #0c7a8d;
-      --primary-light: #3cbdd2;
-      --bg-page: #e8f1f5;
-      --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      --font-cjk: 'Noto Sans TC', sans-serif;
-    }
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
     body {
@@ -40,7 +29,7 @@
       overflow: hidden;
       padding: 128px 0 108px;
       text-align: center;
-      background: linear-gradient(90deg, #0a2a32 0%, #0f8fa5 55%, #14a4bc 100%);
+      background: linear-gradient(90deg, var(--oc-blue-darkest) 0%, var(--oc-blue-deep) 55%, var(--oc-blue) 100%);
     }
     .contact-hero::before {
       content: '';
@@ -72,11 +61,19 @@
       color: #ffffff !important;
     }
     .contact-hero p {
-      font-size: 16px;
-      line-height: 1.7;
-      max-width: 680px;
+      font-size: clamp(13px, 1.45vw, 16px);
+      line-height: 1.5;
+      max-width: min(920px, 94vw);
       margin: 0 auto;
       color: rgba(255, 255, 255, 0.82);
+      white-space: nowrap;
+    }
+    @media (max-width: 640px) {
+      .contact-hero p {
+        white-space: normal;
+        font-size: 14px;
+        max-width: 92vw;
+      }
     }
 
     /* Overlap cards into hero */
@@ -104,7 +101,7 @@
       border: 1px solid rgba(255,255,255,0.7);
       box-shadow:
         0 1px 2px rgba(10, 22, 40, 0.04),
-        0 12px 36px rgba(10, 22, 40, 0.08);
+        0 12px 36px var(--oc-border);
     }
 
     /* Form */
@@ -151,7 +148,7 @@
       width: 100%;
       font: 400 15px/1.5 var(--font);
       color: var(--ink);
-      background: #f4f8fa;
+      background: var(--oc-surface-alt);
       border: 1.5px solid transparent;
       border-radius: 12px;
       padding: 15px 16px;
@@ -160,9 +157,9 @@
       resize: vertical;
     }
     .field input::placeholder,
-    .field textarea::placeholder { color: #a8b4c0; }
+    .field textarea::placeholder { color: var(--oc-muted-light); }
     .field input:hover,
-    .field textarea:hover { background: #eef4f7; }
+    .field textarea:hover { background: var(--oc-surface-alt); }
     .field input:focus,
     .field textarea:focus {
       border-color: var(--primary);
@@ -178,7 +175,7 @@
       align-self: flex-start;
       font: 600 15px/1 var(--font);
       color: #fff;
-      background: linear-gradient(180deg, #1ab0c8 0%, #1298ae 100%);
+      background: linear-gradient(180deg, var(--oc-blue) 0%, var(--oc-blue-deep) 100%);
       border: none;
       border-radius: 12px;
       padding: 15px 26px;
@@ -290,10 +287,10 @@
       color: var(--ink);
       background: rgba(255,255,255,0.96);
       backdrop-filter: blur(8px);
-      border: 1px solid rgba(10,22,40,0.08);
+      border: 1px solid var(--oc-border);
       border-radius: 999px;
       padding: 9px 13px;
-      box-shadow: 0 6px 18px rgba(10, 22, 40, 0.12);
+      box-shadow: 0 6px 18px var(--oc-border-strong);
       transition: background .15s, color .15s, transform .15s;
     }
     .map-open:hover {
@@ -311,6 +308,7 @@
     }
     .form-status.is-visible { display: block; }
   </style>
+  <link rel="stylesheet" href="site-base.css?v=202609151700">
 </head>
 <body>
   <div id="site-nav"></div>
@@ -318,7 +316,7 @@
   <header class="contact-hero">
     <div class="container">
       <h1>Contact Us</h1>
-      <p>Join us in embracing the blockchain revolution of the Web3 era. We invite businesses and brands to collaborate with us in building a thriving distributed ledger ecosystem.</p>
+      <p>Have questions or ready to collaborate? Reach out and let’s build something impactful together.</p>
     </div>
   </header>
 
