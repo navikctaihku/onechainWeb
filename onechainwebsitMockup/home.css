@@ -232,19 +232,19 @@
       position: absolute;
       inset: 0;
       z-index: 3;
-      background: rgba(10, 22, 40, 0.5);
+      background: rgba(6, 42, 52, 0.28);
       pointer-events: none;
     }
     .hero--revealed .hero-media::after {
-      background: rgba(10, 22, 40, 0.5);
+      background: rgba(6, 42, 52, 0.28);
     }
     .hero-bg,
     .hero-bg-video {
       position: absolute;
-      top: -14%; left: -8%; right: -8%; bottom: -4%;
-      width: 116%; height: 126%;
+      inset: 0;
+      width: 100%; height: 100%;
       object-fit: cover;
-      object-position: center 58%;
+      object-position: center;
       display: block;
       z-index: 1;
       background: var(--oc-surface-media);
@@ -292,13 +292,13 @@
       font-weight: 700;
       line-height: 1.2;
       letter-spacing: -0.02em;
-      color: var(--oc-blue-light);
+      color: #ffffff;
       margin-bottom: 18px;
-      text-shadow: 0 2px 18px rgba(13, 125, 145, 0.35);
+      text-shadow: 0 2px 14px rgba(4, 30, 38, 0.55);
       white-space: nowrap;
     }
     .hero-overlay .hero-slogan {
-      color: var(--oc-blue-light);
+      color: #ffffff;
     }
     .hero-powered {
       font-family: var(--font-body);
@@ -322,11 +322,11 @@
       color: #ffffff;
       margin-bottom: 18px;
       min-height: 1.45em;
-      text-shadow: 0 2px 16px rgba(0, 0, 0, 0.28);
+      text-shadow: 0 2px 14px rgba(4, 30, 38, 0.55);
     }
     .hero-rotate-accent {
       color: #ffffff;
-      border-bottom: 2px solid rgba(255, 255, 255, 0.55);
+      border-bottom: 2px solid var(--oc-blue-light);
       padding-bottom: 3px;
       display: inline;
     }
@@ -345,9 +345,10 @@
       font-family: var(--font-body);
       font-size: clamp(13px, 1.5vw, 16px);
       font-weight: 400;
-      color: rgba(255, 255, 255, 0.62);
+      color: rgba(255, 255, 255, 0.85);
       margin-bottom: 32px;
       letter-spacing: 0.01em;
+      text-shadow: 0 1px 10px rgba(4, 30, 38, 0.6);
     }
     .hero-ctas {
       display: flex;
