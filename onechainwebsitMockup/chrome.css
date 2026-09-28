@@ -53,14 +53,14 @@
     border-radius: 8px; transition: color .15s, background .15s, border-color .15s; }
   .sc-btn-ghost:hover { color: var(--sc-ink); background: rgba(10,22,40,0.04); border-color: rgba(10,22,40,0.18); }
   .sc-btn-contact {
-    color: #fff;
-    border-color: var(--oc-blue, #14a4bc);
-    background: var(--oc-blue, #14a4bc);
+    color: var(--oc-blue, #14a4bc);
+    border-color: rgba(20, 164, 188, 0.35);
+    background: #fff;
   }
   .sc-btn-contact:hover {
-    color: #fff;
-    background: var(--oc-blue-deep, #0d7d91);
-    border-color: var(--oc-blue-deep, #0d7d91);
+    color: var(--oc-blue-deep, #0d7d91);
+    background: rgba(20, 164, 188, 0.06);
+    border-color: rgba(20, 164, 188, 0.5);
   }
   .sc-btn-primary { font: 600 14px/1 'Inter', sans-serif; color: var(--oc-surface, #fff); background: var(--oc-btn-bg);
     text-decoration: none; padding: 8px 16px; min-height: 36px; display: inline-flex; align-items: center; gap: 8px;
