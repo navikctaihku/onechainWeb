@@ -52,6 +52,16 @@
     border: 1px solid rgba(10,22,40,0.12);
     border-radius: 8px; transition: color .15s, background .15s, border-color .15s; }
   .sc-btn-ghost:hover { color: var(--sc-ink); background: rgba(10,22,40,0.04); border-color: rgba(10,22,40,0.18); }
+  .sc-btn-contact {
+    color: var(--oc-primary, #14a4bc);
+    border-color: rgba(20, 164, 188, 0.35);
+    background: #fff;
+  }
+  .sc-btn-contact:hover {
+    color: var(--oc-primary-deep, #0d7d91);
+    background: rgba(20, 164, 188, 0.06);
+    border-color: rgba(20, 164, 188, 0.5);
+  }
   .sc-btn-primary { font: 600 14px/1 'Inter', sans-serif; color: var(--oc-surface, #fff); background: var(--oc-btn-bg);
     text-decoration: none; padding: 8px 16px; min-height: 36px; display: inline-flex; align-items: center; gap: 8px;
     border: none;
@@ -61,7 +71,7 @@
     color: var(--sc-ink); padding: 8px; }
   /* mobile */
   @media (max-width: 1023px) {
-    .sc-menu, .sc-actions .sc-btn-ghost { display: none; }
+    .sc-menu, .sc-actions .sc-btn-ghost, .sc-actions .sc-btn-primary { display: none; }
     .sc-burger { display: block; }
     .sc-mobile { position: fixed; top: 64px; left: 0; right: 0; bottom: 0; z-index: 999; overflow-y: auto;
       background: rgba(255, 255, 255, 0.86);
