@@ -83,7 +83,7 @@
       '<a href="index.html" class="sc-logo"><img src="onchain-logo.png" alt="OneChain"></a>' +
       '<ul class="sc-menu">' + lis + '</ul>' +
       '<div class="sc-actions">' +
-      '<a class="sc-btn-ghost" href="contact.html">Contact</a>' +
+      '<a class="sc-btn-ghost sc-btn-contact" href="contact.html">Contact</a>' +
       '<button class="sc-burger" aria-label="Menu" type="button">☰</button>' +
       '</div></div></nav>' + buildMobile();
   }

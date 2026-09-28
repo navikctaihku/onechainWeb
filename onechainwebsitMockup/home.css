@@ -226,25 +226,25 @@
       overflow: hidden;
       background: var(--oc-surface-media);
     }
-    /* Flat 50% dark overlay — sits on video, under title for contrast */
+    /* Soft center wash so the test photo stays visible and the copy stays readable */
     .hero-media::after {
       content: '';
       position: absolute;
       inset: 0;
       z-index: 3;
-      background: rgba(6, 42, 52, 0.28);
+      background: radial-gradient(ellipse 68% 52% at 50% 46%, rgba(6, 28, 42, 0.38), rgba(6, 28, 42, 0.08) 72%);
       pointer-events: none;
     }
     .hero--revealed .hero-media::after {
-      background: rgba(6, 42, 52, 0.28);
+      background: radial-gradient(ellipse 68% 52% at 50% 46%, rgba(6, 28, 42, 0.38), rgba(6, 28, 42, 0.08) 72%);
     }
     .hero-bg,
     .hero-bg-video {
       position: absolute;
-      inset: 0;
+      top: 0; left: 0; right: 0; bottom: 0;
       width: 100%; height: 100%;
       object-fit: cover;
-      object-position: center;
+      object-position: center center;
       display: block;
       z-index: 1;
       background: var(--oc-surface-media);
@@ -281,6 +281,7 @@
       height: auto;
       margin: 0 auto 18px;
       display: block;
+      filter: none;
     }
     /* Representative slogan — light blue key line under logo */
     .hero-slogan {
@@ -291,7 +292,7 @@
       letter-spacing: -0.02em;
       color: #ffffff;
       margin-bottom: 18px;
-      text-shadow: 0 2px 14px rgba(4, 30, 38, 0.55);
+      text-shadow: 0 2px 16px rgba(0, 0, 0, 0.28);
       white-space: nowrap;
     }
     .hero-overlay .hero-slogan {
@@ -319,11 +320,11 @@
       color: #ffffff;
       margin-bottom: 18px;
       min-height: 1.45em;
-      text-shadow: 0 2px 14px rgba(4, 30, 38, 0.55);
+      text-shadow: 0 2px 16px rgba(0, 0, 0, 0.28);
     }
     .hero-rotate-accent {
       color: #ffffff;
-      border-bottom: 2px solid var(--oc-blue-light);
+      border-bottom: 2px solid var(--oc-blue);
       padding-bottom: 3px;
       display: inline;
     }
@@ -342,10 +343,9 @@
       font-family: var(--font-body);
       font-size: clamp(13px, 1.5vw, 16px);
       font-weight: 400;
-      color: rgba(255, 255, 255, 0.85);
+      color: rgba(255, 255, 255, 0.62);
       margin-bottom: 32px;
       letter-spacing: 0.01em;
-      text-shadow: 0 1px 10px rgba(4, 30, 38, 0.6);
     }
     .hero-ctas {
       display: flex;
@@ -475,8 +475,7 @@
       max-width: min(440px, 78vw);
       width: 100%;
       height: auto;
-      filter: drop-shadow(0 0 24px rgba(20, 164, 188, 0.22))
-              drop-shadow(0 0 48px rgba(20, 164, 188, 0.12));
+      filter: none;
       animation: hero-intro-logo-in 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
     }
     @keyframes hero-intro-logo-in {

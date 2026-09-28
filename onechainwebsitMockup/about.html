@@ -9,8 +9,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="tokens.css?v=202609211627">
   <link rel="stylesheet" href="global.css?v=202609211725">
-  <link rel="stylesheet" href="chrome.css?v=202609211725">
-  <script src="site-chrome.js?v=202609211627" defer></script>
+  <link rel="stylesheet" href="chrome.css?v=202609221608">
+  <script src="site-chrome.js?v=202609221608" defer></script>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <meta name="theme-color" content="#14a4bc">
   <style>
@@ -91,6 +91,82 @@
     }
     @media (max-width: 767px) {
       .team-photo img { aspect-ratio: 4 / 3; object-position: center 30%; }
+    }
+
+    /* BACKED & RECOGNIZED */
+    .backed-by {
+      padding: 64px 24px 88px;
+      border-top: 1px solid var(--border);
+    }
+    .backed-by-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .backed-by .eyebrow {
+      font: 600 12px/1 var(--font);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+    .backed-by h2 {
+      font-family: var(--font-display);
+      font-size: clamp(24px, 3vw, 30px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--oc-heading);
+      line-height: 1.2;
+      margin: 0 auto 40px;
+      max-width: none;
+      text-align: center;
+    }
+    .backed-by-logos {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 36px 40px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .backed-by-logos li {
+      display: flex;
+      flex-shrink: 0;
+      align-items: center;
+      justify-content: center;
+    }
+    .backed-by-logo {
+      height: 44px;
+      width: auto;
+      object-fit: contain;
+      display: block;
+    }
+    .backed-by-logo--cyberport { transform: translateY(6px); }
+    .backed-by-logo--cityu { height: 56px; transform: translateY(-4px); }
+    .backed-by-logo--ict { height: 56px; }
+    .backed-by-logo--scwin { height: 40px; }
+    .backed-by-logo--fstb { height: 36px; }
+    .backed-by-logo--csdi { height: 44px; }
+    .backed-by-logo--iso { height: 56px; }
+    @media (min-width: 640px) {
+      .backed-by-logos { gap: 40px 48px; }
+      .backed-by-logo { height: 48px; }
+      .backed-by-logo--cityu,
+      .backed-by-logo--ict,
+      .backed-by-logo--iso { height: 64px; }
+      .backed-by-logo--scwin { height: 44px; }
+      .backed-by-logo--fstb { height: 40px; }
+    }
+    @media (min-width: 1024px) {
+      .backed-by { padding: 72px 24px 96px; }
+      .backed-by-logo { height: 56px; }
+      .backed-by-logo--cityu,
+      .backed-by-logo--ict,
+      .backed-by-logo--iso { height: 72px; }
+      .backed-by-logo--scwin { height: 52px; }
+      .backed-by-logo--fstb { height: 48px; }
     }
 
     .section { padding: 96px 0; }
@@ -232,8 +308,25 @@
       <h2>Built in Hong Kong. Shipping for the world.</h2>
       <p class="lede">The OneChain team at Cyberport — building blockchain and AI infrastructure that makes trust verifiable.</p>
       <figure class="team-photo">
-        <img src="images/onechain-team.jpg" alt="The OneChain team at Cyberport, Hong Kong" width="1600" height="900" loading="lazy" decoding="async">
+        <img src="images/onechain-team.jpg?v=202609221618" alt="The OneChain team at Cyberport, Hong Kong" width="4000" height="2667" loading="lazy" decoding="async">
       </figure>
+    </div>
+  </section>
+
+  <!-- BACKED & RECOGNIZED -->
+  <section class="backed-by reveal" id="backed-by" aria-labelledby="backed-by-heading">
+    <div class="backed-by-inner">
+      <p class="eyebrow">Backed &amp; Recognized By</p>
+      <h2 id="backed-by-heading">Incubated, Partnered, and Awarded</h2>
+      <ul class="backed-by-logos">
+        <li><img class="backed-by-logo backed-by-logo--cyberport" src="images/recognition/cyberport.png" alt="Cyberport" width="323" height="140" loading="lazy" decoding="async" draggable="false" /></li>
+        <li><img class="backed-by-logo backed-by-logo--cityu" src="images/recognition/cityu-hk-tech-300.png" alt="CityU HK Tech 300" width="344" height="143" loading="lazy" decoding="async" draggable="false" /></li>
+        <li><img class="backed-by-logo backed-by-logo--ict" src="images/recognition/hk-ict-awards-2024.png" alt="Hong Kong ICT Awards 2024" width="263" height="190" loading="lazy" decoding="async" draggable="false" /></li>
+        <li><img class="backed-by-logo backed-by-logo--scwin" src="images/recognition/standard-chartered-win.png" alt="Standard Chartered — SC WIN Now &amp; Next Challenge" width="1524" height="375" loading="lazy" decoding="async" draggable="false" /></li>
+        <li><img class="backed-by-logo backed-by-logo--fstb" src="images/recognition/fstb.png" alt="Financial Services and the Treasury Bureau" width="337" height="92" loading="lazy" decoding="async" draggable="false" /></li>
+        <li><img class="backed-by-logo backed-by-logo--csdi" src="images/recognition/csdi.png" alt="Common Spatial Data Infrastructure" width="293" height="119" loading="lazy" decoding="async" draggable="false" /></li>
+        <li><img class="backed-by-logo backed-by-logo--iso" src="images/recognition/iso-27001.png" alt="ISO 27001 Certified" width="302" height="302" loading="lazy" decoding="async" draggable="false" /></li>
+      </ul>
     </div>
   </section>
 
