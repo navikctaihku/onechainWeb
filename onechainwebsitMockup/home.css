@@ -281,9 +281,6 @@
       height: auto;
       margin: 0 auto 18px;
       display: block;
-      filter:
-        drop-shadow(0 0 10px rgba(255, 255, 255, 0.32))
-        drop-shadow(0 0 22px rgba(255, 255, 255, 0.14));
     }
     /* Representative slogan — light blue key line under logo */
     .hero-slogan {
