@@ -66,6 +66,7 @@ rsync -a \
   --exclude '*.canvas' \
   --exclude 'package.json' \
   --exclude 'package-lock.json' \
+  --exclude 'serve.json' \
   --exclude 'Hong_Kong_recycling_ecosystem_*' \
   --exclude 'videos/Blockchain_data_chain_animation_202607091637.mp4' \
   --exclude 'videos/Holographic_blockchain_cubes_lin*' \
