@@ -12,6 +12,8 @@
 !/.github/
 !/.github/**
 !/README.md
+!/AGENTS.md
+!/CLAUDE.md
 !/.gitignore
 !/deploy-website.sh
 !/deploy-stp.sh
