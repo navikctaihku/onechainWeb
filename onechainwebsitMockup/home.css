@@ -287,12 +287,12 @@
     /* Representative slogan — light blue key line under logo */
     .hero-slogan {
       font-family: var(--font-display);
-      font-size: clamp(16px, 2.65vw, 36px);
+      font-size: clamp(16px, 2.1vw, 30px);
       font-weight: 700;
       line-height: 1.2;
       letter-spacing: -0.02em;
       color: #ffffff;
-      margin-bottom: 18px;
+      margin-bottom: 10px;
       text-shadow: 0 2px 16px rgba(0, 0, 0, 0.28);
       white-space: nowrap;
     }
@@ -315,11 +315,11 @@
     }
     .hero-rotate {
       font-family: var(--font-display);
-      font-size: clamp(24px, 3.5vw, 40px);
-      font-weight: 600;
+      font-size: clamp(18px, 1.7vw, 26px);
+      font-weight: 500;
       line-height: 1.4;
       color: #ffffff;
-      margin-bottom: 18px;
+      margin-bottom: 36px;
       min-height: 1.45em;
       text-shadow: 0 2px 16px rgba(0, 0, 0, 0.28);
     }
@@ -344,8 +344,8 @@
       font-family: var(--font-body);
       font-size: clamp(13px, 1.5vw, 16px);
       font-weight: 400;
-      color: rgba(255, 255, 255, 0.62);
-      margin-bottom: 32px;
+      color: rgba(255, 255, 255, 0.75);
+      margin-bottom: 28px;
       letter-spacing: 0.01em;
     }
     .hero-ctas {
