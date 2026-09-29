@@ -307,6 +307,21 @@
       font-weight: 500;
     }
     .form-status.is-visible { display: block; }
+
+    /* Thank-you state shown after Send */
+    .form-thanks { display: none; text-align: center; padding: 24px 8px 8px; }
+    .form-thanks.is-visible { display: block; }
+    .form-thanks-icon { width: 64px; height: 64px; margin: 0 auto 20px; border-radius: 50%;
+      background: rgba(20, 164, 188, 0.1); color: var(--primary); display: flex; align-items: center; justify-content: center; }
+    .form-thanks-icon svg { width: 30px; height: 30px; }
+    .form-thanks h2 { margin-bottom: 10px; }
+    .form-thanks p { color: var(--muted); font-size: 16px; line-height: 1.6; max-width: 460px; margin: 0 auto 12px; }
+    .form-thanks-summary { text-align: left; max-width: 460px; margin: 22px auto; padding: 16px 20px;
+      border: 1px solid var(--border-2); border-radius: 12px; background: var(--bg-alt); font-size: 14px; color: var(--muted); }
+    .form-thanks-summary b { color: var(--oc-heading); font-weight: 600; }
+    .form-thanks-summary div + div { margin-top: 6px; }
+    .form-thanks-note { font-size: 13px !important; }
+    .form-thanks .btn-send { margin-top: 8px; }
   </style>
   <link rel="stylesheet" href="site-base.css?v=202609151700">
 </head>
@@ -348,6 +363,20 @@
           </button>
           <p class="form-status" id="form-status" role="status"></p>
         </form>
+        <div class="form-thanks" id="form-thanks" role="status" aria-live="polite" hidden>
+          <div class="form-thanks-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          </div>
+          <h2>Thank you, <span id="thanks-name"></span>!</h2>
+          <p>Your message is ready to send. Please press <b>Send</b> in the email window that just opened to reach our team.</p>
+          <div class="form-thanks-summary">
+            <div><b>To:</b> info@one-chain.io</div>
+            <div><b>Your email:</b> <span id="thanks-email"></span></div>
+            <div><b>Your message:</b> <span id="thanks-message"></span></div>
+          </div>
+          <p class="form-thanks-note">We usually reply within one business day. If no email window opened, write to us at <a href="mailto:info@one-chain.io">info@one-chain.io</a>.</p>
+          <button class="btn-send" type="button" id="send-another">Send another message</button>
+        </div>
       </section>
 
       <aside class="contact-side">
@@ -409,16 +438,31 @@
       var form = document.getElementById('contact-form');
       var status = document.getElementById('form-status');
       if (!form) return;
+      var thanks = document.getElementById('form-thanks');
+      var head = document.getElementById('form-title');
+      var lede = document.querySelector('.form-card .form-lede');
+      function clip(t, n) { return t.length > n ? t.slice(0, n).trim() + '…' : t; }
       form.addEventListener('submit', function (e) {
         e.preventDefault();
         var name = document.getElementById('name').value.trim();
         var email = document.getElementById('email').value.trim();
         var message = document.getElementById('message').value.trim();
         var subject = encodeURIComponent('OneChain enquiry from ' + name);
-        var body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\n' + message);
+        var body = encodeURIComponent(
+          'Hello OneChain team,\n\n' + message + '\n\n' +
+          '— — —\nName: ' + name + '\nEmail: ' + email + '\nSent from: one-chain.io contact form');
         window.location.href = 'mailto:info@one-chain.io?subject=' + subject + '&body=' + body;
-        status.textContent = 'Opening your email app…';
-        status.classList.add('is-visible');
+        document.getElementById('thanks-name').textContent = name;
+        document.getElementById('thanks-email').textContent = email;
+        document.getElementById('thanks-message').textContent = clip(message, 140);
+        form.style.display = 'none'; head.style.display = 'none'; lede.style.display = 'none';
+        thanks.hidden = false; thanks.classList.add('is-visible');
+        thanks.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+      document.getElementById('send-another').addEventListener('click', function () {
+        form.reset();
+        thanks.classList.remove('is-visible'); thanks.hidden = true;
+        form.style.display = ''; head.style.display = ''; lede.style.display = '';
       });
     })();
   </script>
