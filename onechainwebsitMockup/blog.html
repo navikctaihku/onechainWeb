@@ -272,6 +272,16 @@
     .blog-modal-close { position: absolute; top: 12px; right: 12px; width: 40px; height: 40px;
       border: none; border-radius: 50%; background: #fff; color: var(--oc-blue); font-size: 22px;
       line-height: 1; cursor: pointer; box-shadow: 0 4px 14px rgba(10, 22, 40, 0.18); z-index: 1; }
+
+    .blog-modal-img img { cursor: zoom-in; }
+    .blog-zoom { position: fixed; inset: 0; z-index: 3000; display: none; overflow: auto;
+      background: rgba(13, 60, 72, 0.94); cursor: zoom-out; }
+    .blog-zoom.is-open { display: block; }
+    .blog-zoom img { display: block; margin: 0 auto; max-width: 100vw; max-height: 100vh; object-fit: contain; }
+    .blog-zoom img.is-tall { max-height: none; width: min(100vw, 1100px); }
+    .blog-zoom-close { position: fixed; top: 14px; right: 14px; width: 44px; height: 44px; border: none;
+      border-radius: 50%; background: #fff; color: var(--oc-blue); font-size: 24px; line-height: 1;
+      cursor: pointer; box-shadow: 0 4px 14px rgba(10, 22, 40, 0.25); }
     .blog-modal-close:hover { background: var(--oc-bg-alt, #f4f8f9); }
     @media (max-width: 640px) { .blog-modal { padding: 0; } .blog-modal-panel { border-radius: 0; min-height: 100%; }
       .blog-modal-body { padding: 22px 20px 28px; } }
@@ -562,11 +572,27 @@ Each recycled timber carries a unique story, and it deserves to be told, especia
           if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openCard(card); }
         });
       });
+
+      // Click the photo for a true full-screen view (nothing cropped)
+      var zoom = document.createElement('div');
+      zoom.className = 'blog-zoom';
+      zoom.innerHTML = '<button type="button" class="blog-zoom-close" aria-label="Close full screen">&times;</button><img alt="">';
+      document.body.appendChild(zoom);
+      var zImg = zoom.querySelector('img');
+      mImg.addEventListener('click', function (e) {
+        var t = e.target; if (t.tagName !== 'IMG') return;
+        zImg.src = t.src; zImg.alt = t.alt;
+        zImg.classList.toggle('is-tall', t.naturalHeight > t.naturalWidth);
+        zoom.classList.add('is-open'); zoom.scrollTop = 0;
+      });
+      zoom.addEventListener('click', function () { zoom.classList.remove('is-open'); });
       modal.addEventListener('click', function (e) {
         if (e.target === modal || e.target.classList.contains('blog-modal-close')) closeModal();
       });
       document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
+        if (e.key !== 'Escape') return;
+        if (zoom.classList.contains('is-open')) zoom.classList.remove('is-open');
+        else if (modal.classList.contains('is-open')) closeModal();
       });
     })();
   </script>
