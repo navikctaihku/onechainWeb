@@ -208,32 +208,3 @@ h1, h2, h3, h4 {
   letter-spacing: -0.02em;
 }
 body { font-family: var(--font-body, 'Inter', 'Noto Sans TC', sans-serif); }
-
-  /* Homepage: header sits directly on the hero video — no background, white wording.
-     Once the page scrolls, the normal frosted bar returns so text stays readable. */
-  body.home .sc-nav:not(.scrolled) {
-    background: transparent !important;
-    -webkit-backdrop-filter: none; backdrop-filter: none;
-    border-bottom-color: transparent; box-shadow: none; }
-  body.home .sc-nav:not(.scrolled) .sc-menu-btn { color: #fff; }
-  body.home .sc-nav:not(.scrolled) .sc-menu-btn:hover,
-  body.home .sc-nav:not(.scrolled) .sc-menu > li.sc-open > .sc-menu-btn { color: #fff; background: rgba(255,255,255,0.14); }
-  body.home .sc-nav:not(.scrolled) .sc-logo img { content: url(onchain-logo-white.png); }
-  body.home .sc-nav:not(.scrolled) .sc-burger { color: #fff; }
-  /* Homepage dropdowns: brand-blue glass panel with white wording. */
-  body.home .sc-panel {
-    background: rgba(20, 164, 188, 0.88);
-    border-color: rgba(255,255,255,0.28); }
-  body.home .sc-col-title,
-  body.home .sc-item-name { color: #fff; }
-  body.home .sc-item-desc { color: rgba(255,255,255,0.88); }
-  body.home .sc-item:hover { background: rgba(255,255,255,0.16); }
-  /* Homepage, scrolled: header becomes the same translucent brand-blue glass as the dropdowns (white wording). */
-  body.home .sc-nav.scrolled {
-    background: rgba(20, 164, 188, 0.88) !important;
-    border-bottom-color: rgba(255,255,255,0.28); }
-  body.home .sc-nav.scrolled .sc-menu-btn,
-  body.home .sc-nav.scrolled .sc-burger { color: #fff; }
-  body.home .sc-nav.scrolled .sc-menu-btn:hover,
-  body.home .sc-nav.scrolled .sc-menu > li.sc-open > .sc-menu-btn { color: #fff; background: rgba(255,255,255,0.16); }
-  body.home .sc-nav.scrolled .sc-logo img { content: url(onchain-logo-white.png); }
