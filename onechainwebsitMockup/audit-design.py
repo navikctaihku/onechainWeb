@@ -2,7 +2,7 @@
 """
 OneChain design-system guard.  Run:  ./audit-design.py
 
-Checks the four rules stated at the top of tokens.css. CSS-aware: it resolves
+Checks the four rules stated at the top of css/tokens.css. CSS-aware: it resolves
 each declaration back to its enclosing rule, so "mono on a code block" is not
 confused with "mono on a label". Exits non-zero on drift — usable as a CI gate.
 """
@@ -10,7 +10,7 @@ import re, sys, glob, os
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 PAGES = sorted(glob.glob('*.html'))
-FILES = PAGES + ['chrome.css', 'global.css', 'home.css', 'site-base.css']
+FILES = PAGES + ['css/chrome.css', 'css/global.css', 'css/home.css', 'css/site-base.css']
 FILES = [f for f in FILES if os.path.exists(f)]
 
 G, R, B, X = '\033[32m', '\033[31m', '\033[1m', '\033[0m'
@@ -55,9 +55,9 @@ allowed = {'certledger.html', 'products.html'}
 hits = scan(r'#016282|#014d66|#8ad7e8', files=[f for f in FILES if f not in allowed])
 ok('CertLedger blue stays on CertLedger') if not hits else bad('CertLedger blue off-product', hits)
 
-# 4 — tokens.css is the only place variables are declared.
+# 4 — css/tokens.css is the only place variables are declared.
 hits = [h for h in scan(r':root\s*[,{]') if '*' not in h.split(':', 2)[2][:3]]
-ok('tokens.css is the only :root') if not hits else bad(':root declared outside tokens.css', hits)
+ok('css/tokens.css is the only :root') if not hits else bad(':root declared outside css/tokens.css', hits)
 
 # 5 — mono is for code/hashes/paths, never labels. Resolve the enclosing rule.
 CODE = re.compile(r'(^|[\s,>])(pre|code)\b|ep-|\.path\b|\.m\b|f-hash|cm-meta|browser-url|terminal|sandbox', re.I)
@@ -73,7 +73,7 @@ ok('mono font limited to code') if not hits else bad('mono font on a non-code el
 # 6 — load order: tokens + global first, site-base last.
 bad_order = []
 for f in PAGES:
-    got = re.findall(r'href="(tokens|global|site-base)\.css', open(f).read())
+    got = re.findall(r'href="css/(tokens|global|site-base)\.css', open(f).read())
     if got[:2] != ['tokens', 'global'] or got[-1:] != ['site-base']:
         bad_order.append(f'{f}: {" ".join(got) or "(none)"}')
 ok('stylesheet order correct on every page') if not bad_order else bad('wrong stylesheet order', bad_order)
@@ -86,7 +86,7 @@ for f in FILES:
     src = re.sub(r'<meta[^>]*theme-color[^>]*>', '', src, flags=re.I)
     for m in re.findall(r'#[0-9a-fA-F]{6}\b|#[0-9a-fA-F]{3}\b', src):
         raw.add(m.lower())
-print(f'\n  raw colours outside tokens.css: {len(raw)}')
+print(f'\n  raw colours outside css/tokens.css: {len(raw)}')
 print(f'  expected: white, mask-black, terminal traffic-lights ({", ".join(sorted(raw))})')
 
 if fails:

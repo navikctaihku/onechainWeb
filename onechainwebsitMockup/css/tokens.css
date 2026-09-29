@@ -110,7 +110,7 @@
   --tracking-sub: 0.08em;
   --tracking-supporting: 0.08em;
 
-  /* Type scale — ONE scale for every page (was defined only in home.css) */
+  /* Type scale — ONE scale for every page (was defined only in css/home.css) */
   --title-hero:    clamp(34px, 5.5vw, 60px);
   --title-section: clamp(32px, 3.2vw, 40px);
   --title-card:    18px;

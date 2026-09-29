@@ -1,6 +1,6 @@
 /* OneChain shared site chrome — Vercel-style nav with mega dropdowns + footer.
    Usage: add <div id="site-nav"></div> after <body>, <div id="site-footer"></div>
-   before </body>, and <script src="site-chrome.js" defer></script> in <head>. */
+   before </body>, and <script src="js/site-chrome.js" defer></script> in <head>. */
 (function () {
 
 
@@ -80,7 +80,7 @@
         '<div class="sc-panel">' + cols + '</div></li>';
     }).join('');
     return '<nav class="sc-nav"><div class="sc-nav-inner">' +
-      '<a href="index.html" class="sc-logo"><img src="onchain-logo.png" alt="OneChain"></a>' +
+      '<a href="index.html" class="sc-logo"><img src="images/brand/onchain-logo.png" alt="OneChain"></a>' +
       '<ul class="sc-menu">' + lis + '</ul>' +
       '<div class="sc-actions">' +
       '<a class="sc-btn-ghost sc-btn-contact" href="contact.html">Contact</a>' +
@@ -131,7 +131,7 @@
       '<svg width="22" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3.02 3.02 0 0 0-2.12-2.14C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.38.56A3.02 3.02 0 0 0 .5 6.2 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.8 3.02 3.02 0 0 0 2.12 2.14C4.5 20.5 12 20.5 12 20.5s7.5 0 9.38-.56a3.02 3.02 0 0 0 2.12-2.14A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.8zM9.75 15.52V8.48L15.82 12l-6.07 3.52z"/></svg></a>' +
       '</div>';
     return '<footer class="sc-footer"><div class="sc-footer-inner"><div class="sc-footer-grid">' +
-      '<div class="sc-footer-brand"><img src="onchain-logo-white.png?v=202609071808" alt="OneChain">' +
+      '<div class="sc-footer-brand"><img src="images/brand/onchain-logo-white.png?v=202609071808" alt="OneChain">' +
       '<p>OneChain® is a startup leveraging blockchain and AI to deliver end-to-end solutions, making credentials tamper-proof, transparent, and trackable from infrastructure to application.</p>' +
       '<img class="sc-footer-iso" src="images/recognition/iso-27001.svg?v=202609081725" alt="ISO 27001 Certified" width="72" height="72">' +
       '</div>' +
@@ -156,16 +156,16 @@
       fl.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap';
       document.head.appendChild(fl);
     }
-    if (!document.querySelector('link[href*="global.css"]')) {
+    if (!document.querySelector('link[href*="css/global.css"]')) {
       var globalStyles = document.createElement('link');
       globalStyles.rel = 'stylesheet';
-      globalStyles.href = 'global.css?v=202609141432';
+      globalStyles.href = 'css/global.css?v=202609141432';
       document.head.appendChild(globalStyles);
     }
-    if (!document.querySelector('link[href*="chrome.css"]')) {
+    if (!document.querySelector('link[href*="css/chrome.css"]')) {
       var chromeStyles = document.createElement('link');
       chromeStyles.rel = 'stylesheet';
-      chromeStyles.href = 'chrome.css?v=202609141432';
+      chromeStyles.href = 'css/chrome.css?v=202609141432';
       document.head.appendChild(chromeStyles);
     }
 

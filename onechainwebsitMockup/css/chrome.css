@@ -101,7 +101,7 @@
     height: 52px; width: auto;
     /* Logo PNG has ~25% transparent top pad — pull up so artwork aligns with menu titles */
     margin-top: -13px;
-    /* Teal icon stays; CHAIN is reverse-white via onchain-logo-white.png */
+    /* Teal icon stays; CHAIN is reverse-white via images/brand/onchain-logo-white.png */
     filter: none;
   }
   .sc-footer-brand p {

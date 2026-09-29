@@ -64,6 +64,14 @@ rsync -a \
   --exclude '.DS_Store' \
   --exclude 'prompting-guide-dynamic-effects.md' \
   --exclude '*.canvas' \
+  --exclude '_archive' \
+  --exclude 'docs' \
+  --exclude '.claude' \
+  --exclude '.tmp-*' \
+  --exclude '*.py' \
+  --exclude 'AGENTS.md' \
+  --exclude 'CLAUDE.md' \
+  --exclude 'vercel.json' \
   --exclude 'package.json' \
   --exclude 'package-lock.json' \
   --exclude 'serve.json' \

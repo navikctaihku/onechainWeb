@@ -17,6 +17,15 @@ Both Claude and Cursor work on the same branch so changes never go missing.
 3. If you must use a feature branch, merge the latest `main` into it first and merge it
    back into `main` as soon as the change is done.
 
+## Folder layout
+- Root: the `*.html` pages, `favicon.svg`, and config (`package.json`, `vercel.json`, `serve.json`).
+- `css/` — `tokens.css` (only `:root`), `global.css`, `chrome.css`, `site-base.css`, `home.css`.
+- `js/` — `site-chrome.js` (shared nav + footer), `home.js`.
+- `images/` — `brand/` (logos), `hero/`, `logos/` (product logos), `partners/`, `recognition/`, `media-news/`.
+- `videos/` — hero and product videos.
+- `docs/` — notes and wireframes (not published). `_archive/` — unused files kept for reference (not published).
+- `audit-design.py`, `serve-nocache.py` — dev tools kept at the root because the git pre-commit hook and `.claude/launch.json` call them there.
+
 ## Local preview
 ```bash
 cd onechainwebsitMockup
@@ -27,8 +36,8 @@ npm run dev        # http://localhost:3000/index.html
 ## Assets
 - `*.mp4` is gitignored at the repo root. Add a new video with `git add -f videos/<file>.mp4`.
 - Hero background video: `videos/hero-blockchain-loop.mp4` (+ `.webm` fallback,
-  poster `hero-blockchain-loop-poster.jpg`). It is a seamless loop — first and last frame match.
-- Brand colours live in `tokens.css` (OneChain blue `#14a4bc`). `global.css` holds no `:root` block.
+  poster `images/hero/hero-blockchain-loop-poster.jpg`). It is a seamless loop — first and last frame match.
+- Brand colours live in `css/tokens.css` (OneChain blue `#14a4bc`). `css/global.css` holds no `:root` block.
 
 ## Deploy (live site)
 From the repo root on the owner's Mac: `./deploy-website.sh`

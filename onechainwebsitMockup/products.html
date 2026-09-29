@@ -7,18 +7,18 @@
   <meta name="description" content="Explore OneChain's flagship products: ESGLedger for verified ESG data and plastic credits, CertLedger for tamper-proof credentials, WillsLedger for Hong Kong Will lifecycle integrity, and ArtLedger for blockchain-verified art authentication and provenance.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="tokens.css?v=202609211627">
-  <link rel="stylesheet" href="global.css?v=202609211725">
-  <link rel="stylesheet" href="chrome.css?v=202609291600">
-  <script src="site-chrome.js?v=202609221608" defer></script>
-  <link rel="stylesheet" href="home.css?v=202609211627">
+  <link rel="stylesheet" href="css/tokens.css?v=202609211627">
+  <link rel="stylesheet" href="css/global.css?v=202609211725">
+  <link rel="stylesheet" href="css/chrome.css?v=202609291600">
+  <script src="js/site-chrome.js?v=202609221608" defer></script>
+  <link rel="stylesheet" href="css/home.css?v=202609211627">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <meta name="theme-color" content="#14a4bc">
   <style>
     /* ===================================================================
        FLAGSHIP PRODUCTS PAGE
        Two sections per product: an overview row, then an interactive
-       deep-dive band. Brand colours come from tokens.css.
+       deep-dive band. Brand colours come from css/tokens.css.
        =================================================================== */
 
     /* ---------- HERO ---------- */
@@ -235,14 +235,14 @@
       .fp-chip:hover, .fp-card:hover, .fp-stat:hover, .fp-tag:hover, .fp-btn:hover { transform: none; }
     }
   </style>
-  <link rel="stylesheet" href="site-base.css?v=202609151700">
+  <link rel="stylesheet" href="css/site-base.css?v=202609151700">
 </head>
 <body>
 
   <!-- SCROLL PROGRESS BAR -->
   <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
-  <!-- NAV (shared, injected by site-chrome.js) -->
+  <!-- NAV (shared, injected by js/site-chrome.js) -->
   <div id="site-nav"></div>
 
   <!-- HERO -->
@@ -288,7 +288,7 @@
           </div>
           <div class="product-row-copy">
             <span class="product-row-badge product-row-badge--logo">
-              <img src="logos/esgledger-logo-official.png?v=3" alt="ESGLedger" width="160" height="34" loading="lazy">
+              <img src="images/logos/esgledger-logo-official.png?v=3" alt="ESGLedger" width="160" height="34" loading="lazy">
             </span>
             <h3>Unlocking ESG Trust</h3>
             <p>Blockchain-verified ESG data platform and plastic credit marketplace. Anti-greenwashing technology for companies that mean what they claim.</p>
@@ -431,7 +431,7 @@
           </div>
           <div class="product-row-copy">
             <span class="product-row-badge product-row-badge--logo">
-              <img src="logos/certledger-logo-light.svg" alt="CertLedger" width="160" height="32" loading="lazy">
+              <img src="images/logos/certledger-logo-light.svg" alt="CertLedger" width="160" height="32" loading="lazy">
             </span>
             <h3>Certify with Blockchain</h3>
             <p>Blockchain-powered credential issuance and identity verification. Tamper-proof, paperless, instant verification.</p>
@@ -553,7 +553,7 @@
           <div class="product-row-copy">
             <span class="product-row-tag">Launching Q1 2027</span>
             <span class="product-row-badge product-row-badge--logo">
-              <img src="logos/willsledger-logo.png?v=4" alt="WillsLedger" width="180" height="46" loading="lazy">
+              <img src="images/logos/willsledger-logo.png?v=4" alt="WillsLedger" width="180" height="46" loading="lazy">
             </span>
             <h3>A verifiable Will lifecycle for Hong Kong</h3>
             <p>Help ordinary users prepare, manage, and preserve a verifiable record of their Will — with identity checks, execution evidence, and future executor access.</p>
@@ -684,7 +684,7 @@
           <div class="product-row-copy">
             <span class="product-row-tag">New</span>
             <span class="product-row-badge product-row-badge--logo">
-              <img src="logos/artledger-logo.png?v=3" alt="ArtLedger" width="180" height="36" loading="lazy">
+              <img src="images/logos/artledger-logo.png?v=3" alt="ArtLedger" width="180" height="36" loading="lazy">
             </span>
             <h3>Redefining art authentication and provenance</h3>
             <p>Bridge the physical and digital worlds of fine art — tamper-proof NFC/RFID tags connect each artwork to an immutable blockchain certificate, so authenticity and ownership history are never in doubt.</p>
@@ -805,11 +805,11 @@
     </div>
   </section>
 
-  <!-- FOOTER (shared, injected by site-chrome.js) -->
+  <!-- FOOTER (shared, injected by js/site-chrome.js) -->
   <div id="site-footer"></div>
 
   <!-- Shared interactions: reveal-on-scroll + CertLedger fan cards -->
-  <script src="home.js?v=202609221200" defer></script>
+  <script src="js/home.js?v=202609221200" defer></script>
 
   <!-- Page interactions: step flows, scroll-spy, stat count-up -->
   <script>
