@@ -277,7 +277,7 @@
       margin-bottom: 14px;
     }
     .hero-overlay .hero-logo-img {
-      max-width: min(400px, 72vw);
+      max-width: min(540px, 78vw);
       width: 100%;
       height: auto;
       margin: 0 auto 18px;
@@ -509,7 +509,7 @@
     }
     @media (max-width: 640px) {
       .hero, .hero-spacer { min-height: calc(100vh - 54px); }
-      .hero-overlay .hero-logo-img { max-width: 260px; }
+      .hero-overlay .hero-logo-img { max-width: 320px; }
     }
 
     /* ===== SCROLLING TICKER ===== */
