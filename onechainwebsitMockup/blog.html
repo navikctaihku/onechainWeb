@@ -243,9 +243,38 @@
       object-fit: contain;
       filter: drop-shadow(0 6px 16px rgba(0,0,0,0.25));
     }
-    .blog-card--static { cursor: default; }
     .blog-card--static .blog-card-title { display: block; }
     .blog-excerpt--full { white-space: pre-line; }
+
+    /* Brief cards -> click for full story */
+    .blog-card--static { cursor: pointer; }
+    .blog-card--static:focus-visible { outline: 2px solid var(--oc-blue); outline-offset: 3px; }
+    .blog-grid .blog-excerpt--full {
+      display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3;
+      overflow: hidden; flex: 0 0 auto;
+    }
+    .blog-more { font-size: 13px; font-weight: 600; color: var(--oc-blue); margin-top: auto; }
+    .blog-card--static:hover .blog-more { color: var(--oc-blue-deep, var(--oc-blue)); }
+    .blog-meta { margin-top: 0; }
+
+    .blog-modal { position: fixed; inset: 0; z-index: 2000; display: none;
+      align-items: flex-start; justify-content: center; overflow-y: auto;
+      padding: 40px 16px; background: rgba(20, 60, 70, 0.72);
+      -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+    .blog-modal.is-open { display: flex; }
+    .blog-modal-panel { position: relative; width: 100%; max-width: 860px; background: #fff;
+      border-radius: 16px; overflow: hidden; box-shadow: 0 30px 80px rgba(10, 22, 40, 0.3); }
+    .blog-modal-img { background: var(--oc-bg-alt, #f4f8f9); }
+    .blog-modal-img img { display: block; width: 100%; height: auto; max-height: 100vh; object-fit: contain; margin: 0 auto; }
+    .blog-modal-body { padding: 28px 32px 34px; display: flex; flex-direction: column; gap: 14px; }
+    .blog-modal-body .blog-card-title { font-size: 24px; }
+    .blog-modal-body .blog-excerpt { font-size: 16px; line-height: 1.7; white-space: pre-line; flex: 0 0 auto; }
+    .blog-modal-close { position: absolute; top: 12px; right: 12px; width: 40px; height: 40px;
+      border: none; border-radius: 50%; background: #fff; color: var(--oc-blue); font-size: 22px;
+      line-height: 1; cursor: pointer; box-shadow: 0 4px 14px rgba(10, 22, 40, 0.18); z-index: 1; }
+    .blog-modal-close:hover { background: var(--oc-bg-alt, #f4f8f9); }
+    @media (max-width: 640px) { .blog-modal { padding: 0; } .blog-modal-panel { border-radius: 0; min-height: 100%; }
+      .blog-modal-body { padding: 22px 20px 28px; } }
   </style>
   <link rel="stylesheet" href="site-base.css?v=202609151700">
 </head>
@@ -280,6 +309,7 @@
             <p class="blog-excerpt blog-excerpt--full">It's been a while since we spoke about breaking the stereotypes of blockchain. Grateful to BOC Life for inviting us to their luncheon seminar, where we had the chance to help their colleagues better understand blockchain and its vital role in building trust for sustainability development.
 
 As we move forward, ESG reporting alone is no longer enough — it's about proving and turning sustainability into something evidence-based. And that's the mission we are committed to pursuing.</p>
+            <span class="blog-more">Read more →</span>
             <div class="blog-meta">
               <img src="onchain-logo.png" alt="" width="22" height="22" loading="lazy">
               <time datetime="2026-06-02">Jun 02 2026</time>
@@ -297,6 +327,7 @@ As we move forward, ESG reporting alone is no longer enough — it's about provi
             <p class="blog-excerpt blog-excerpt--full">Achieving ISO 27001 certification is an important milestone for OneChain. This certification reflects our commitment to maintaining the highest standards of information security, ensuring our blockchain solutions remain trusted, secure, and reliable for all our partners and clients.
 
 A big thank you to the team for their effort and dedication in making this possible.</p>
+            <span class="blog-more">Read more →</span>
             <div class="blog-meta">
               <img src="onchain-logo.png" alt="" width="22" height="22" loading="lazy">
               <time datetime="2026-05-23">May 23 2026</time>
@@ -306,7 +337,7 @@ A big thank you to the team for their effort and dedication in making this possi
 
         <article class="blog-card blog-card--static" data-tag="Media">
           <div class="blog-thumb blog-thumb--photo">
-            <img src="images/media-news/takungpao-preview.jpg" alt="Full-page OneChain feature in Ta Kung Pao newspaper" loading="lazy">
+            <img src="images/media-news/takungpao-preview.jpg" data-full="images/media-news/takungpao-full.jpg" alt="Full-page OneChain feature in Ta Kung Pao newspaper" loading="lazy">
           </div>
           <div class="blog-body">
             <span class="blog-tag">Media</span>
@@ -314,6 +345,7 @@ A big thank you to the team for their effort and dedication in making this possi
             <p class="blog-excerpt blog-excerpt--full">This media interview was perfectly timed — completed on the day Founder &amp; CEO Anne Yeung departed for the States in early November, and released on the day she returned a month later. A sincere thanks to Cyberport for connecting her with Ta Kung Pao. Receiving a full-page feature, especially focusing on blockchain technology itself rather than fintech or AI, is incredibly valuable in today's landscape.
 
 In the interview, Anne shared how blockchain's value goes far beyond speculation, offering real enterprise solutions for data traceability and credential provenance. Particularly with increasing government regulation and support, our technology is being applied more and more in ESG compliance.</p>
+            <span class="blog-more">Read more →</span>
             <div class="blog-meta">
               <img src="onchain-logo.png" alt="" width="22" height="22" loading="lazy">
               <time datetime="2025-12-08">Dec 08 2025</time>
@@ -331,6 +363,7 @@ In the interview, Anne shared how blockchain's value goes far beyond speculation
             <p class="blog-excerpt blog-excerpt--full">A major highlight of our second business trip to Dubai was finalizing the MOU with UTipping and Ahmad Al Mutawa Trading EST from Kuwait for a strategic partnership. As OneChain's exclusive partner in Kuwait, they will lead the expansion of our blockchain credential services in the region, while integrating our scalable blockchain network into their UTipping app as a key client.
 
 This milestone marks OneChain's entry into the GCC region, focusing on practical solutions for product authenticity and credentials traceability — services that are globally reliable, scalable, and impactful beyond regional boundaries.</p>
+            <span class="blog-more">Read more →</span>
             <div class="blog-meta">
               <img src="onchain-logo.png" alt="" width="22" height="22" loading="lazy">
               <time datetime="2025-06-02">Jun 02 2025</time>
@@ -348,6 +381,7 @@ This milestone marks OneChain's entry into the GCC region, focusing on practical
             <p class="blog-excerpt blog-excerpt--full">A highlight of OneChain's second business trip to Dubai was visiting the Dubai Electronic Security Center (DESC) at Emirates Towers, where we presented our blockchain and zero-knowledge proof (ZKP) solution to Mr. Abdullah Al Suwaidi and his team.
 
 The meeting covered how ZKP can strengthen encrypted communications, alongside future challenges around quantum computing, with our research team sharing R&amp;D-backed insights on how our technology addresses these threats. We look forward to future collaboration with DESC through a PoC project, strengthening the bridge between Dubai and Hong Kong in cybersecurity.</p>
+            <span class="blog-more">Read more →</span>
             <div class="blog-meta">
               <img src="onchain-logo.png" alt="" width="22" height="22" loading="lazy">
               <time datetime="2025-05-26">May 26 2025</time>
@@ -365,6 +399,7 @@ The meeting covered how ZKP can strengthen encrypted communications, alongside f
             <p class="blog-excerpt blog-excerpt--full">Besides blockchain credentials and supply chain traceability, we are expanding our applications into property management to address anti-fraud measures for tenants' payments.
 
 Thanks to the support of the Cyberport Web3 PoC Subsidy, we are excited to announce the soft launch of RentLedger — a blockchain-powered tenant management system designed to prevent payment fraud, bringing blockchain technology to the property market as a PoC.</p>
+            <span class="blog-more">Read more →</span>
             <div class="blog-meta">
               <img src="onchain-logo.png" alt="" width="22" height="22" loading="lazy">
               <time datetime="2025-04-22">Apr 22 2025</time>
@@ -382,6 +417,7 @@ Thanks to the support of the Cyberport Web3 PoC Subsidy, we are excited to annou
             <p class="blog-excerpt blog-excerpt--full">The Halal industry in Hong Kong is growing rapidly, and we're excited to share how OneChain is contributing to this important movement. Through CertLedger, we're empowering trusted organizations like the GBA Halal Certification Center (GHCC) to issue blockchain-based certificates — offering immutable proof of authenticity and validity.
 
 GHCC plays a critical role in ensuring all processes adhere to Shariah principles and Halal standards, building trust and credibility in the Hong Kong Halal industry. Proud to be part of an effort driving transparency, innovation, and growth in this dynamic and globally important sector.</p>
+            <span class="blog-more">Read more →</span>
             <div class="blog-meta">
               <img src="onchain-logo.png" alt="" width="22" height="22" loading="lazy">
               <time datetime="2025-02-20">Feb 20 2025</time>
@@ -399,6 +435,7 @@ GHCC plays a critical role in ensuring all processes adhere to Shariah principle
             <p class="blog-excerpt blog-excerpt--full">Starting 2025 with exciting news — on the first working day of the year, we announced a strategic partnership between OneChain and JobMatriz. Together, we're leveraging blockchain technology to revolutionize resume verification in the AI era.
 
 By integrating CertLedger, our blockchain-powered certificate verification system, into the JobMatriz platform, we're tackling resume fraud, enhancing trust between job seekers and employers, and streamlining the hiring process — with tamper-proof qualifications, faster background checks, and blockchain-backed resumes that let job seekers confidently showcase their skills.</p>
+            <span class="blog-more">Read more →</span>
             <div class="blog-meta">
               <img src="onchain-logo.png" alt="" width="22" height="22" loading="lazy">
               <time datetime="2025-01-02">Jan 02 2025</time>
@@ -416,6 +453,7 @@ By integrating CertLedger, our blockchain-powered certificate verification syste
             <p class="blog-excerpt blog-excerpt--full">We're thrilled to share that CertLedger was recognized at the prestigious Hong Kong ICT Awards. Competing in the FinTech category against over 100 large financial institutions, FinTech firms, AI companies, and startups, it's an incredible honor for our product to be shortlisted as one of the top 10 finalists and to receive the Merit Award.
 
 This recognition highlights the potential of our blockchain-based credential management solution and affirms our commitment to driving innovation and delivering impactful technology solutions.</p>
+            <span class="blog-more">Read more →</span>
             <div class="blog-meta">
               <img src="onchain-logo.png" alt="" width="22" height="22" loading="lazy">
               <time datetime="2024-11-27">Nov 27 2024</time>
@@ -433,6 +471,7 @@ This recognition highlights the potential of our blockchain-based credential man
             <p class="blog-excerpt blog-excerpt--full">Our Founder &amp; CEO, Anne Yeung, was recently interviewed by WenWeiPo to share insights and our latest work on how our blockchain application is applied to product traceability, ensuring transparency and trustworthy product data.
 
 Explore the article to learn more about our efforts to innovate the future of product authentication and traceability.</p>
+            <span class="blog-more">Read more →</span>
             <div class="blog-meta">
               <img src="onchain-logo.png" alt="" width="22" height="22" loading="lazy">
               <time datetime="2024-04-05">Apr 05 2024</time>
@@ -450,6 +489,7 @@ Explore the article to learn more about our efforts to innovate the future of pr
             <p class="blog-excerpt blog-excerpt--full">We're immensely proud of our collaboration with HK Timberbank, where we've leveraged RFID and blockchain technology for the traceability of each recycled timber trophy, sponsored for the Revive Tech Asia Award 2023.
 
 Each recycled timber carries a unique story, and it deserves to be told, especially its journey through recycling. This marks a significant step forward in our commitment to strengthening ESG transparency and trust.</p>
+            <span class="blog-more">Read more →</span>
             <div class="blog-meta">
               <img src="onchain-logo.png" alt="" width="22" height="22" loading="lazy">
               <time datetime="2023-10-31">Oct 31 2023</time>
@@ -477,6 +517,56 @@ Each recycled timber carries a unique story, and it deserves to be told, especia
             card.classList.toggle('is-hidden', !show);
           });
         });
+      });
+
+      // Click a brief card to read the full story with the whole photo
+      var modal = document.createElement('div');
+      modal.className = 'blog-modal';
+      modal.setAttribute('role', 'dialog');
+      modal.setAttribute('aria-modal', 'true');
+      modal.innerHTML = '<div class="blog-modal-panel"><button type="button" class="blog-modal-close" aria-label="Close">&times;</button>' +
+        '<div class="blog-modal-img"></div><div class="blog-modal-body"></div></div>';
+      document.body.appendChild(modal);
+      var mImg = modal.querySelector('.blog-modal-img'), mBody = modal.querySelector('.blog-modal-body');
+      var opener = null;
+      function openCard(card) {
+        opener = card;
+        var img = card.querySelector('.blog-thumb img');
+        mImg.innerHTML = '';
+        if (img) {
+          var c = img.cloneNode(); c.removeAttribute('loading');
+          if (img.dataset.full) { c.src = img.dataset.full; }
+          // Tall pages (e.g. newspaper) show at full width and scroll; wide photos fit the screen
+          c.addEventListener('load', function () { if (c.naturalHeight > c.naturalWidth) c.style.maxHeight = 'none'; });
+          mImg.appendChild(c);
+        }
+        mBody.innerHTML = '';
+        ['.blog-tag', '.blog-card-title', '.blog-excerpt', '.blog-meta'].forEach(function (sel) {
+          var el = card.querySelector(sel); if (el) mBody.appendChild(el.cloneNode(true));
+        });
+        modal.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+        modal.scrollTop = 0;
+        modal.querySelector('.blog-modal-close').focus();
+      }
+      function closeModal() {
+        modal.classList.remove('is-open');
+        document.body.style.overflow = '';
+        if (opener) opener.focus();
+      }
+      cards.forEach(function (card) {
+        card.setAttribute('tabindex', '0');
+        card.setAttribute('role', 'button');
+        card.addEventListener('click', function () { openCard(card); });
+        card.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openCard(card); }
+        });
+      });
+      modal.addEventListener('click', function (e) {
+        if (e.target === modal || e.target.classList.contains('blog-modal-close')) closeModal();
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
       });
     })();
   </script>
