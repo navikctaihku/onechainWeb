@@ -22,9 +22,9 @@
   .sc-menu { display: flex; align-items: center; gap: 4px; list-style: none; margin: 0; padding: 0; }
   .sc-menu > li { position: relative; }
   .sc-menu-btn { display: inline-flex; align-items: center; gap: 6px; border: none; background: none;
-    cursor: pointer; font: 500 14px/1 'Inter', sans-serif; color: var(--sc-muted);
+    cursor: pointer; font: 500 14px/1 'Inter', sans-serif; color: var(--oc-blue, #14a4bc);
     padding: 10px 14px; border-radius: 8px; transition: color .15s, background .15s; }
-  .sc-menu-btn:hover, .sc-menu > li.sc-open > .sc-menu-btn { color: var(--sc-ink); background: rgba(10,22,40,0.04); }
+  .sc-menu-btn:hover, .sc-menu > li.sc-open > .sc-menu-btn { color: var(--oc-blue-deep, #0d7d91); background: rgba(10,22,40,0.04); }
   .sc-menu-btn .sc-caret { transition: transform .2s; }
   .sc-menu > li.sc-open .sc-caret { transform: rotate(180deg); }
   .sc-panel { position: absolute; top: calc(100% + 10px); left: 50%; transform: translateX(-50%) translateY(6px);
