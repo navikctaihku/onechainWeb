@@ -208,3 +208,15 @@ h1, h2, h3, h4 {
   letter-spacing: -0.02em;
 }
 body { font-family: var(--font-body, 'Inter', 'Noto Sans TC', sans-serif); }
+
+  /* Homepage: header sits directly on the hero video — no background, white wording.
+     Once the page scrolls, the normal frosted bar returns so text stays readable. */
+  body.home .sc-nav:not(.scrolled) {
+    background: transparent !important;
+    -webkit-backdrop-filter: none; backdrop-filter: none;
+    border-bottom-color: transparent; box-shadow: none; }
+  body.home .sc-nav:not(.scrolled) .sc-menu-btn { color: #fff; }
+  body.home .sc-nav:not(.scrolled) .sc-menu-btn:hover,
+  body.home .sc-nav:not(.scrolled) .sc-menu > li.sc-open > .sc-menu-btn { color: #fff; background: rgba(255,255,255,0.14); }
+  body.home .sc-nav:not(.scrolled) .sc-logo img { content: url(onchain-logo-white.png); }
+  body.home .sc-nav:not(.scrolled) .sc-burger { color: #fff; }
