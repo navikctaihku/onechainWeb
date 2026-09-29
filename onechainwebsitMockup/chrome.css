@@ -1,6 +1,6 @@
 /* Shared OneChain navigation and footer styles. */
   .sc-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: 64px;
-    background: rgba(255, 255, 255, 0.55) !important;
+    background: rgba(255, 255, 255, 0.88) !important;
     -webkit-backdrop-filter: saturate(1.6) blur(18px);
     backdrop-filter: saturate(1.6) blur(18px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.45);
@@ -10,7 +10,7 @@
     font-family: 'Inter', -apple-system, sans-serif;
     transition: background .25s ease, border-color .25s ease, box-shadow .25s ease; }
   .sc-nav.scrolled {
-    background: rgba(255, 255, 255, 0.72) !important;
+    background: rgba(255, 255, 255, 0.95) !important;
     border-bottom-color: rgba(10, 22, 40, 0.08);
     box-shadow:
       inset 0 1px 0 rgba(255, 255, 255, 0.8),
