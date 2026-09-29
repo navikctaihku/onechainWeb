@@ -228,3 +228,12 @@ body { font-family: var(--font-body, 'Inter', 'Noto Sans TC', sans-serif); }
   body.home .sc-item-name { color: #fff; }
   body.home .sc-item-desc { color: rgba(255,255,255,0.88); }
   body.home .sc-item:hover { background: rgba(255,255,255,0.16); }
+  /* Homepage, scrolled: header becomes the same translucent brand-blue glass as the dropdowns (white wording). */
+  body.home .sc-nav.scrolled {
+    background: rgba(20, 164, 188, 0.88) !important;
+    border-bottom-color: rgba(255,255,255,0.28); }
+  body.home .sc-nav.scrolled .sc-menu-btn,
+  body.home .sc-nav.scrolled .sc-burger { color: #fff; }
+  body.home .sc-nav.scrolled .sc-menu-btn:hover,
+  body.home .sc-nav.scrolled .sc-menu > li.sc-open > .sc-menu-btn { color: #fff; background: rgba(255,255,255,0.16); }
+  body.home .sc-nav.scrolled .sc-logo img { content: url(onchain-logo-white.png); }
