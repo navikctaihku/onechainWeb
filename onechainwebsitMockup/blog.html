@@ -274,6 +274,7 @@
       line-height: 1; cursor: pointer; box-shadow: 0 4px 14px rgba(10, 22, 40, 0.18); z-index: 1; }
 
     .blog-modal-img img { cursor: zoom-in; }
+    .blog-modal-img img + img { margin-top: 6px; }
     .blog-zoom { position: fixed; inset: 0; z-index: 3000; display: none; overflow: auto;
       background: rgba(13, 60, 72, 0.94); cursor: zoom-out; }
     .blog-zoom.is-open { display: block; }
@@ -505,7 +506,7 @@ This recognition highlights the potential of our blockchain-based credential man
 
         <article class="blog-card blog-card--static" data-tag="Media">
           <div class="blog-thumb blog-thumb--photo">
-            <img src="images/media-news/wenweipo.jpg" data-full="images/media-news/wenweipo-full.jpg?v=2" alt="Full-page OneChain feature in Wen Wei Po newspaper" loading="lazy">
+            <img src="images/media-news/wenweipo.jpg" data-full="images/media-news/wenweipo-1.jpg,images/media-news/wenweipo-2.jpg,images/media-news/wenweipo-3.jpg" alt="Full-page OneChain feature in Wen Wei Po newspaper" loading="lazy">
           </div>
           <div class="blog-body">
             <span class="blog-tag">Media</span>
@@ -576,11 +577,14 @@ Each recycled timber carries a unique story, and it deserves to be told, especia
         var img = card.querySelector('.blog-thumb img');
         mImg.innerHTML = '';
         if (img) {
-          var c = img.cloneNode(); c.removeAttribute('loading');
-          if (img.dataset.full) { c.src = img.dataset.full; }
-          // Tall pages (e.g. newspaper) show at full width and scroll; wide photos fit the screen
-          c.addEventListener('load', function () { if (c.naturalHeight > c.naturalWidth) c.style.maxHeight = 'none'; });
-          mImg.appendChild(c);
+          // data-full may list several photos (comma-separated); all are shown in the pop-up
+          (img.dataset.full ? img.dataset.full.split(',') : [img.src]).forEach(function (src) {
+            var c = img.cloneNode(); c.removeAttribute('loading'); c.removeAttribute('data-full'); c.removeAttribute('style');
+            c.src = src.trim();
+            // Tall pages (e.g. newspaper) show at full width and scroll; wide photos fit the screen
+            c.addEventListener('load', function () { if (c.naturalHeight > c.naturalWidth) c.style.maxHeight = 'none'; });
+            mImg.appendChild(c);
+          });
         }
         mBody.innerHTML = '';
         ['.blog-tag', '.blog-card-title', '.blog-excerpt', '.blog-meta'].forEach(function (sel) {
