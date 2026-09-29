@@ -217,8 +217,9 @@
       padding: 0;
       position: relative;
       overflow: hidden;
-      /* Full viewport minus ticker height so ticker sits flush at bottom */
-      min-height: calc(100vh - 62px);
+      /* Full viewport — the ticker bar only appears once the visitor scrolls */
+      min-height: 100vh;
+      min-height: 100svh;
       background: var(--oc-surface-media);
     }
     .hero-media {
